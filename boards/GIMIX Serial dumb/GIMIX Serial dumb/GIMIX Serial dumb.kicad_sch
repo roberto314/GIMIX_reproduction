@@ -4,6 +4,13 @@
 	(generator_version "9.0")
 	(uuid "3220d534-7fc3-481a-86ab-b5490b875ff1")
 	(paper "A4")
+	(title_block
+		(title "GIMIX two port Serial board")
+		(date "2026-06-25")
+		(rev "0.1")
+		(company "100% Offner")
+		(comment 1 "v0.1: Initial")
+	)
 	(lib_symbols
 		(symbol "74xx:74LS02"
 			(pin_names
