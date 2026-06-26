@@ -9,3 +9,5 @@ This Repository is for primarily my GIMIX Ghost Reproduction and various SS-30 a
 - Tanner 64k SRAM boad finished, no PALs, production possible
 
 - GIMIX Baud Rate Generator Board finished, no PALs, production possible
+
+- GIMIX Floppy DMA finished, no PALs, production possible
