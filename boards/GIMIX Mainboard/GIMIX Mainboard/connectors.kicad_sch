@@ -7,7 +7,7 @@
 	(title_block
 		(title "GIMIX Mainboard 24-0049 ")
 		(date "2026-06-24")
-		(rev "0.1")
+		(rev "0.2")
 		(company "100% Offner")
 		(comment 1 "v0.1: Initial")
 	)
@@ -25234,6 +25234,16 @@
 			(justify left bottom)
 		)
 		(uuid "39d8cf92-2ecf-4850-b946-0914e175b7a9")
+	)
+	(label "~{FIRQ}"
+		(at 264.16 204.47 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3b884bb7-37f0-490f-999c-64c4fa0bfae1")
 	)
 	(label "300B"
 		(at 171.45 228.6 0)

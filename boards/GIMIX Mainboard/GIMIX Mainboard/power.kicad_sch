@@ -7,7 +7,7 @@
 	(title_block
 		(title "GIMIX Mainboard 24-0049 ")
 		(date "2026-06-24")
-		(rev "0.1")
+		(rev "0.2")
 		(company "100% Offner")
 		(comment 1 "v0.1: Initial")
 	)
