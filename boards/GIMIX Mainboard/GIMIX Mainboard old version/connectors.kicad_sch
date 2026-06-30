@@ -7,9 +7,10 @@
 	(title_block
 		(title "GIMIX Mainboard 24-0034-9A")
 		(date "2026-06-24")
-		(rev "0.1")
+		(rev "0.2")
 		(company "100% Offner")
 		(comment 1 "v0.1: Initial")
+		(comment 2 "v0.2: cleanup, RN4 added (was single resistors on underside)")
 	)
 	(lib_symbols
 		(symbol "Connector:Screw_Terminal_01x04"
@@ -5770,6 +5771,16 @@
 		)
 		(uuid "711ae558-62f7-490d-b1eb-1741046367d6")
 	)
+	(text "UD1\nUD2\nUD3\nUD4"
+		(exclude_from_sim no)
+		(at 194.818 247.142 0)
+		(effects
+			(font
+				(size 1.651 1.651)
+			)
+		)
+		(uuid "d3593971-6e3c-4c46-a935-ea58d13e2565")
+	)
 	(text "O\nR"
 		(exclude_from_sim no)
 		(at 194.056 221.996 0)
@@ -11307,6 +11318,10 @@
 		(uuid "ffa3a3da-7540-45b5-a05f-cae2d5f595e0")
 	)
 	(no_connect
+		(at 346.71 163.83)
+		(uuid "41cf5412-e3d2-4630-9313-2507238fef89")
+	)
+	(no_connect
 		(at 384.81 162.56)
 		(uuid "d12a817d-0e79-4455-99a4-96fc28576c3f")
 	)
@@ -13458,6 +13473,16 @@
 	)
 	(wire
 		(pts
+			(xy 331.47 163.83) (xy 331.47 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b814458-f4bc-4b2d-9855-82903238eef3")
+	)
+	(wire
+		(pts
 			(xy 209.55 34.29) (xy 220.98 34.29)
 		)
 		(stroke
@@ -14478,6 +14503,16 @@
 	)
 	(wire
 		(pts
+			(xy 339.09 163.83) (xy 339.09 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "40f8377c-8d28-4e2a-80bb-9da0a8b785a8")
+	)
+	(wire
+		(pts
 			(xy 149.86 69.85) (xy 161.925 69.85)
 		)
 		(stroke
@@ -15075,6 +15110,16 @@
 			(type default)
 		)
 		(uuid "4b6f9b34-ae30-4b77-9587-43f17ad4f01c")
+	)
+	(wire
+		(pts
+			(xy 344.17 163.83) (xy 344.17 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c1df6f3-c294-429c-b117-421b509bcc17")
 	)
 	(wire
 		(pts
@@ -15888,6 +15933,16 @@
 	)
 	(wire
 		(pts
+			(xy 326.39 163.83) (xy 326.39 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5e91cf44-ca07-4b27-a421-21e8b8178373")
+	)
+	(wire
+		(pts
 			(xy 65.405 110.49) (xy 78.105 110.49)
 		)
 		(stroke
@@ -16345,6 +16400,16 @@
 			(type default)
 		)
 		(uuid "68e9cac1-cc59-4317-96ab-79c1a59fa83e")
+	)
+	(wire
+		(pts
+			(xy 341.63 163.83) (xy 341.63 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "697bacb4-a2b0-40f4-bec4-6b2b7781b82c")
 	)
 	(wire
 		(pts
@@ -17045,6 +17110,16 @@
 			(type default)
 		)
 		(uuid "7800bf46-9f27-461e-a0ad-b86c09976073")
+	)
+	(wire
+		(pts
+			(xy 336.55 163.83) (xy 336.55 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78136970-99e5-4562-87c4-743a53e8e973")
 	)
 	(wire
 		(pts
@@ -18065,6 +18140,16 @@
 			(type default)
 		)
 		(uuid "911542d0-544f-4b9d-8cb5-f21ab05cdae7")
+	)
+	(wire
+		(pts
+			(xy 328.93 163.83) (xy 328.93 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "912bfc01-00a8-4f22-bc37-d51aabe8a3b2")
 	)
 	(wire
 		(pts
@@ -20035,6 +20120,16 @@
 			(type default)
 		)
 		(uuid "b879e5b9-0d30-45c0-9d38-65198a9db15b")
+	)
+	(wire
+		(pts
+			(xy 334.01 163.83) (xy 334.01 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b8f6f3c4-a66c-43ee-96e6-2127ce12d936")
 	)
 	(bus
 		(pts
@@ -23676,6 +23771,26 @@
 		)
 		(uuid "2de21280-7efe-4373-ab17-71f53207a156")
 	)
+	(label "IOD2"
+		(at 331.47 142.24 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "312da885-156d-4d9d-a79a-1dc096628cb8")
+	)
+	(label "IOD7"
+		(at 344.17 142.24 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "31a56976-1fb3-435f-8de1-cdb01a2f52b7")
+	)
 	(label "BA3"
 		(at 58.42 72.39 0)
 		(effects
@@ -23785,6 +23900,16 @@
 			(justify right bottom)
 		)
 		(uuid "4ca726c4-0f1f-41aa-824f-2cd6639923e2")
+	)
+	(label "IOD6"
+		(at 341.63 142.24 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "4cb373d4-cb8f-42fc-972e-444db5d7eead")
 	)
 	(label "IOD6"
 		(at 36.83 120.65 180)
@@ -23956,6 +24081,16 @@
 		)
 		(uuid "67dc341f-ec2e-44b9-88d2-05ee4011d70a")
 	)
+	(label "IOD5"
+		(at 339.09 142.24 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "6955dc66-25a0-4b95-abf1-c35629e0d8dd")
+	)
 	(label "BD7"
 		(at 36.83 40.64 180)
 		(effects
@@ -23965,6 +24100,16 @@
 			(justify right bottom)
 		)
 		(uuid "6c21ae0c-de47-42c3-b351-e2276769ff3d")
+	)
+	(label "IOD3"
+		(at 334.01 142.24 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "6f09c14d-c09f-4996-9abe-419404d19426")
 	)
 	(label "BD6"
 		(at 58.42 36.83 0)
@@ -24075,6 +24220,16 @@
 			(justify left bottom)
 		)
 		(uuid "7dff4f2b-54b7-4f46-926e-b0a9a7fd2613")
+	)
+	(label "IOD4"
+		(at 336.55 142.24 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "7edf89b3-cf54-439e-92fe-411b40a59a43")
 	)
 	(label "BA17"
 		(at 195.58 198.12 0)
@@ -24676,6 +24831,16 @@
 		)
 		(uuid "def914c8-ef9f-47fe-9d6a-7728c22463d6")
 	)
+	(label "IOD0"
+		(at 326.39 142.24 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "dfc78b54-8c49-40db-937c-6de6e3911ecd")
+	)
 	(label "IOD7"
 		(at 25.4 217.17 0)
 		(effects
@@ -24805,6 +24970,16 @@
 			(justify right bottom)
 		)
 		(uuid "f4255f4b-08ad-4e73-b677-2f6f05431875")
+	)
+	(label "IOD1"
+		(at 328.93 142.24 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "f83ed943-f942-4ad1-a362-8ca2f064bcab")
 	)
 	(hierarchical_label "300B"
 		(shape input)
@@ -29379,6 +29554,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 326.39 173.99 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "91adc363-e88d-427e-acf0-9d6586fe0e7d")
+		(property "Reference" "#PWR031"
+			(at 326.39 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 326.39 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 326.39 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 326.39 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 326.39 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f0e8f002-21cf-49da-ba42-12592287e213")
+		)
+		(instances
+			(project "GIMIX Mainboard"
+				(path "/471d184b-f3be-460f-9c44-6b4c4ffac74b/7c0d5175-39d7-4f8a-8889-08dc797cb17c"
+					(reference "#PWR031")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+8V")
 		(at 48.26 81.28 0)
 		(mirror y)
@@ -31139,6 +31380,101 @@
 			(project "GIMIX Mainboard"
 				(path "/471d184b-f3be-460f-9c44-6b4c4ffac74b/7c0d5175-39d7-4f8a-8889-08dc797cb17c"
 					(reference "IO1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Network09")
+		(at 336.55 168.91 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b96ea603-eaf5-4613-9050-3d347920799a")
+		(property "Reference" "RN4"
+			(at 349.25 167.3859 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "R_Network09"
+			(at 349.25 169.9259 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Array_SIP10"
+			(at 351.155 168.91 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.vishay.com/docs/31509/csc.pdf"
+			(at 336.55 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "9 resistor network, star topology, bussed resistors, small symbol"
+			(at 336.55 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "9"
+			(uuid "a22d0e3b-7dc4-45a6-89e7-2c3d46faee03")
+		)
+		(pin "4"
+			(uuid "60bcee07-0166-4396-84e3-5f7f02d0a631")
+		)
+		(pin "3"
+			(uuid "844e3cf7-612b-4c03-92b1-1f56dd05c200")
+		)
+		(pin "2"
+			(uuid "819f2a27-02f1-41ab-a7db-ec96ba08338b")
+		)
+		(pin "5"
+			(uuid "c5834c93-19f3-42e9-8192-b3d8caf435ab")
+		)
+		(pin "1"
+			(uuid "28574482-b005-41d8-ade4-41706b75528f")
+		)
+		(pin "10"
+			(uuid "d3a6374f-1190-4b25-a574-6f19d956b9d5")
+		)
+		(pin "6"
+			(uuid "a05bffe0-d06f-4dcb-bb92-527a132d4c4a")
+		)
+		(pin "7"
+			(uuid "1fe45ca3-ec3d-4bf1-b542-1eb55059cf19")
+		)
+		(pin "8"
+			(uuid "552bb2f2-80bf-44b5-89fe-6bcb1ebadf5a")
+		)
+		(instances
+			(project "GIMIX Mainboard"
+				(path "/471d184b-f3be-460f-9c44-6b4c4ffac74b/7c0d5175-39d7-4f8a-8889-08dc797cb17c"
+					(reference "RN4")
 					(unit 1)
 				)
 			)
