@@ -17,3 +17,5 @@ This Repository is for primarily my GIMIX Ghost Reproduction and various SS-30 a
 - GIMIX Motherboard with onboard Baudrate generator, done, production possible
 
 - GIMIX Motherboard without onboard Baudrate generator, done, production possible
+
+- GIMIX 256k SRAM done, PAL missing but should not be too difficult to figure out, production possible, mods for 62256 chips instead of original 6264. Battery backup won't work with 62256 chips!
