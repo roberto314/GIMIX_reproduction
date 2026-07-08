@@ -7,9 +7,10 @@
 	(title_block
 		(title "GIMIX 6809 CPU Plus")
 		(date "2026-07-02")
-		(rev "0.1")
+		(rev "0.2")
 		(company "100% Offner")
 		(comment 1 "v0.1: Initial")
+		(comment 2 "v0.2: ch. U34 -> 'LS368, ")
 	)
 	(lib_symbols
 		(symbol "74xx:74LS00"
@@ -6589,7 +6590,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "my_ics_new:74LS367_Split"
+		(symbol "my_ics_new:74LS368_Split"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -6601,7 +6602,7 @@
 					)
 				)
 			)
-			(property "Value" "74LS367_Split"
+			(property "Value" "74LS368_Split"
 				(at 7.366 2.794 0)
 				(effects
 					(font
@@ -6662,7 +6663,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "74LS367_Split_1_0"
+			(symbol "74LS368_Split_1_0"
 				(polyline
 					(pts
 						(xy -3.81 3.81) (xy -3.81 -3.81) (xy 3.81 0) (xy -3.81 3.81)
@@ -6711,7 +6712,7 @@
 						)
 					)
 				)
-				(pin tri_state line
+				(pin tri_state inverted
 					(at 7.62 0 180)
 					(length 3.81)
 					(name "~"
@@ -6730,7 +6731,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_1_1"
+			(symbol "74LS368_Split_1_1"
 				(polyline
 					(pts
 						(xy 0 0.762) (xy 0 -0.762) (xy -1.778 -0.762)
@@ -6756,7 +6757,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_2_0"
+			(symbol "74LS368_Split_2_0"
 				(polyline
 					(pts
 						(xy -3.81 3.81) (xy -3.81 -3.81) (xy 3.81 0) (xy -3.81 3.81)
@@ -6787,7 +6788,7 @@
 						)
 					)
 				)
-				(pin tri_state line
+				(pin tri_state inverted
 					(at 7.62 0 180)
 					(length 3.81)
 					(name "~"
@@ -6806,7 +6807,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_2_1"
+			(symbol "74LS368_Split_2_1"
 				(polyline
 					(pts
 						(xy 0 0.762) (xy 0 -0.762) (xy -1.778 -0.762)
@@ -6832,7 +6833,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_3_0"
+			(symbol "74LS368_Split_3_0"
 				(polyline
 					(pts
 						(xy -3.81 3.81) (xy -3.81 -3.81) (xy 3.81 0) (xy -3.81 3.81)
@@ -6863,7 +6864,7 @@
 						)
 					)
 				)
-				(pin tri_state line
+				(pin tri_state inverted
 					(at 7.62 0 180)
 					(length 3.81)
 					(name "~"
@@ -6882,7 +6883,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_3_1"
+			(symbol "74LS368_Split_3_1"
 				(polyline
 					(pts
 						(xy 0 0.762) (xy 0 -0.762) (xy -1.778 -0.762)
@@ -6908,7 +6909,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_4_0"
+			(symbol "74LS368_Split_4_0"
 				(polyline
 					(pts
 						(xy -3.81 3.81) (xy -3.81 -3.81) (xy 3.81 0) (xy -3.81 3.81)
@@ -6939,7 +6940,7 @@
 						)
 					)
 				)
-				(pin tri_state line
+				(pin tri_state inverted
 					(at 7.62 0 180)
 					(length 3.81)
 					(name "~"
@@ -6958,7 +6959,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_4_1"
+			(symbol "74LS368_Split_4_1"
 				(polyline
 					(pts
 						(xy 0 0.762) (xy 0 -0.762) (xy -1.778 -0.762)
@@ -6984,7 +6985,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_5_0"
+			(symbol "74LS368_Split_5_0"
 				(polyline
 					(pts
 						(xy -3.81 3.81) (xy -3.81 -3.81) (xy 3.81 0) (xy -3.81 3.81)
@@ -7033,7 +7034,7 @@
 						)
 					)
 				)
-				(pin tri_state line
+				(pin tri_state inverted
 					(at 7.62 0 180)
 					(length 3.81)
 					(name "~"
@@ -7052,7 +7053,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_5_1"
+			(symbol "74LS368_Split_5_1"
 				(polyline
 					(pts
 						(xy 0 0.762) (xy 0 -0.762) (xy -1.778 -0.762)
@@ -7078,7 +7079,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_6_0"
+			(symbol "74LS368_Split_6_0"
 				(polyline
 					(pts
 						(xy -3.81 3.81) (xy -3.81 -3.81) (xy 3.81 0) (xy -3.81 3.81)
@@ -7109,7 +7110,7 @@
 						)
 					)
 				)
-				(pin tri_state line
+				(pin tri_state inverted
 					(at 7.62 0 180)
 					(length 3.81)
 					(name "~"
@@ -7128,7 +7129,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_6_1"
+			(symbol "74LS368_Split_6_1"
 				(polyline
 					(pts
 						(xy 0 0.762) (xy 0 -0.762) (xy -1.778 -0.762)
@@ -7154,7 +7155,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_7_0"
+			(symbol "74LS368_Split_7_0"
 				(pin power_in line
 					(at 0 12.7 270)
 					(length 5.08)
@@ -7192,7 +7193,7 @@
 					)
 				)
 			)
-			(symbol "74LS367_Split_7_1"
+			(symbol "74LS368_Split_7_1"
 				(rectangle
 					(start -5.08 7.62)
 					(end 5.08 -7.62)
@@ -7309,16 +7310,15 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "8T28 is the same as 74LS367."
+	(text "74LS367 == DS8T97\n74LS368 == DS8T98"
 		(exclude_from_sim no)
-		(at 168.656 113.03 0)
+		(at 224.79 162.814 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
 		)
-		(uuid "1c1195d5-6446-4d24-a0eb-3ffe5657f035")
+		(uuid "49416a84-7af6-4a48-a934-6302336650f3")
 	)
 	(text "CA1 Pin 2,4 switched\nin schematic."
 		(exclude_from_sim no)
@@ -11852,218 +11852,6 @@
 		)
 	)
 	(symbol
-		(lib_id "74xx:74LS04")
-		(at 140.97 48.26 0)
-		(unit 5)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "04a4c7b5-6f1f-4df0-8472-3e4084b700c2")
-		(property "Reference" "U54"
-			(at 145.288 42.926 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "74LS04"
-			(at 145.288 45.466 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_DIP:DIP-14_W7.62mm"
-			(at 140.97 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS04"
-			(at 140.97 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Hex Inverter"
-			(at 140.97 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "9"
-			(uuid "a9e2f02a-3e57-462b-938c-cdccc008e4e8")
-		)
-		(pin "6"
-			(uuid "130d2ac3-4790-4869-b463-d61b6667308d")
-		)
-		(pin "5"
-			(uuid "bca9a7c9-ab7d-4f87-8760-579d646b499f")
-		)
-		(pin "1"
-			(uuid "3047cb02-2278-432a-9add-9e083f945e43")
-		)
-		(pin "7"
-			(uuid "fcb23f76-f581-466f-96b2-f79d3e0fb0bb")
-		)
-		(pin "8"
-			(uuid "1f143d8a-cd4e-4a79-bf96-e0c04d69be86")
-		)
-		(pin "11"
-			(uuid "5d87007f-8a7f-4f8f-8176-f779fb3dd385")
-		)
-		(pin "4"
-			(uuid "23142f61-2ccd-471c-ab1c-5e172676ebe2")
-		)
-		(pin "3"
-			(uuid "171f988b-703f-4efe-8f0a-d0533a06ad7a")
-		)
-		(pin "2"
-			(uuid "4b1cc6ff-db67-4f7b-80b4-1a7d8e4550c9")
-		)
-		(pin "13"
-			(uuid "95e06c2e-cfb2-44e9-a235-1e4d6ff647f2")
-		)
-		(pin "10"
-			(uuid "ed7dccd8-a825-4d5d-a2b9-25db063329f1")
-		)
-		(pin "12"
-			(uuid "d7dda8ea-580d-4b53-bcfc-8ad821442b77")
-		)
-		(pin "14"
-			(uuid "f8c918e9-7ebb-45bb-b2fa-247c2ecb4ee5")
-		)
-		(instances
-			(project "GIMIX 6809 CPU Plus"
-				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
-					(reference "U54")
-					(unit 5)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "my_ics_new:74LS367_Split")
-		(at 193.04 87.63 0)
-		(unit 6)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "06cfd761-bf26-4250-905e-dfbf204d114f")
-		(property "Reference" "U34"
-			(at 196.088 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "74LS367"
-			(at 196.088 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_DIP:DIP-16_W7.62mm"
-			(at 193.04 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 193.04 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Hex Buffer and Line Driver With 3-State Output, active-low enables, non-inverting outputs, split symbol"
-			(at 193.04 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "10"
-			(uuid "40c2ea6d-7df0-488f-8528-29dd567a6a84")
-		)
-		(pin "2"
-			(uuid "60573af2-3229-40c9-9c90-42d553d9710f")
-		)
-		(pin "13"
-			(uuid "5aa96cc9-7074-4a5a-b689-87b19ef1346d")
-		)
-		(pin "1"
-			(uuid "911f9322-0756-47b1-bb1f-9abb9f67c5be")
-		)
-		(pin "7"
-			(uuid "09d780ee-f23f-48fe-9e45-8461c7f499a9")
-		)
-		(pin "6"
-			(uuid "3a53557e-4d0c-4fdd-8b32-3dc36fb98254")
-		)
-		(pin "5"
-			(uuid "7cfe6a81-e425-4b3e-a07f-4945f65789af")
-		)
-		(pin "4"
-			(uuid "088c21b0-2867-4f29-b058-85081ca0abec")
-		)
-		(pin "8"
-			(uuid "f09ba8e3-cb09-46b1-9974-59cd2f710483")
-		)
-		(pin "9"
-			(uuid "616e180d-723f-4f57-96fa-e5ec243ddd1e")
-		)
-		(pin "14"
-			(uuid "488d49ec-cb59-4e2e-ad49-69d2a04851d7")
-		)
-		(pin "3"
-			(uuid "8502681d-2fac-4ef7-98d3-bff0b9839e1f")
-		)
-		(pin "12"
-			(uuid "78b3526c-5b63-4538-b27b-caf439be9130")
-		)
-		(pin "15"
-			(uuid "f855e33c-3e15-48f4-aa81-178f4860c0ef")
-		)
-		(pin "11"
-			(uuid "4045c88c-0050-41f5-8f90-5caffb602e63")
-		)
-		(pin "16"
-			(uuid "4ac7b03a-40fe-424b-ad4d-b049ebf1efc3")
-		)
-		(instances
-			(project "GIMIX 6809 CPU Plus"
-				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
-					(reference "U34")
-					(unit 6)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector_Generic:Conn_01x03")
 		(at 111.76 105.41 0)
 		(unit 1)
@@ -12154,7 +11942,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "22k"
 			(at 115.57 27.9399 0)
 			(effects
 				(font
@@ -13210,7 +12998,7 @@
 				)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "10E"
 			(at 101.6 38.1 90)
 			(effects
 				(font
@@ -13665,7 +13453,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "10k"
 			(at 248.92 28.1939 0)
 			(effects
 				(font
@@ -14038,6 +13826,224 @@
 		)
 	)
 	(symbol
+		(lib_id "my_ics_new:74LS368_Split")
+		(at 175.26 87.63 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4831a4a5-ffa8-439b-9199-fb989e817b8d")
+		(property "Reference" "U34"
+			(at 178.816 81.788 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LS368"
+			(at 178.816 84.328 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-16_W7.62mm"
+			(at 175.26 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 175.26 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Hex Buffer and Line Driver With 3-State Output, active-low enables, non-inverting outputs, split symbol"
+			(at 175.26 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "14"
+			(uuid "a0e0aa68-4e5b-4af2-9c22-6a9b29cc1395")
+		)
+		(pin "12"
+			(uuid "4a040566-ed0c-4098-8948-ea8d2a939976")
+		)
+		(pin "2"
+			(uuid "15d98371-47e8-45b1-93ee-446447e39ca8")
+		)
+		(pin "9"
+			(uuid "a2443a74-3699-45f8-af4a-67c9a28087d1")
+		)
+		(pin "1"
+			(uuid "bcd47ec6-f4ee-4b01-9ddf-cb3e8b964bc1")
+		)
+		(pin "11"
+			(uuid "e3f8f73a-d72b-4af3-8e22-5b16e4a5b0c1")
+		)
+		(pin "16"
+			(uuid "50ce9c4a-5e13-471d-af68-fadbc50a8c71")
+		)
+		(pin "6"
+			(uuid "74519079-0d9c-4a1d-a2cb-23238579ecf5")
+		)
+		(pin "7"
+			(uuid "d61f240c-dca8-4409-9c66-246eb1532b42")
+		)
+		(pin "3"
+			(uuid "53bb8ddd-83fb-4347-adb9-0969ca69152b")
+		)
+		(pin "13"
+			(uuid "5ef5b9d6-acd1-44b9-90e4-445f5f40efb4")
+		)
+		(pin "8"
+			(uuid "73028815-a79f-4f48-9071-36d468f2599c")
+		)
+		(pin "5"
+			(uuid "b438bf07-67df-4885-bee5-887b029baccb")
+		)
+		(pin "10"
+			(uuid "4eda062f-99b6-434d-993d-6d0ae92cb7c6")
+		)
+		(pin "4"
+			(uuid "22506393-28e9-4655-97d6-eb86c7883a50")
+		)
+		(pin "15"
+			(uuid "42c7d3d9-6f60-4544-ba3c-66dfd9d4d2db")
+		)
+		(instances
+			(project "GIMIX 6809 CPU Plus"
+				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
+					(reference "U34")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "my_ics_new:74LS368_Split")
+		(at 175.26 105.41 0)
+		(unit 2)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4ba420d6-e56f-4338-b573-4de021713ea6")
+		(property "Reference" "U34"
+			(at 178.816 99.568 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LS368"
+			(at 178.816 102.108 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-16_W7.62mm"
+			(at 175.26 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 175.26 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Hex Buffer and Line Driver With 3-State Output, active-low enables, non-inverting outputs, split symbol"
+			(at 175.26 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "14"
+			(uuid "a0e0aa68-4e5b-4af2-9c22-6a9b29cc1396")
+		)
+		(pin "12"
+			(uuid "4a040566-ed0c-4098-8948-ea8d2a939977")
+		)
+		(pin "2"
+			(uuid "15d98371-47e8-45b1-93ee-446447e39ca9")
+		)
+		(pin "9"
+			(uuid "a2443a74-3699-45f8-af4a-67c9a28087d2")
+		)
+		(pin "1"
+			(uuid "bcd47ec6-f4ee-4b01-9ddf-cb3e8b964bc2")
+		)
+		(pin "11"
+			(uuid "e3f8f73a-d72b-4af3-8e22-5b16e4a5b0c2")
+		)
+		(pin "16"
+			(uuid "50ce9c4a-5e13-471d-af68-fadbc50a8c72")
+		)
+		(pin "6"
+			(uuid "74519079-0d9c-4a1d-a2cb-23238579ecf6")
+		)
+		(pin "7"
+			(uuid "d61f240c-dca8-4409-9c66-246eb1532b43")
+		)
+		(pin "3"
+			(uuid "53bb8ddd-83fb-4347-adb9-0969ca69152c")
+		)
+		(pin "13"
+			(uuid "5ef5b9d6-acd1-44b9-90e4-445f5f40efb5")
+		)
+		(pin "8"
+			(uuid "73028815-a79f-4f48-9071-36d468f2599d")
+		)
+		(pin "5"
+			(uuid "b438bf07-67df-4885-bee5-887b029baccc")
+		)
+		(pin "10"
+			(uuid "4eda062f-99b6-434d-993d-6d0ae92cb7c7")
+		)
+		(pin "4"
+			(uuid "22506393-28e9-4655-97d6-eb86c7883a51")
+		)
+		(pin "15"
+			(uuid "42c7d3d9-6f60-4544-ba3c-66dfd9d4d2dc")
+		)
+		(instances
+			(project "GIMIX 6809 CPU Plus"
+				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
+					(reference "U34")
+					(unit 2)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "74xx:74LS240_Split")
 		(at 193.04 105.41 0)
 		(unit 4)
@@ -14327,134 +14333,24 @@
 		)
 	)
 	(symbol
-		(lib_id "my_ics_new:74LS367_Split")
-		(at 92.71 161.29 0)
-		(unit 5)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "558976c4-e145-474b-848f-632dca601088")
-		(property "Reference" "U34"
-			(at 92.71 152.4 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "74LS367"
-			(at 92.71 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_DIP:DIP-16_W7.62mm"
-			(at 92.71 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 92.71 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Hex Buffer and Line Driver With 3-State Output, active-low enables, non-inverting outputs, split symbol"
-			(at 92.71 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "10"
-			(uuid "40c2ea6d-7df0-488f-8528-29dd567a6a85")
-		)
-		(pin "2"
-			(uuid "60573af2-3229-40c9-9c90-42d553d97110")
-		)
-		(pin "13"
-			(uuid "5aa96cc9-7074-4a5a-b689-87b19ef1346e")
-		)
-		(pin "1"
-			(uuid "911f9322-0756-47b1-bb1f-9abb9f67c5bf")
-		)
-		(pin "7"
-			(uuid "09d780ee-f23f-48fe-9e45-8461c7f499aa")
-		)
-		(pin "6"
-			(uuid "3a53557e-4d0c-4fdd-8b32-3dc36fb98255")
-		)
-		(pin "5"
-			(uuid "7cfe6a81-e425-4b3e-a07f-4945f65789b0")
-		)
-		(pin "4"
-			(uuid "088c21b0-2867-4f29-b058-85081ca0abed")
-		)
-		(pin "8"
-			(uuid "f09ba8e3-cb09-46b1-9974-59cd2f710484")
-		)
-		(pin "9"
-			(uuid "616e180d-723f-4f57-96fa-e5ec243ddd1f")
-		)
-		(pin "14"
-			(uuid "488d49ec-cb59-4e2e-ad49-69d2a04851d8")
-		)
-		(pin "3"
-			(uuid "8502681d-2fac-4ef7-98d3-bff0b9839e20")
-		)
-		(pin "12"
-			(uuid "78b3526c-5b63-4538-b27b-caf439be9131")
-		)
-		(pin "15"
-			(uuid "f855e33c-3e15-48f4-aa81-178f4860c0f0")
-		)
-		(pin "11"
-			(uuid "4045c88c-0050-41f5-8f90-5caffb602e64")
-		)
-		(pin "16"
-			(uuid "4ac7b03a-40fe-424b-ad4d-b049ebf1efc4")
-		)
-		(instances
-			(project "GIMIX 6809 CPU Plus"
-				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
-					(reference "U34")
-					(unit 5)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "my_ics_new:74LS367_Split")
+		(lib_id "my_ics_new:74LS368_Split")
 		(at 157.48 190.5 0)
 		(unit 3)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6109b8b2-69f2-4e89-ad0e-e31ab369ddee")
+		(uuid "5dd7e763-1938-422d-8fa2-7e4388c68e32")
 		(property "Reference" "U34"
-			(at 162.052 184.912 0)
+			(at 161.036 184.658 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "74LS367"
-			(at 162.052 187.452 0)
+		(property "Value" "74LS368"
+			(at 161.036 187.198 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14488,53 +14384,53 @@
 				(hide yes)
 			)
 		)
-		(pin "10"
-			(uuid "40c2ea6d-7df0-488f-8528-29dd567a6a86")
-		)
-		(pin "2"
-			(uuid "60573af2-3229-40c9-9c90-42d553d97111")
-		)
-		(pin "13"
-			(uuid "5aa96cc9-7074-4a5a-b689-87b19ef1346f")
-		)
-		(pin "1"
-			(uuid "911f9322-0756-47b1-bb1f-9abb9f67c5c0")
-		)
-		(pin "7"
-			(uuid "09d780ee-f23f-48fe-9e45-8461c7f499ab")
-		)
-		(pin "6"
-			(uuid "3a53557e-4d0c-4fdd-8b32-3dc36fb98256")
-		)
-		(pin "5"
-			(uuid "7cfe6a81-e425-4b3e-a07f-4945f65789b1")
-		)
-		(pin "4"
-			(uuid "088c21b0-2867-4f29-b058-85081ca0abee")
-		)
-		(pin "8"
-			(uuid "f09ba8e3-cb09-46b1-9974-59cd2f710485")
-		)
-		(pin "9"
-			(uuid "616e180d-723f-4f57-96fa-e5ec243ddd20")
-		)
 		(pin "14"
-			(uuid "488d49ec-cb59-4e2e-ad49-69d2a04851d9")
-		)
-		(pin "3"
-			(uuid "8502681d-2fac-4ef7-98d3-bff0b9839e21")
+			(uuid "a0e0aa68-4e5b-4af2-9c22-6a9b29cc1397")
 		)
 		(pin "12"
-			(uuid "78b3526c-5b63-4538-b27b-caf439be9132")
+			(uuid "4a040566-ed0c-4098-8948-ea8d2a939978")
 		)
-		(pin "15"
-			(uuid "f855e33c-3e15-48f4-aa81-178f4860c0f1")
+		(pin "2"
+			(uuid "15d98371-47e8-45b1-93ee-446447e39caa")
+		)
+		(pin "9"
+			(uuid "a2443a74-3699-45f8-af4a-67c9a28087d3")
+		)
+		(pin "1"
+			(uuid "bcd47ec6-f4ee-4b01-9ddf-cb3e8b964bc3")
 		)
 		(pin "11"
-			(uuid "4045c88c-0050-41f5-8f90-5caffb602e65")
+			(uuid "e3f8f73a-d72b-4af3-8e22-5b16e4a5b0c3")
 		)
 		(pin "16"
-			(uuid "4ac7b03a-40fe-424b-ad4d-b049ebf1efc5")
+			(uuid "50ce9c4a-5e13-471d-af68-fadbc50a8c73")
+		)
+		(pin "6"
+			(uuid "74519079-0d9c-4a1d-a2cb-23238579ecf7")
+		)
+		(pin "7"
+			(uuid "d61f240c-dca8-4409-9c66-246eb1532b44")
+		)
+		(pin "3"
+			(uuid "53bb8ddd-83fb-4347-adb9-0969ca69152d")
+		)
+		(pin "13"
+			(uuid "5ef5b9d6-acd1-44b9-90e4-445f5f40efb6")
+		)
+		(pin "8"
+			(uuid "73028815-a79f-4f48-9071-36d468f2599e")
+		)
+		(pin "5"
+			(uuid "b438bf07-67df-4885-bee5-887b029baccd")
+		)
+		(pin "10"
+			(uuid "4eda062f-99b6-434d-993d-6d0ae92cb7c8")
+		)
+		(pin "4"
+			(uuid "22506393-28e9-4655-97d6-eb86c7883a52")
+		)
+		(pin "15"
+			(uuid "42c7d3d9-6f60-4544-ba3c-66dfd9d4d2dd")
 		)
 		(instances
 			(project "GIMIX 6809 CPU Plus"
@@ -14564,7 +14460,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "1k"
 			(at 104.14 73.6599 0)
 			(effects
 				(font
@@ -14616,109 +14512,6 @@
 		)
 	)
 	(symbol
-		(lib_id "74xx:74LS04")
-		(at 140.97 30.48 0)
-		(unit 2)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "681aa17b-3329-4d4d-807a-6d6b051ea545")
-		(property "Reference" "U54"
-			(at 145.288 25.146 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "74LS04"
-			(at 145.288 27.686 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_DIP:DIP-14_W7.62mm"
-			(at 140.97 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS04"
-			(at 140.97 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Hex Inverter"
-			(at 140.97 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "9"
-			(uuid "a9e2f02a-3e57-462b-938c-cdccc008e4e9")
-		)
-		(pin "6"
-			(uuid "130d2ac3-4790-4869-b463-d61b6667308f")
-		)
-		(pin "5"
-			(uuid "bca9a7c9-ab7d-4f87-8760-579d646b49a1")
-		)
-		(pin "1"
-			(uuid "3047cb02-2278-432a-9add-9e083f945e45")
-		)
-		(pin "7"
-			(uuid "fcb23f76-f581-466f-96b2-f79d3e0fb0bd")
-		)
-		(pin "8"
-			(uuid "1f143d8a-cd4e-4a79-bf96-e0c04d69be87")
-		)
-		(pin "11"
-			(uuid "818a5f98-9d02-4790-b9ec-7850c5abdb4a")
-		)
-		(pin "4"
-			(uuid "6ba8614c-60f6-4d8f-9296-be32a4a91851")
-		)
-		(pin "3"
-			(uuid "06e54acd-feb0-4275-a15c-6478695f75ba")
-		)
-		(pin "2"
-			(uuid "4b1cc6ff-db67-4f7b-80b4-1a7d8e4550cb")
-		)
-		(pin "13"
-			(uuid "95e06c2e-cfb2-44e9-a235-1e4d6ff647f4")
-		)
-		(pin "10"
-			(uuid "a1d923ea-7510-42ad-9b3a-611082b48303")
-		)
-		(pin "12"
-			(uuid "d7dda8ea-580d-4b53-bcfc-8ad821442b79")
-		)
-		(pin "14"
-			(uuid "f8c918e9-7ebb-45bb-b2fa-247c2ecb4ee7")
-		)
-		(instances
-			(project "GIMIX 6809 CPU Plus"
-				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
-					(reference "U54")
-					(unit 2)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_Small")
 		(at 45.72 128.27 0)
 		(unit 1)
@@ -14736,7 +14529,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "4k7"
 			(at 48.26 129.5399 0)
 			(effects
 				(font
@@ -14783,109 +14576,6 @@
 				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
 					(reference "R22")
 					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "74xx:74LS04")
-		(at 158.75 40.64 0)
-		(unit 4)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "6fb2b6fd-0813-4067-a5c6-cd6a8fb1a1a2")
-		(property "Reference" "U54"
-			(at 163.068 35.306 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "74LS04"
-			(at 163.068 37.846 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_DIP:DIP-14_W7.62mm"
-			(at 158.75 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS04"
-			(at 158.75 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Hex Inverter"
-			(at 158.75 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "9"
-			(uuid "3e4e659c-9c80-48be-b424-8518d74b70de")
-		)
-		(pin "6"
-			(uuid "130d2ac3-4790-4869-b463-d61b66673091")
-		)
-		(pin "5"
-			(uuid "bca9a7c9-ab7d-4f87-8760-579d646b49a3")
-		)
-		(pin "1"
-			(uuid "3047cb02-2278-432a-9add-9e083f945e47")
-		)
-		(pin "7"
-			(uuid "fcb23f76-f581-466f-96b2-f79d3e0fb0bf")
-		)
-		(pin "8"
-			(uuid "e9088ee2-21bf-49ea-8178-06196a00ff04")
-		)
-		(pin "11"
-			(uuid "818a5f98-9d02-4790-b9ec-7850c5abdb4c")
-		)
-		(pin "4"
-			(uuid "23142f61-2ccd-471c-ab1c-5e172676ebe6")
-		)
-		(pin "3"
-			(uuid "171f988b-703f-4efe-8f0a-d0533a06ad7e")
-		)
-		(pin "2"
-			(uuid "4b1cc6ff-db67-4f7b-80b4-1a7d8e4550cd")
-		)
-		(pin "13"
-			(uuid "95e06c2e-cfb2-44e9-a235-1e4d6ff647f6")
-		)
-		(pin "10"
-			(uuid "a1d923ea-7510-42ad-9b3a-611082b48305")
-		)
-		(pin "12"
-			(uuid "d7dda8ea-580d-4b53-bcfc-8ad821442b7b")
-		)
-		(pin "14"
-			(uuid "f8c918e9-7ebb-45bb-b2fa-247c2ecb4ee9")
-		)
-		(instances
-			(project "GIMIX 6809 CPU Plus"
-				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
-					(reference "U54")
-					(unit 4)
 				)
 			)
 		)
@@ -15101,6 +14791,109 @@
 		)
 	)
 	(symbol
+		(lib_id "74xx:74LS04")
+		(at 158.75 40.64 0)
+		(unit 4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7b60ceac-c63f-45d8-9934-b61d083b2178")
+		(property "Reference" "U54"
+			(at 163.068 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LS04"
+			(at 163.068 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-14_W7.62mm"
+			(at 158.75 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS04"
+			(at 158.75 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Hex Inverter"
+			(at 158.75 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "14"
+			(uuid "ba103c9f-2d37-4550-9b7a-bc323bf825c5")
+		)
+		(pin "10"
+			(uuid "e27e7880-65a4-470f-998c-b2ebc432d447")
+		)
+		(pin "9"
+			(uuid "3f1802ba-b1df-45fe-9f99-632eb2dceda1")
+		)
+		(pin "6"
+			(uuid "e707d30e-2596-41bd-a172-c11fdb7cc1bb")
+		)
+		(pin "5"
+			(uuid "327171bf-88d5-4dd7-a5e7-82d71caa13b2")
+		)
+		(pin "4"
+			(uuid "d33aeafc-f317-4b00-85f0-8d313e0fd0ab")
+		)
+		(pin "3"
+			(uuid "ce358de5-685c-4bad-a0c9-d5aac4528b16")
+		)
+		(pin "2"
+			(uuid "156194c5-0570-4af0-92d6-e61319f9c8d3")
+		)
+		(pin "7"
+			(uuid "7dc02e43-ad9a-442a-8ff7-2d2d639c4925")
+		)
+		(pin "12"
+			(uuid "7f489487-d1cb-493b-8226-0d33ea2c5f95")
+		)
+		(pin "13"
+			(uuid "c5963d71-e989-4937-851f-0d5efd6222ce")
+		)
+		(pin "11"
+			(uuid "c50886ed-6f1b-41a2-a5a8-02174ef4b675")
+		)
+		(pin "1"
+			(uuid "fb5bbc73-a8c9-4bce-b07e-03d192629a5a")
+		)
+		(pin "8"
+			(uuid "f83b4cf6-40d5-42dd-bafb-d869f3556175")
+		)
+		(instances
+			(project "GIMIX 6809 CPU Plus"
+				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
+					(reference "U54")
+					(unit 4)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Small")
 		(at 113.03 34.29 0)
 		(unit 1)
@@ -15171,6 +14964,109 @@
 		)
 	)
 	(symbol
+		(lib_id "74xx:74LS04")
+		(at 158.75 48.26 0)
+		(unit 3)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7e71f348-63f6-44c1-8341-8e82c0ab6148")
+		(property "Reference" "U54"
+			(at 163.068 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LS04"
+			(at 163.068 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-14_W7.62mm"
+			(at 158.75 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS04"
+			(at 158.75 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Hex Inverter"
+			(at 158.75 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "14"
+			(uuid "ba103c9f-2d37-4550-9b7a-bc323bf825c5")
+		)
+		(pin "10"
+			(uuid "e27e7880-65a4-470f-998c-b2ebc432d447")
+		)
+		(pin "9"
+			(uuid "3f1802ba-b1df-45fe-9f99-632eb2dceda1")
+		)
+		(pin "6"
+			(uuid "e707d30e-2596-41bd-a172-c11fdb7cc1bb")
+		)
+		(pin "5"
+			(uuid "327171bf-88d5-4dd7-a5e7-82d71caa13b2")
+		)
+		(pin "4"
+			(uuid "d33aeafc-f317-4b00-85f0-8d313e0fd0ab")
+		)
+		(pin "3"
+			(uuid "ce358de5-685c-4bad-a0c9-d5aac4528b16")
+		)
+		(pin "2"
+			(uuid "156194c5-0570-4af0-92d6-e61319f9c8d3")
+		)
+		(pin "7"
+			(uuid "7dc02e43-ad9a-442a-8ff7-2d2d639c4925")
+		)
+		(pin "12"
+			(uuid "7f489487-d1cb-493b-8226-0d33ea2c5f95")
+		)
+		(pin "13"
+			(uuid "c5963d71-e989-4937-851f-0d5efd6222ce")
+		)
+		(pin "11"
+			(uuid "c50886ed-6f1b-41a2-a5a8-02174ef4b675")
+		)
+		(pin "1"
+			(uuid "fb5bbc73-a8c9-4bce-b07e-03d192629a5a")
+		)
+		(pin "8"
+			(uuid "f83b4cf6-40d5-42dd-bafb-d869f3556175")
+		)
+		(instances
+			(project "GIMIX 6809 CPU Plus"
+				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
+					(reference "U54")
+					(unit 3)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_Small")
 		(at 101.6 30.48 90)
 		(unit 1)
@@ -15181,15 +15077,15 @@
 		(fields_autoplaced yes)
 		(uuid "7ed73d16-a594-41b0-852f-dede43ac5ae1")
 		(property "Reference" "R15"
-			(at 101.6 26.67 90)
+			(at 101.6 25.4 90)
 			(effects
 				(font
 					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Value" "?"
-			(at 101.6 29.21 90)
+		(property "Value" "10E"
+			(at 101.6 27.94 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15234,6 +15130,109 @@
 				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
 					(reference "R15")
 					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "74xx:74LS04")
+		(at 158.75 22.86 0)
+		(unit 6)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "867eec41-09c7-4a50-9f82-4d37c6d14310")
+		(property "Reference" "U54"
+			(at 163.068 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LS04"
+			(at 163.068 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-14_W7.62mm"
+			(at 158.75 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS04"
+			(at 158.75 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Hex Inverter"
+			(at 158.75 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "14"
+			(uuid "ba103c9f-2d37-4550-9b7a-bc323bf825c5")
+		)
+		(pin "10"
+			(uuid "e27e7880-65a4-470f-998c-b2ebc432d447")
+		)
+		(pin "9"
+			(uuid "3f1802ba-b1df-45fe-9f99-632eb2dceda1")
+		)
+		(pin "6"
+			(uuid "e707d30e-2596-41bd-a172-c11fdb7cc1bb")
+		)
+		(pin "5"
+			(uuid "327171bf-88d5-4dd7-a5e7-82d71caa13b2")
+		)
+		(pin "4"
+			(uuid "d33aeafc-f317-4b00-85f0-8d313e0fd0ab")
+		)
+		(pin "3"
+			(uuid "ce358de5-685c-4bad-a0c9-d5aac4528b16")
+		)
+		(pin "2"
+			(uuid "156194c5-0570-4af0-92d6-e61319f9c8d3")
+		)
+		(pin "7"
+			(uuid "7dc02e43-ad9a-442a-8ff7-2d2d639c4925")
+		)
+		(pin "12"
+			(uuid "7f489487-d1cb-493b-8226-0d33ea2c5f95")
+		)
+		(pin "13"
+			(uuid "c5963d71-e989-4937-851f-0d5efd6222ce")
+		)
+		(pin "11"
+			(uuid "c50886ed-6f1b-41a2-a5a8-02174ef4b675")
+		)
+		(pin "1"
+			(uuid "fb5bbc73-a8c9-4bce-b07e-03d192629a5a")
+		)
+		(pin "8"
+			(uuid "f83b4cf6-40d5-42dd-bafb-d869f3556175")
+		)
+		(instances
+			(project "GIMIX 6809 CPU Plus"
+				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
+					(reference "U54")
+					(unit 6)
 				)
 			)
 		)
@@ -15817,24 +15816,127 @@
 		)
 	)
 	(symbol
-		(lib_id "my_ics_new:74LS367_Split")
-		(at 175.26 87.63 0)
-		(unit 1)
+		(lib_id "74xx:74LS04")
+		(at 140.97 30.48 0)
+		(unit 2)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9999f679-69ef-4c71-8988-aeb20a2ecef9")
-		(property "Reference" "U34"
-			(at 178.562 81.788 0)
+		(uuid "9c9db8cd-58f2-41d7-a927-51a32cdd8947")
+		(property "Reference" "U54"
+			(at 145.288 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "74LS367"
-			(at 178.562 84.328 0)
+		(property "Value" "74LS04"
+			(at 145.288 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-14_W7.62mm"
+			(at 140.97 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS04"
+			(at 140.97 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Hex Inverter"
+			(at 140.97 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "14"
+			(uuid "ba103c9f-2d37-4550-9b7a-bc323bf825c5")
+		)
+		(pin "10"
+			(uuid "e27e7880-65a4-470f-998c-b2ebc432d447")
+		)
+		(pin "9"
+			(uuid "3f1802ba-b1df-45fe-9f99-632eb2dceda1")
+		)
+		(pin "6"
+			(uuid "e707d30e-2596-41bd-a172-c11fdb7cc1bb")
+		)
+		(pin "5"
+			(uuid "327171bf-88d5-4dd7-a5e7-82d71caa13b2")
+		)
+		(pin "4"
+			(uuid "d33aeafc-f317-4b00-85f0-8d313e0fd0ab")
+		)
+		(pin "3"
+			(uuid "ce358de5-685c-4bad-a0c9-d5aac4528b16")
+		)
+		(pin "2"
+			(uuid "156194c5-0570-4af0-92d6-e61319f9c8d3")
+		)
+		(pin "7"
+			(uuid "7dc02e43-ad9a-442a-8ff7-2d2d639c4925")
+		)
+		(pin "12"
+			(uuid "7f489487-d1cb-493b-8226-0d33ea2c5f95")
+		)
+		(pin "13"
+			(uuid "c5963d71-e989-4937-851f-0d5efd6222ce")
+		)
+		(pin "11"
+			(uuid "c50886ed-6f1b-41a2-a5a8-02174ef4b675")
+		)
+		(pin "1"
+			(uuid "fb5bbc73-a8c9-4bce-b07e-03d192629a5a")
+		)
+		(pin "8"
+			(uuid "f83b4cf6-40d5-42dd-bafb-d869f3556175")
+		)
+		(instances
+			(project "GIMIX 6809 CPU Plus"
+				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
+					(reference "U54")
+					(unit 2)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "my_ics_new:74LS368_Split")
+		(at 92.71 161.29 0)
+		(unit 5)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "9e99dbb3-cb83-4983-acd6-5e8e92b3ba2d")
+		(property "Reference" "U34"
+			(at 96.266 155.448 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LS368"
+			(at 96.266 157.988 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15842,7 +15944,7 @@
 			)
 		)
 		(property "Footprint" "Package_DIP:DIP-16_W7.62mm"
-			(at 175.26 87.63 0)
+			(at 92.71 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15851,7 +15953,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 175.26 87.63 0)
+			(at 92.71 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15860,7 +15962,7 @@
 			)
 		)
 		(property "Description" "Hex Buffer and Line Driver With 3-State Output, active-low enables, non-inverting outputs, split symbol"
-			(at 175.26 87.63 0)
+			(at 92.71 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15868,59 +15970,59 @@
 				(hide yes)
 			)
 		)
-		(pin "10"
-			(uuid "40c2ea6d-7df0-488f-8528-29dd567a6a87")
-		)
-		(pin "2"
-			(uuid "60573af2-3229-40c9-9c90-42d553d97112")
-		)
-		(pin "13"
-			(uuid "5aa96cc9-7074-4a5a-b689-87b19ef13470")
-		)
-		(pin "1"
-			(uuid "911f9322-0756-47b1-bb1f-9abb9f67c5c1")
-		)
-		(pin "7"
-			(uuid "09d780ee-f23f-48fe-9e45-8461c7f499ac")
-		)
-		(pin "6"
-			(uuid "3a53557e-4d0c-4fdd-8b32-3dc36fb98257")
-		)
-		(pin "5"
-			(uuid "7cfe6a81-e425-4b3e-a07f-4945f65789b2")
-		)
-		(pin "4"
-			(uuid "088c21b0-2867-4f29-b058-85081ca0abef")
-		)
-		(pin "8"
-			(uuid "f09ba8e3-cb09-46b1-9974-59cd2f710486")
-		)
-		(pin "9"
-			(uuid "616e180d-723f-4f57-96fa-e5ec243ddd21")
-		)
 		(pin "14"
-			(uuid "488d49ec-cb59-4e2e-ad49-69d2a04851da")
-		)
-		(pin "3"
-			(uuid "8502681d-2fac-4ef7-98d3-bff0b9839e22")
+			(uuid "a0e0aa68-4e5b-4af2-9c22-6a9b29cc1398")
 		)
 		(pin "12"
-			(uuid "78b3526c-5b63-4538-b27b-caf439be9133")
+			(uuid "4a040566-ed0c-4098-8948-ea8d2a939979")
 		)
-		(pin "15"
-			(uuid "f855e33c-3e15-48f4-aa81-178f4860c0f2")
+		(pin "2"
+			(uuid "15d98371-47e8-45b1-93ee-446447e39cab")
+		)
+		(pin "9"
+			(uuid "a2443a74-3699-45f8-af4a-67c9a28087d4")
+		)
+		(pin "1"
+			(uuid "bcd47ec6-f4ee-4b01-9ddf-cb3e8b964bc4")
 		)
 		(pin "11"
-			(uuid "4045c88c-0050-41f5-8f90-5caffb602e66")
+			(uuid "e3f8f73a-d72b-4af3-8e22-5b16e4a5b0c4")
 		)
 		(pin "16"
-			(uuid "4ac7b03a-40fe-424b-ad4d-b049ebf1efc6")
+			(uuid "50ce9c4a-5e13-471d-af68-fadbc50a8c74")
+		)
+		(pin "6"
+			(uuid "74519079-0d9c-4a1d-a2cb-23238579ecf8")
+		)
+		(pin "7"
+			(uuid "d61f240c-dca8-4409-9c66-246eb1532b45")
+		)
+		(pin "3"
+			(uuid "53bb8ddd-83fb-4347-adb9-0969ca69152e")
+		)
+		(pin "13"
+			(uuid "5ef5b9d6-acd1-44b9-90e4-445f5f40efb7")
+		)
+		(pin "8"
+			(uuid "73028815-a79f-4f48-9071-36d468f2599f")
+		)
+		(pin "5"
+			(uuid "b438bf07-67df-4885-bee5-887b029bacce")
+		)
+		(pin "10"
+			(uuid "4eda062f-99b6-434d-993d-6d0ae92cb7c9")
+		)
+		(pin "4"
+			(uuid "22506393-28e9-4655-97d6-eb86c7883a53")
+		)
+		(pin "15"
+			(uuid "42c7d3d9-6f60-4544-ba3c-66dfd9d4d2de")
 		)
 		(instances
 			(project "GIMIX 6809 CPU Plus"
 				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
 					(reference "U34")
-					(unit 1)
+					(unit 5)
 				)
 			)
 		)
@@ -16255,125 +16357,16 @@
 		)
 	)
 	(symbol
-		(lib_id "my_ics_new:74LS367_Split")
-		(at 92.71 118.11 0)
-		(unit 4)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a6de0fc4-6884-4531-abd5-e039e34c6b40")
-		(property "Reference" "U34"
-			(at 97.282 112.522 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "74LS367"
-			(at 97.282 115.062 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_DIP:DIP-16_W7.62mm"
-			(at 92.71 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 92.71 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Hex Buffer and Line Driver With 3-State Output, active-low enables, non-inverting outputs, split symbol"
-			(at 92.71 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "10"
-			(uuid "40c2ea6d-7df0-488f-8528-29dd567a6a88")
-		)
-		(pin "2"
-			(uuid "60573af2-3229-40c9-9c90-42d553d97113")
-		)
-		(pin "13"
-			(uuid "5aa96cc9-7074-4a5a-b689-87b19ef13471")
-		)
-		(pin "1"
-			(uuid "911f9322-0756-47b1-bb1f-9abb9f67c5c2")
-		)
-		(pin "7"
-			(uuid "09d780ee-f23f-48fe-9e45-8461c7f499ad")
-		)
-		(pin "6"
-			(uuid "3a53557e-4d0c-4fdd-8b32-3dc36fb98258")
-		)
-		(pin "5"
-			(uuid "7cfe6a81-e425-4b3e-a07f-4945f65789b3")
-		)
-		(pin "4"
-			(uuid "088c21b0-2867-4f29-b058-85081ca0abf0")
-		)
-		(pin "8"
-			(uuid "f09ba8e3-cb09-46b1-9974-59cd2f710487")
-		)
-		(pin "9"
-			(uuid "616e180d-723f-4f57-96fa-e5ec243ddd22")
-		)
-		(pin "14"
-			(uuid "488d49ec-cb59-4e2e-ad49-69d2a04851db")
-		)
-		(pin "3"
-			(uuid "8502681d-2fac-4ef7-98d3-bff0b9839e23")
-		)
-		(pin "12"
-			(uuid "78b3526c-5b63-4538-b27b-caf439be9134")
-		)
-		(pin "15"
-			(uuid "f855e33c-3e15-48f4-aa81-178f4860c0f3")
-		)
-		(pin "11"
-			(uuid "4045c88c-0050-41f5-8f90-5caffb602e67")
-		)
-		(pin "16"
-			(uuid "4ac7b03a-40fe-424b-ad4d-b049ebf1efc7")
-		)
-		(instances
-			(project "GIMIX 6809 CPU Plus"
-				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
-					(reference "U34")
-					(unit 4)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "74xx:74LS04")
-		(at 158.75 22.86 0)
-		(unit 6)
+		(at 158.75 30.48 0)
+		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b3761a83-fa66-4a20-9dc4-a82b7095863b")
+		(uuid "b0196966-e10c-4cd0-beef-44eca8dbc7a2")
 		(property "Reference" "U54"
-			(at 163.068 16.256 0)
+			(at 163.068 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16381,7 +16374,7 @@
 			)
 		)
 		(property "Value" "74LS04"
-			(at 163.068 18.796 0)
+			(at 163.068 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16389,7 +16382,7 @@
 			)
 		)
 		(property "Footprint" "Package_DIP:DIP-14_W7.62mm"
-			(at 158.75 22.86 0)
+			(at 158.75 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16398,7 +16391,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS04"
-			(at 158.75 22.86 0)
+			(at 158.75 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16407,7 +16400,7 @@
 			)
 		)
 		(property "Description" "Hex Inverter"
-			(at 158.75 22.86 0)
+			(at 158.75 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16415,53 +16408,53 @@
 				(hide yes)
 			)
 		)
-		(pin "9"
-			(uuid "a9e2f02a-3e57-462b-938c-cdccc008e4ec")
-		)
-		(pin "6"
-			(uuid "130d2ac3-4790-4869-b463-d61b66673093")
-		)
-		(pin "5"
-			(uuid "bca9a7c9-ab7d-4f87-8760-579d646b49a5")
-		)
-		(pin "1"
-			(uuid "3047cb02-2278-432a-9add-9e083f945e49")
-		)
-		(pin "7"
-			(uuid "fcb23f76-f581-466f-96b2-f79d3e0fb0c1")
-		)
-		(pin "8"
-			(uuid "1f143d8a-cd4e-4a79-bf96-e0c04d69be8a")
-		)
-		(pin "11"
-			(uuid "818a5f98-9d02-4790-b9ec-7850c5abdb4b")
-		)
-		(pin "4"
-			(uuid "23142f61-2ccd-471c-ab1c-5e172676ebe5")
-		)
-		(pin "3"
-			(uuid "171f988b-703f-4efe-8f0a-d0533a06ad7d")
-		)
-		(pin "2"
-			(uuid "4b1cc6ff-db67-4f7b-80b4-1a7d8e4550cf")
-		)
-		(pin "13"
-			(uuid "d31b8bd4-dfe2-42f8-8cc3-2862b5ffc8b6")
+		(pin "14"
+			(uuid "ba103c9f-2d37-4550-9b7a-bc323bf825c5")
 		)
 		(pin "10"
-			(uuid "a1d923ea-7510-42ad-9b3a-611082b48304")
+			(uuid "e27e7880-65a4-470f-998c-b2ebc432d447")
+		)
+		(pin "9"
+			(uuid "3f1802ba-b1df-45fe-9f99-632eb2dceda1")
+		)
+		(pin "6"
+			(uuid "e707d30e-2596-41bd-a172-c11fdb7cc1bb")
+		)
+		(pin "5"
+			(uuid "327171bf-88d5-4dd7-a5e7-82d71caa13b2")
+		)
+		(pin "4"
+			(uuid "d33aeafc-f317-4b00-85f0-8d313e0fd0ab")
+		)
+		(pin "3"
+			(uuid "ce358de5-685c-4bad-a0c9-d5aac4528b16")
+		)
+		(pin "2"
+			(uuid "156194c5-0570-4af0-92d6-e61319f9c8d3")
+		)
+		(pin "7"
+			(uuid "7dc02e43-ad9a-442a-8ff7-2d2d639c4925")
 		)
 		(pin "12"
-			(uuid "7a9d46ea-f777-4cf8-b0ff-93de1565a256")
+			(uuid "7f489487-d1cb-493b-8226-0d33ea2c5f95")
 		)
-		(pin "14"
-			(uuid "f8c918e9-7ebb-45bb-b2fa-247c2ecb4eeb")
+		(pin "13"
+			(uuid "c5963d71-e989-4937-851f-0d5efd6222ce")
+		)
+		(pin "11"
+			(uuid "c50886ed-6f1b-41a2-a5a8-02174ef4b675")
+		)
+		(pin "1"
+			(uuid "fb5bbc73-a8c9-4bce-b07e-03d192629a5a")
+		)
+		(pin "8"
+			(uuid "f83b4cf6-40d5-42dd-bafb-d869f3556175")
 		)
 		(instances
 			(project "GIMIX 6809 CPU Plus"
 				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
 					(reference "U54")
-					(unit 6)
+					(unit 1)
 				)
 			)
 		)
@@ -16568,6 +16561,115 @@
 				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
 					(reference "U53")
 					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "my_ics_new:74LS368_Split")
+		(at 193.04 87.63 0)
+		(unit 6)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b73b77ea-d756-4de2-af8c-dfca461b1a32")
+		(property "Reference" "U34"
+			(at 196.596 81.788 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LS368"
+			(at 196.596 84.328 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-16_W7.62mm"
+			(at 193.04 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 193.04 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Hex Buffer and Line Driver With 3-State Output, active-low enables, non-inverting outputs, split symbol"
+			(at 193.04 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "14"
+			(uuid "a0e0aa68-4e5b-4af2-9c22-6a9b29cc1399")
+		)
+		(pin "12"
+			(uuid "4a040566-ed0c-4098-8948-ea8d2a93997a")
+		)
+		(pin "2"
+			(uuid "15d98371-47e8-45b1-93ee-446447e39cac")
+		)
+		(pin "9"
+			(uuid "a2443a74-3699-45f8-af4a-67c9a28087d5")
+		)
+		(pin "1"
+			(uuid "bcd47ec6-f4ee-4b01-9ddf-cb3e8b964bc5")
+		)
+		(pin "11"
+			(uuid "e3f8f73a-d72b-4af3-8e22-5b16e4a5b0c5")
+		)
+		(pin "16"
+			(uuid "50ce9c4a-5e13-471d-af68-fadbc50a8c75")
+		)
+		(pin "6"
+			(uuid "74519079-0d9c-4a1d-a2cb-23238579ecf9")
+		)
+		(pin "7"
+			(uuid "d61f240c-dca8-4409-9c66-246eb1532b46")
+		)
+		(pin "3"
+			(uuid "53bb8ddd-83fb-4347-adb9-0969ca69152f")
+		)
+		(pin "13"
+			(uuid "5ef5b9d6-acd1-44b9-90e4-445f5f40efb8")
+		)
+		(pin "8"
+			(uuid "73028815-a79f-4f48-9071-36d468f259a0")
+		)
+		(pin "5"
+			(uuid "b438bf07-67df-4885-bee5-887b029baccf")
+		)
+		(pin "10"
+			(uuid "4eda062f-99b6-434d-993d-6d0ae92cb7ca")
+		)
+		(pin "4"
+			(uuid "22506393-28e9-4655-97d6-eb86c7883a54")
+		)
+		(pin "15"
+			(uuid "42c7d3d9-6f60-4544-ba3c-66dfd9d4d2df")
+		)
+		(instances
+			(project "GIMIX 6809 CPU Plus"
+				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
+					(reference "U34")
+					(unit 6)
 				)
 			)
 		)
@@ -16970,7 +17072,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "1k"
 			(at 104.14 158.7499 0)
 			(effects
 				(font
@@ -17606,218 +17708,6 @@
 		)
 	)
 	(symbol
-		(lib_id "74xx:74LS04")
-		(at 158.75 48.26 0)
-		(unit 3)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e891d05c-5905-438f-b14f-112d1dfa25ad")
-		(property "Reference" "U54"
-			(at 163.068 42.926 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "74LS04"
-			(at 163.068 45.466 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_DIP:DIP-14_W7.62mm"
-			(at 158.75 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS04"
-			(at 158.75 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Hex Inverter"
-			(at 158.75 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "9"
-			(uuid "a9e2f02a-3e57-462b-938c-cdccc008e4ed")
-		)
-		(pin "6"
-			(uuid "7927cd79-6eff-4bf8-9d92-0d8d41129c92")
-		)
-		(pin "5"
-			(uuid "339ae5eb-da5e-49a1-8b1d-3b0874f20238")
-		)
-		(pin "1"
-			(uuid "3047cb02-2278-432a-9add-9e083f945e4a")
-		)
-		(pin "7"
-			(uuid "fcb23f76-f581-466f-96b2-f79d3e0fb0c2")
-		)
-		(pin "8"
-			(uuid "1f143d8a-cd4e-4a79-bf96-e0c04d69be8b")
-		)
-		(pin "11"
-			(uuid "818a5f98-9d02-4790-b9ec-7850c5abdb4d")
-		)
-		(pin "4"
-			(uuid "23142f61-2ccd-471c-ab1c-5e172676ebe7")
-		)
-		(pin "3"
-			(uuid "171f988b-703f-4efe-8f0a-d0533a06ad7f")
-		)
-		(pin "2"
-			(uuid "4b1cc6ff-db67-4f7b-80b4-1a7d8e4550d0")
-		)
-		(pin "13"
-			(uuid "95e06c2e-cfb2-44e9-a235-1e4d6ff647f7")
-		)
-		(pin "10"
-			(uuid "a1d923ea-7510-42ad-9b3a-611082b48306")
-		)
-		(pin "12"
-			(uuid "d7dda8ea-580d-4b53-bcfc-8ad821442b7c")
-		)
-		(pin "14"
-			(uuid "f8c918e9-7ebb-45bb-b2fa-247c2ecb4eec")
-		)
-		(instances
-			(project "GIMIX 6809 CPU Plus"
-				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
-					(reference "U54")
-					(unit 3)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "my_ics_new:74LS367_Split")
-		(at 175.26 105.41 0)
-		(unit 2)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "ec1c1fc7-208e-4872-8267-7ece7bf73bd2")
-		(property "Reference" "U34"
-			(at 179.832 99.822 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "74LS367"
-			(at 179.832 102.362 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_DIP:DIP-16_W7.62mm"
-			(at 175.26 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 175.26 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Hex Buffer and Line Driver With 3-State Output, active-low enables, non-inverting outputs, split symbol"
-			(at 175.26 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "10"
-			(uuid "40c2ea6d-7df0-488f-8528-29dd567a6a89")
-		)
-		(pin "2"
-			(uuid "60573af2-3229-40c9-9c90-42d553d97114")
-		)
-		(pin "13"
-			(uuid "5aa96cc9-7074-4a5a-b689-87b19ef13472")
-		)
-		(pin "1"
-			(uuid "911f9322-0756-47b1-bb1f-9abb9f67c5c3")
-		)
-		(pin "7"
-			(uuid "09d780ee-f23f-48fe-9e45-8461c7f499ae")
-		)
-		(pin "6"
-			(uuid "3a53557e-4d0c-4fdd-8b32-3dc36fb98259")
-		)
-		(pin "5"
-			(uuid "7cfe6a81-e425-4b3e-a07f-4945f65789b4")
-		)
-		(pin "4"
-			(uuid "088c21b0-2867-4f29-b058-85081ca0abf1")
-		)
-		(pin "8"
-			(uuid "f09ba8e3-cb09-46b1-9974-59cd2f710488")
-		)
-		(pin "9"
-			(uuid "616e180d-723f-4f57-96fa-e5ec243ddd23")
-		)
-		(pin "14"
-			(uuid "488d49ec-cb59-4e2e-ad49-69d2a04851dc")
-		)
-		(pin "3"
-			(uuid "8502681d-2fac-4ef7-98d3-bff0b9839e24")
-		)
-		(pin "12"
-			(uuid "78b3526c-5b63-4538-b27b-caf439be9135")
-		)
-		(pin "15"
-			(uuid "f855e33c-3e15-48f4-aa81-178f4860c0f4")
-		)
-		(pin "11"
-			(uuid "4045c88c-0050-41f5-8f90-5caffb602e68")
-		)
-		(pin "16"
-			(uuid "4ac7b03a-40fe-424b-ad4d-b049ebf1efc8")
-		)
-		(instances
-			(project "GIMIX 6809 CPU Plus"
-				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
-					(reference "U34")
-					(unit 2)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_Small")
 		(at 120.65 44.45 0)
 		(unit 1)
@@ -17836,7 +17726,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "22k"
 			(at 123.19 45.7199 0)
 			(effects
 				(font
@@ -17883,6 +17773,115 @@
 				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
 					(reference "R21")
 					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "my_ics_new:74LS368_Split")
+		(at 92.71 118.11 0)
+		(unit 4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f2d1326f-e473-41c9-bb79-856452550a1c")
+		(property "Reference" "U34"
+			(at 96.266 112.268 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LS368"
+			(at 96.266 114.808 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-16_W7.62mm"
+			(at 92.71 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 92.71 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Hex Buffer and Line Driver With 3-State Output, active-low enables, non-inverting outputs, split symbol"
+			(at 92.71 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "14"
+			(uuid "a0e0aa68-4e5b-4af2-9c22-6a9b29cc139a")
+		)
+		(pin "12"
+			(uuid "4a040566-ed0c-4098-8948-ea8d2a93997b")
+		)
+		(pin "2"
+			(uuid "15d98371-47e8-45b1-93ee-446447e39cad")
+		)
+		(pin "9"
+			(uuid "a2443a74-3699-45f8-af4a-67c9a28087d6")
+		)
+		(pin "1"
+			(uuid "bcd47ec6-f4ee-4b01-9ddf-cb3e8b964bc6")
+		)
+		(pin "11"
+			(uuid "e3f8f73a-d72b-4af3-8e22-5b16e4a5b0c6")
+		)
+		(pin "16"
+			(uuid "50ce9c4a-5e13-471d-af68-fadbc50a8c76")
+		)
+		(pin "6"
+			(uuid "74519079-0d9c-4a1d-a2cb-23238579ecfa")
+		)
+		(pin "7"
+			(uuid "d61f240c-dca8-4409-9c66-246eb1532b47")
+		)
+		(pin "3"
+			(uuid "53bb8ddd-83fb-4347-adb9-0969ca691530")
+		)
+		(pin "13"
+			(uuid "5ef5b9d6-acd1-44b9-90e4-445f5f40efb9")
+		)
+		(pin "8"
+			(uuid "73028815-a79f-4f48-9071-36d468f259a1")
+		)
+		(pin "5"
+			(uuid "b438bf07-67df-4885-bee5-887b029bacd0")
+		)
+		(pin "10"
+			(uuid "4eda062f-99b6-434d-993d-6d0ae92cb7cb")
+		)
+		(pin "4"
+			(uuid "22506393-28e9-4655-97d6-eb86c7883a55")
+		)
+		(pin "15"
+			(uuid "42c7d3d9-6f60-4544-ba3c-66dfd9d4d2e0")
+		)
+		(instances
+			(project "GIMIX 6809 CPU Plus"
+				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
+					(reference "U34")
+					(unit 4)
 				)
 			)
 		)
@@ -17954,15 +17953,15 @@
 	)
 	(symbol
 		(lib_id "74xx:74LS04")
-		(at 158.75 30.48 0)
-		(unit 1)
+		(at 140.97 48.26 0)
+		(unit 5)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "fe34d55c-1d2c-4df4-a753-11f38563838c")
+		(uuid "f61c8ad1-c68f-4531-a8e6-0892d5243c21")
 		(property "Reference" "U54"
-			(at 163.068 25.146 0)
+			(at 145.288 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17970,7 +17969,7 @@
 			)
 		)
 		(property "Value" "74LS04"
-			(at 163.068 27.686 0)
+			(at 145.288 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17978,7 +17977,7 @@
 			)
 		)
 		(property "Footprint" "Package_DIP:DIP-14_W7.62mm"
-			(at 158.75 30.48 0)
+			(at 140.97 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17987,7 +17986,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS04"
-			(at 158.75 30.48 0)
+			(at 140.97 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17996,7 +17995,7 @@
 			)
 		)
 		(property "Description" "Hex Inverter"
-			(at 158.75 30.48 0)
+			(at 140.97 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18004,53 +18003,53 @@
 				(hide yes)
 			)
 		)
-		(pin "9"
-			(uuid "a9e2f02a-3e57-462b-938c-cdccc008e4ee")
-		)
-		(pin "6"
-			(uuid "130d2ac3-4790-4869-b463-d61b66673094")
-		)
-		(pin "5"
-			(uuid "bca9a7c9-ab7d-4f87-8760-579d646b49a6")
-		)
-		(pin "1"
-			(uuid "836bd0e4-55f9-4c18-b187-7cf4f008934a")
-		)
-		(pin "7"
-			(uuid "fcb23f76-f581-466f-96b2-f79d3e0fb0c3")
-		)
-		(pin "8"
-			(uuid "1f143d8a-cd4e-4a79-bf96-e0c04d69be8c")
-		)
-		(pin "11"
-			(uuid "818a5f98-9d02-4790-b9ec-7850c5abdb4e")
-		)
-		(pin "4"
-			(uuid "23142f61-2ccd-471c-ab1c-5e172676ebe8")
-		)
-		(pin "3"
-			(uuid "171f988b-703f-4efe-8f0a-d0533a06ad80")
-		)
-		(pin "2"
-			(uuid "5af06f08-d440-4a31-ac31-fd016e398974")
-		)
-		(pin "13"
-			(uuid "95e06c2e-cfb2-44e9-a235-1e4d6ff647f8")
+		(pin "14"
+			(uuid "ba103c9f-2d37-4550-9b7a-bc323bf825c5")
 		)
 		(pin "10"
-			(uuid "a1d923ea-7510-42ad-9b3a-611082b48307")
+			(uuid "e27e7880-65a4-470f-998c-b2ebc432d447")
+		)
+		(pin "9"
+			(uuid "3f1802ba-b1df-45fe-9f99-632eb2dceda1")
+		)
+		(pin "6"
+			(uuid "e707d30e-2596-41bd-a172-c11fdb7cc1bb")
+		)
+		(pin "5"
+			(uuid "327171bf-88d5-4dd7-a5e7-82d71caa13b2")
+		)
+		(pin "4"
+			(uuid "d33aeafc-f317-4b00-85f0-8d313e0fd0ab")
+		)
+		(pin "3"
+			(uuid "ce358de5-685c-4bad-a0c9-d5aac4528b16")
+		)
+		(pin "2"
+			(uuid "156194c5-0570-4af0-92d6-e61319f9c8d3")
+		)
+		(pin "7"
+			(uuid "7dc02e43-ad9a-442a-8ff7-2d2d639c4925")
 		)
 		(pin "12"
-			(uuid "d7dda8ea-580d-4b53-bcfc-8ad821442b7d")
+			(uuid "7f489487-d1cb-493b-8226-0d33ea2c5f95")
 		)
-		(pin "14"
-			(uuid "f8c918e9-7ebb-45bb-b2fa-247c2ecb4eed")
+		(pin "13"
+			(uuid "c5963d71-e989-4937-851f-0d5efd6222ce")
+		)
+		(pin "11"
+			(uuid "c50886ed-6f1b-41a2-a5a8-02174ef4b675")
+		)
+		(pin "1"
+			(uuid "fb5bbc73-a8c9-4bce-b07e-03d192629a5a")
+		)
+		(pin "8"
+			(uuid "f83b4cf6-40d5-42dd-bafb-d869f3556175")
 		)
 		(instances
 			(project "GIMIX 6809 CPU Plus"
 				(path "/1cefd558-99bd-432a-9200-45600aaea5a7/8c4d6a17-8bab-49aa-a561-55081de39074"
 					(reference "U54")
-					(unit 1)
+					(unit 5)
 				)
 			)
 		)

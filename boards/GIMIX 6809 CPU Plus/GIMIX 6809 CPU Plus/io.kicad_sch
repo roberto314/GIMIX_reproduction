@@ -7,9 +7,10 @@
 	(title_block
 		(title "GIMIX 6809 CPU Plus")
 		(date "2026-07-02")
-		(rev "0.1")
+		(rev "0.2")
 		(company "100% Offner")
 		(comment 1 "v0.1: Initial")
+		(comment 2 "v0.2: ch. U34 -> 'LS368, ")
 	)
 	(lib_symbols
 		(symbol "74xx:74LS00"
@@ -13784,15 +13785,15 @@
 		(fields_autoplaced yes)
 		(uuid "052e82f1-4234-4288-9f1a-9d91980e8d43")
 		(property "Reference" "R1"
-			(at 260.35 24.13 90)
+			(at 260.35 22.86 90)
 			(effects
 				(font
 					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Value" "?"
-			(at 260.35 26.67 90)
+		(property "Value" "100E"
+			(at 260.35 25.4 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14720,7 +14721,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "4k7"
 			(at 278.13 106.6799 0)
 			(effects
 				(font
@@ -16490,7 +16491,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "4k7"
 			(at 247.65 105.4099 0)
 			(effects
 				(font
@@ -16799,7 +16800,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "4k7"
 			(at 138.43 26.6699 0)
 			(effects
 				(font

@@ -7,9 +7,10 @@
 	(title_block
 		(title "GIMIX 6809 CPU Plus")
 		(date "2026-07-02")
-		(rev "0.1")
+		(rev "0.2")
 		(company "100% Offner")
 		(comment 1 "v0.1: Initial")
+		(comment 2 "v0.2: ch. U34 -> 'LS368, ")
 	)
 	(lib_symbols
 		(symbol "74xx:74LS00"
@@ -10133,7 +10134,7 @@
 		)
 		(uuid "3add9723-20f4-47d7-acc3-0040bcaa0004")
 	)
-	(text "check all chips.\nThey are mostly guesswork except:\nU21, U22, U23, U37, U39, U40, U43, U44, U45.\nU8, U9, U1, U2, U3.\nThey are mentioned in the documentation.\nThe following ICs are written on the schematic:\nU38, U41, U42,\nThe following ICs are clear too:\nEPROMS U4-U7,\nCPU: U47,\nFPLA: U36,\n\nCheck especially: \nU17 74LS136 ?\nU20: 74LS12 ?\nSpeed grade of Buffers (74LS244 or 'F244),\nU49, U50: both 'LS640 ?\nU24: 'LS157 ?\n\n\nAlso: check all the passive components,\nthey are all missing!"
+	(text "check all chips.\nThey are mostly guesswork except:\nU21, U22, U23, U37, U39, U40, U43, U44, U45.\nU8, U9, U1, U2, U3.\nThey are mentioned in the documentation.\nThe following ICs are written on the schematic:\nU38, U41, U42,\nThe following ICs are clear too:\nEPROMS U4-U7,\nCPU: U47,\nFPLA: U36,\n\nCheck especially: \nU17 74LS136 - checked\nU20: 74LS12 - checked\nSpeed grade of Buffers (74LS244 or 'F244) - all LS\nU49, U50: both 'LS640 - checked\nU24: 'LS157 - checked\n\n\nAlso: check all the passive components,\nthey are all missing!"
 		(exclude_from_sim no)
 		(at 230.886 160.02 0)
 		(effects
@@ -21759,7 +21760,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "10k"
 			(at 149.86 121.9199 0)
 			(effects
 				(font
@@ -23009,7 +23010,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "10k"
 			(at 142.24 121.9199 0)
 			(effects
 				(font
@@ -24734,7 +24735,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "680E"
 			(at 219.71 172.7199 0)
 			(effects
 				(font
@@ -24870,7 +24871,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "10k"
 			(at 152.4 149.8599 0)
 			(effects
 				(font
