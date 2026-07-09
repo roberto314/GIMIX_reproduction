@@ -25,3 +25,5 @@ This Repository is for primarily my GIMIX Ghost Reproduction and various SS-30 a
 - GIMIX CRC Generator board - work started but PAL contents missing, schematic missing (a couple of traces need testing), production NOT possible
 
 - GIMIX 6809 CPU III - layout finished but PAL contents missing (some may be registerd - GMX 010 type), production NOT possible
+
+- GIMIX Ghost 6800 - layout finished but some ICs are very rare, production might not be sensible, maybe a redesign with more available components.
