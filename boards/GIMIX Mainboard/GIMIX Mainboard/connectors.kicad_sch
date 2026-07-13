@@ -7,9 +7,10 @@
 	(title_block
 		(title "GIMIX Mainboard 24-0049 ")
 		(date "2026-06-24")
-		(rev "0.2")
+		(rev "0.3")
 		(company "100% Offner")
 		(comment 1 "v0.1: Initial")
+		(comment 2 "v0.2: FIRQ to JA2 added, IORES conn.")
 	)
 	(lib_symbols
 		(symbol "Connector_Generic:Conn_01x04"
@@ -8272,7 +8273,7 @@
 		(uuid "7618c09e-090f-49a1-9107-3b9bfbfb836d")
 	)
 	(junction
-		(at 308.61 181.61)
+		(at 316.23 181.61)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "763f9441-2cd9-4d05-bd9c-be185d020e50")
@@ -11296,7 +11297,7 @@
 		(uuid "85842cee-6f83-4694-b8a1-deb7232edb95")
 	)
 	(no_connect
-		(at 309.88 176.53)
+		(at 317.5 176.53)
 		(uuid "88946de7-4ff2-479a-bdd8-681baf6ff935")
 	)
 	(no_connect
@@ -11316,7 +11317,7 @@
 		(uuid "fd8c1f02-debe-4e91-bc41-07ea198bfac6")
 	)
 	(no_connect
-		(at 309.88 184.15)
+		(at 317.5 184.15)
 		(uuid "fe594ea5-3658-4044-a38b-a5042e284be3")
 	)
 	(bus_entry
@@ -13157,7 +13158,7 @@
 	)
 	(wire
 		(pts
-			(xy 298.45 173.99) (xy 309.88 173.99)
+			(xy 306.07 173.99) (xy 317.5 173.99)
 		)
 		(stroke
 			(width 0)
@@ -15147,7 +15148,7 @@
 	)
 	(wire
 		(pts
-			(xy 308.61 181.61) (xy 308.61 185.42)
+			(xy 316.23 181.61) (xy 316.23 185.42)
 		)
 		(stroke
 			(width 0)
@@ -18457,7 +18458,7 @@
 	)
 	(wire
 		(pts
-			(xy 308.61 181.61) (xy 308.61 179.07)
+			(xy 316.23 181.61) (xy 316.23 179.07)
 		)
 		(stroke
 			(width 0)
@@ -18777,7 +18778,7 @@
 	)
 	(wire
 		(pts
-			(xy 309.88 181.61) (xy 308.61 181.61)
+			(xy 317.5 181.61) (xy 316.23 181.61)
 		)
 		(stroke
 			(width 0)
@@ -22517,7 +22518,7 @@
 	)
 	(wire
 		(pts
-			(xy 308.61 179.07) (xy 309.88 179.07)
+			(xy 316.23 179.07) (xy 317.5 179.07)
 		)
 		(stroke
 			(width 0)
@@ -26046,7 +26047,7 @@
 		(uuid "ae86e6ca-7af8-4377-bd3f-7e7b938dbd03")
 	)
 	(label "~{MRDY}"
-		(at 298.45 173.99 0)
+		(at 306.07 173.99 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -27225,10 +27226,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "0359bef1-3df6-4459-a9bf-3ea47caee4a3")
 		(property "Reference" "JA2"
-			(at 285.75 203.1999 0)
+			(at 279.146 194.056 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27236,8 +27236,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Conn_01x05"
-			(at 285.75 205.7399 0)
+		(property "Value" "Interrupt Option"
+			(at 279.146 196.596 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28087,7 +28087,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "20116e2a-11fb-42b5-b6e4-0b2876ff497f")
-		(property "Reference" "IO6"
+		(property "Reference" "IO5"
 			(at 104.267 165.1 0)
 			(effects
 				(font
@@ -28225,7 +28225,7 @@
 		(instances
 			(project "GIMIX Mainboard"
 				(path "/471d184b-f3be-460f-9c44-6b4c4ffac74b/7c0d5175-39d7-4f8a-8889-08dc797cb17c"
-					(reference "IO6")
+					(reference "IO5")
 					(unit 1)
 				)
 			)
@@ -28240,7 +28240,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "207de311-cb94-49f1-a1a1-c841fc882344")
-		(property "Reference" "IO3"
+		(property "Reference" "IO2"
 			(at 66.167 165.1 0)
 			(effects
 				(font
@@ -28378,7 +28378,7 @@
 		(instances
 			(project "GIMIX Mainboard"
 				(path "/471d184b-f3be-460f-9c44-6b4c4ffac74b/7c0d5175-39d7-4f8a-8889-08dc797cb17c"
-					(reference "IO3")
+					(reference "IO2")
 					(unit 1)
 				)
 			)
@@ -29013,10 +29013,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "393566ed-c20b-4c48-be5b-34438b626200")
 		(property "Reference" "JA5"
-			(at 331.47 143.5099 0)
+			(at 326.644 132.588 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29024,8 +29023,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Conn_01x06"
-			(at 331.47 146.0499 0)
+		(property "Value" "Termination Option"
+			(at 326.644 135.128 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29096,7 +29095,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3bedfa21-d829-4720-a008-774d6299da52")
-		(property "Reference" "IO8"
+		(property "Reference" "IO7"
 			(at 129.667 165.1 0)
 			(effects
 				(font
@@ -29234,7 +29233,7 @@
 		(instances
 			(project "GIMIX Mainboard"
 				(path "/471d184b-f3be-460f-9c44-6b4c4ffac74b/7c0d5175-39d7-4f8a-8889-08dc797cb17c"
-					(reference "IO8")
+					(reference "IO7")
 					(unit 1)
 				)
 			)
@@ -30783,7 +30782,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7032d0ed-285d-49bb-a500-996ee4be0af9")
-		(property "Reference" "IO7"
+		(property "Reference" "IO6"
 			(at 116.967 165.1 0)
 			(effects
 				(font
@@ -30921,7 +30920,7 @@
 		(instances
 			(project "GIMIX Mainboard"
 				(path "/471d184b-f3be-460f-9c44-6b4c4ffac74b/7c0d5175-39d7-4f8a-8889-08dc797cb17c"
-					(reference "IO7")
+					(reference "IO6")
 					(unit 1)
 				)
 			)
@@ -31836,7 +31835,7 @@
 				)
 			)
 		)
-		(property "Value" "Conn_02x05_Odd_Even"
+		(property "Value" "50pin to 30pinBaudrate Option"
 			(at 274.32 135.89 0)
 			(effects
 				(font
@@ -31912,7 +31911,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x05")
-		(at 314.96 179.07 0)
+		(at 322.58 179.07 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -31920,7 +31919,7 @@
 		(dnp no)
 		(uuid "9e1a3b78-9cf7-4345-a98d-4c5f4dccc256")
 		(property "Reference" "CA1"
-			(at 317.5 177.7999 0)
+			(at 319.786 168.148 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -31928,8 +31927,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Conn_01x05"
-			(at 317.5 180.3399 0)
+		(property "Value" "6800 Reset Conn."
+			(at 319.786 170.688 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -31938,7 +31937,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical"
-			(at 314.96 179.07 0)
+			(at 322.58 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -31947,7 +31946,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 314.96 179.07 0)
+			(at 322.58 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -31956,7 +31955,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 314.96 179.07 0)
+			(at 322.58 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -32091,7 +32090,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a33aa35a-0aec-47a0-9471-b4a3f3ef53d7")
-		(property "Reference" "IO5"
+		(property "Reference" "IO4"
 			(at 91.567 165.1 0)
 			(effects
 				(font
@@ -32229,7 +32228,7 @@
 		(instances
 			(project "GIMIX Mainboard"
 				(path "/471d184b-f3be-460f-9c44-6b4c4ffac74b/7c0d5175-39d7-4f8a-8889-08dc797cb17c"
-					(reference "IO5")
+					(reference "IO4")
 					(unit 1)
 				)
 			)
@@ -33588,7 +33587,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b60f4042-ffae-4462-9699-11a6940b6f0d")
-		(property "Reference" "IO1"
+		(property "Reference" "IO0"
 			(at 40.767 165.1 0)
 			(effects
 				(font
@@ -33726,7 +33725,7 @@
 		(instances
 			(project "GIMIX Mainboard"
 				(path "/471d184b-f3be-460f-9c44-6b4c4ffac74b/7c0d5175-39d7-4f8a-8889-08dc797cb17c"
-					(reference "IO1")
+					(reference "IO0")
 					(unit 1)
 				)
 			)
@@ -33808,7 +33807,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "bb7a5253-86d3-41bf-af41-a406191d33a6")
-		(property "Reference" "IO2"
+		(property "Reference" "IO1"
 			(at 53.467 165.1 0)
 			(effects
 				(font
@@ -33946,7 +33945,7 @@
 		(instances
 			(project "GIMIX Mainboard"
 				(path "/471d184b-f3be-460f-9c44-6b4c4ffac74b/7c0d5175-39d7-4f8a-8889-08dc797cb17c"
-					(reference "IO2")
+					(reference "IO1")
 					(unit 1)
 				)
 			)
@@ -33961,7 +33960,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "bc5894eb-1722-4592-b0a8-059e7367f42b")
-		(property "Reference" "IO4"
+		(property "Reference" "IO3"
 			(at 78.867 165.1 0)
 			(effects
 				(font
@@ -34099,7 +34098,7 @@
 		(instances
 			(project "GIMIX Mainboard"
 				(path "/471d184b-f3be-460f-9c44-6b4c4ffac74b/7c0d5175-39d7-4f8a-8889-08dc797cb17c"
-					(reference "IO4")
+					(reference "IO3")
 					(unit 1)
 				)
 			)
@@ -34107,7 +34106,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 308.61 185.42 0)
+		(at 316.23 185.42 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -34116,7 +34115,7 @@
 		(fields_autoplaced yes)
 		(uuid "c063a606-aa0f-4003-883f-959568ceec66")
 		(property "Reference" "#PWR073"
-			(at 308.61 191.77 0)
+			(at 316.23 191.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -34125,7 +34124,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 308.61 190.5 0)
+			(at 316.23 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -34133,7 +34132,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 308.61 185.42 0)
+			(at 316.23 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -34142,7 +34141,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 308.61 185.42 0)
+			(at 316.23 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -34151,7 +34150,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 308.61 185.42 0)
+			(at 316.23 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -35031,10 +35030,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "de4eb665-5ef3-4e5b-8b8d-27cbffa289e3")
 		(property "Reference" "CA2"
-			(at 285.75 177.7999 0)
+			(at 280.67 169.672 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -35042,8 +35040,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Conn_01x04"
-			(at 285.75 180.3399 0)
+		(property "Value" "Pilot Light Conn."
+			(at 280.67 172.212 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -35183,7 +35181,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Mainboard"
+		(property "Value" "BaudRate Generator Board"
 			(at 179.324 207.264 0)
 			(effects
 				(font

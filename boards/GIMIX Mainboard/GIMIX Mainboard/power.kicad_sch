@@ -7,9 +7,10 @@
 	(title_block
 		(title "GIMIX Mainboard 24-0049 ")
 		(date "2026-06-24")
-		(rev "0.2")
+		(rev "0.3")
 		(company "100% Offner")
 		(comment 1 "v0.1: Initial")
+		(comment 2 "v0.2: FIRQ to JA2 added, IORES conn.")
 	)
 	(lib_symbols
 		(symbol "74xx:74LS00"
