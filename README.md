@@ -20,7 +20,9 @@ This Repository is for primarily my GIMIX Ghost Reproduction and various SS-30 a
 
 - GIMIX 256k SRAM done, PAL missing but should not be too difficult to figure out, production possible, mods for 62256 chips instead of original 6264. Battery backup won't work with 62256 chips!
 
-- GIMIX 6809 CPU Plus - done, FPLA missing, production NOT possible, redesign with GAL or fast EPROM needed, FPLA Contents missing
+- GIMIX 6809 CPU Plus - done, production NOT possible, redesign with GAL or fast EPROM needed, FPLA Contents missing
+
+- GIMIX 6809 CPU Plus Plus - done, This is a production version of the CPU+ board. Changes are: fast EPROM instead of FPLA, one of the four EPROM Sockets is now for a 28-pin EPROM
 
 - GIMIX CRC Generator board - work started but PAL contents missing, schematic missing (a couple of traces need testing), production NOT possible
 
