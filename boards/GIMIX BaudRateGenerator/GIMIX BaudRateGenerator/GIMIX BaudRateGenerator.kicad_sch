@@ -10324,46 +10324,46 @@
 			)
 		)
 		(pin "6"
-			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63511")
+			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63512")
 		)
 		(pin "13"
-			(uuid "0ac05bf8-4856-4bad-860b-81878b13023b")
+			(uuid "0ac05bf8-4856-4bad-860b-81878b13023c")
 		)
 		(pin "4"
-			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a2")
+			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a3")
 		)
 		(pin "11"
-			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad481")
+			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad482")
 		)
 		(pin "7"
-			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf504")
+			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf505")
 		)
 		(pin "12"
-			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07ac")
+			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07ad")
 		)
 		(pin "14"
-			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19ef7")
+			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19ef8")
 		)
 		(pin "3"
-			(uuid "8f7fc934-42ef-4113-adde-fe3f22779964")
+			(uuid "8f7fc934-42ef-4113-adde-fe3f22779965")
 		)
 		(pin "1"
-			(uuid "66e68db8-80f4-4103-86c5-0e293c793b0e")
+			(uuid "66e68db8-80f4-4103-86c5-0e293c793b0f")
 		)
 		(pin "2"
-			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a11")
+			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a12")
 		)
 		(pin "8"
-			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd3")
+			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd4")
 		)
 		(pin "10"
-			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e52")
+			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e53")
 		)
 		(pin "9"
-			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b710")
+			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b711")
 		)
 		(pin "5"
-			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3f6")
+			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3f7")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -10681,46 +10681,46 @@
 			)
 		)
 		(pin "6"
-			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63511")
+			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63513")
 		)
 		(pin "13"
-			(uuid "0ac05bf8-4856-4bad-860b-81878b13023b")
+			(uuid "0ac05bf8-4856-4bad-860b-81878b13023d")
 		)
 		(pin "4"
-			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a2")
+			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a4")
 		)
 		(pin "11"
-			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad481")
+			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad483")
 		)
 		(pin "7"
-			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf504")
+			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf506")
 		)
 		(pin "12"
-			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07ac")
+			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07ae")
 		)
 		(pin "14"
-			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19ef7")
+			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19ef9")
 		)
 		(pin "3"
-			(uuid "8f7fc934-42ef-4113-adde-fe3f22779964")
+			(uuid "8f7fc934-42ef-4113-adde-fe3f22779966")
 		)
 		(pin "1"
-			(uuid "66e68db8-80f4-4103-86c5-0e293c793b0e")
+			(uuid "66e68db8-80f4-4103-86c5-0e293c793b10")
 		)
 		(pin "2"
-			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a11")
+			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a13")
 		)
 		(pin "8"
-			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd3")
+			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd5")
 		)
 		(pin "10"
-			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e52")
+			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e54")
 		)
 		(pin "9"
-			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b710")
+			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b712")
 		)
 		(pin "5"
-			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3f6")
+			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3f8")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -10864,7 +10864,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "47547877-c493-4965-8b94-8dd550320e79")
-		(property "Reference" "J3"
+		(property "Reference" "JA1"
 			(at 15.24 21.59 0)
 			(effects
 				(font
@@ -10928,7 +10928,7 @@
 		(instances
 			(project "GIMIX BaudRateGenerator"
 				(path "/70168188-e4e4-4916-9756-ee4bf3545c70"
-					(reference "J3")
+					(reference "JA1")
 					(unit 1)
 				)
 			)
@@ -11135,8 +11135,8 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "49c4b28b-0bae-423e-ad7e-350e91df1b7a")
-		(property "Reference" "J2"
-			(at 24.892 95.758 0)
+		(property "Reference" "CA1"
+			(at 21.59 95.758 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11198,7 +11198,7 @@
 		(instances
 			(project "GIMIX BaudRateGenerator"
 				(path "/70168188-e4e4-4916-9756-ee4bf3545c70"
-					(reference "J2")
+					(reference "CA1")
 					(unit 1)
 				)
 			)
@@ -11665,64 +11665,64 @@
 			)
 		)
 		(pin "4"
-			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd5")
+			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd6")
 		)
 		(pin "9"
-			(uuid "5f322919-d457-4b0d-b950-56722ec49dde")
+			(uuid "5f322919-d457-4b0d-b950-56722ec49ddf")
 		)
 		(pin "7"
-			(uuid "dfae9505-7559-4a00-9e09-448143a3df15")
+			(uuid "dfae9505-7559-4a00-9e09-448143a3df16")
 		)
 		(pin "13"
-			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b12")
+			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b13")
 		)
 		(pin "8"
-			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a90")
+			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a91")
 		)
 		(pin "5"
-			(uuid "1221a377-0ab5-48de-8642-d5ee17117209")
+			(uuid "1221a377-0ab5-48de-8642-d5ee1711720a")
 		)
 		(pin "6"
-			(uuid "141e9636-0892-42ec-9268-507adbc44e5a")
+			(uuid "141e9636-0892-42ec-9268-507adbc44e5b")
 		)
 		(pin "14"
-			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93b")
+			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93c")
 		)
 		(pin "3"
-			(uuid "9d9626c7-10ed-493e-8148-7edff6869e46")
+			(uuid "9d9626c7-10ed-493e-8148-7edff6869e47")
 		)
 		(pin "12"
-			(uuid "97559d69-7205-4f41-878b-3b94b1ec615e")
+			(uuid "97559d69-7205-4f41-878b-3b94b1ec615f")
 		)
 		(pin "10"
-			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5a")
+			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5b")
 		)
 		(pin "1"
-			(uuid "40761ee0-7864-4c4b-90d4-9b5486f1354d")
+			(uuid "40761ee0-7864-4c4b-90d4-9b5486f1354e")
 		)
 		(pin "19"
-			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da53")
+			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da54")
 		)
 		(pin "16"
-			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391df")
+			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391e0")
 		)
 		(pin "20"
-			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a3")
+			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a4")
 		)
 		(pin "2"
-			(uuid "9f57db78-c951-4bf8-8733-724037247dbb")
+			(uuid "9f57db78-c951-4bf8-8733-724037247dbc")
 		)
 		(pin "17"
-			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7dd")
+			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7de")
 		)
 		(pin "18"
-			(uuid "ee094828-6b67-430d-b321-448d6d68607b")
+			(uuid "ee094828-6b67-430d-b321-448d6d68607c")
 		)
 		(pin "11"
-			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b36")
+			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b37")
 		)
 		(pin "15"
-			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f5")
+			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f6")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -11786,46 +11786,46 @@
 			)
 		)
 		(pin "6"
-			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63511")
+			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63514")
 		)
 		(pin "13"
-			(uuid "0ac05bf8-4856-4bad-860b-81878b13023b")
+			(uuid "0ac05bf8-4856-4bad-860b-81878b13023e")
 		)
 		(pin "4"
-			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a2")
+			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a5")
 		)
 		(pin "11"
-			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad481")
+			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad484")
 		)
 		(pin "7"
-			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf504")
+			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf507")
 		)
 		(pin "12"
-			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07ac")
+			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07af")
 		)
 		(pin "14"
-			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19ef7")
+			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19efa")
 		)
 		(pin "3"
-			(uuid "8f7fc934-42ef-4113-adde-fe3f22779964")
+			(uuid "8f7fc934-42ef-4113-adde-fe3f22779967")
 		)
 		(pin "1"
-			(uuid "66e68db8-80f4-4103-86c5-0e293c793b0e")
+			(uuid "66e68db8-80f4-4103-86c5-0e293c793b11")
 		)
 		(pin "2"
-			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a11")
+			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a14")
 		)
 		(pin "8"
-			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd3")
+			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd6")
 		)
 		(pin "10"
-			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e52")
+			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e55")
 		)
 		(pin "9"
-			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b710")
+			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b713")
 		)
 		(pin "5"
-			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3f6")
+			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3f9")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -11889,64 +11889,64 @@
 			)
 		)
 		(pin "4"
-			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd5")
+			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd7")
 		)
 		(pin "9"
-			(uuid "5f322919-d457-4b0d-b950-56722ec49dde")
+			(uuid "5f322919-d457-4b0d-b950-56722ec49de0")
 		)
 		(pin "7"
-			(uuid "dfae9505-7559-4a00-9e09-448143a3df15")
+			(uuid "dfae9505-7559-4a00-9e09-448143a3df17")
 		)
 		(pin "13"
-			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b12")
+			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b14")
 		)
 		(pin "8"
-			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a90")
+			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a92")
 		)
 		(pin "5"
-			(uuid "1221a377-0ab5-48de-8642-d5ee17117209")
+			(uuid "1221a377-0ab5-48de-8642-d5ee1711720b")
 		)
 		(pin "6"
-			(uuid "141e9636-0892-42ec-9268-507adbc44e5a")
+			(uuid "141e9636-0892-42ec-9268-507adbc44e5c")
 		)
 		(pin "14"
-			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93b")
+			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93d")
 		)
 		(pin "3"
-			(uuid "9d9626c7-10ed-493e-8148-7edff6869e46")
+			(uuid "9d9626c7-10ed-493e-8148-7edff6869e48")
 		)
 		(pin "12"
-			(uuid "97559d69-7205-4f41-878b-3b94b1ec615e")
+			(uuid "97559d69-7205-4f41-878b-3b94b1ec6160")
 		)
 		(pin "10"
-			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5a")
+			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5c")
 		)
 		(pin "1"
-			(uuid "40761ee0-7864-4c4b-90d4-9b5486f1354d")
+			(uuid "40761ee0-7864-4c4b-90d4-9b5486f1354f")
 		)
 		(pin "19"
-			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da53")
+			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da55")
 		)
 		(pin "16"
-			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391df")
+			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391e1")
 		)
 		(pin "20"
-			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a3")
+			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a5")
 		)
 		(pin "2"
-			(uuid "9f57db78-c951-4bf8-8733-724037247dbb")
+			(uuid "9f57db78-c951-4bf8-8733-724037247dbd")
 		)
 		(pin "17"
-			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7dd")
+			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7df")
 		)
 		(pin "18"
-			(uuid "ee094828-6b67-430d-b321-448d6d68607b")
+			(uuid "ee094828-6b67-430d-b321-448d6d68607d")
 		)
 		(pin "11"
-			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b36")
+			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b38")
 		)
 		(pin "15"
-			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f5")
+			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f7")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -12077,46 +12077,46 @@
 			)
 		)
 		(pin "6"
-			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63511")
+			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63515")
 		)
 		(pin "13"
-			(uuid "0ac05bf8-4856-4bad-860b-81878b13023b")
+			(uuid "0ac05bf8-4856-4bad-860b-81878b13023f")
 		)
 		(pin "4"
-			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a2")
+			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a6")
 		)
 		(pin "11"
-			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad481")
+			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad485")
 		)
 		(pin "7"
-			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf504")
+			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf508")
 		)
 		(pin "12"
-			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07ac")
+			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07b0")
 		)
 		(pin "14"
-			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19ef7")
+			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19efb")
 		)
 		(pin "3"
-			(uuid "8f7fc934-42ef-4113-adde-fe3f22779964")
+			(uuid "8f7fc934-42ef-4113-adde-fe3f22779968")
 		)
 		(pin "1"
-			(uuid "66e68db8-80f4-4103-86c5-0e293c793b0e")
+			(uuid "66e68db8-80f4-4103-86c5-0e293c793b12")
 		)
 		(pin "2"
-			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a11")
+			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a15")
 		)
 		(pin "8"
-			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd3")
+			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd7")
 		)
 		(pin "10"
-			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e52")
+			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e56")
 		)
 		(pin "9"
-			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b710")
+			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b714")
 		)
 		(pin "5"
-			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3f6")
+			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3fa")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -12180,64 +12180,64 @@
 			)
 		)
 		(pin "4"
-			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd5")
+			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd8")
 		)
 		(pin "9"
-			(uuid "5f322919-d457-4b0d-b950-56722ec49dde")
+			(uuid "5f322919-d457-4b0d-b950-56722ec49de1")
 		)
 		(pin "7"
-			(uuid "dfae9505-7559-4a00-9e09-448143a3df15")
+			(uuid "dfae9505-7559-4a00-9e09-448143a3df18")
 		)
 		(pin "13"
-			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b12")
+			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b15")
 		)
 		(pin "8"
-			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a90")
+			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a93")
 		)
 		(pin "5"
-			(uuid "1221a377-0ab5-48de-8642-d5ee17117209")
+			(uuid "1221a377-0ab5-48de-8642-d5ee1711720c")
 		)
 		(pin "6"
-			(uuid "141e9636-0892-42ec-9268-507adbc44e5a")
+			(uuid "141e9636-0892-42ec-9268-507adbc44e5d")
 		)
 		(pin "14"
-			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93b")
+			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93e")
 		)
 		(pin "3"
-			(uuid "9d9626c7-10ed-493e-8148-7edff6869e46")
+			(uuid "9d9626c7-10ed-493e-8148-7edff6869e49")
 		)
 		(pin "12"
-			(uuid "97559d69-7205-4f41-878b-3b94b1ec615e")
+			(uuid "97559d69-7205-4f41-878b-3b94b1ec6161")
 		)
 		(pin "10"
-			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5a")
+			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5d")
 		)
 		(pin "1"
-			(uuid "40761ee0-7864-4c4b-90d4-9b5486f1354d")
+			(uuid "40761ee0-7864-4c4b-90d4-9b5486f13550")
 		)
 		(pin "19"
-			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da53")
+			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da56")
 		)
 		(pin "16"
-			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391df")
+			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391e2")
 		)
 		(pin "20"
-			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a3")
+			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a6")
 		)
 		(pin "2"
-			(uuid "9f57db78-c951-4bf8-8733-724037247dbb")
+			(uuid "9f57db78-c951-4bf8-8733-724037247dbe")
 		)
 		(pin "17"
-			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7dd")
+			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7e0")
 		)
 		(pin "18"
-			(uuid "ee094828-6b67-430d-b321-448d6d68607b")
+			(uuid "ee094828-6b67-430d-b321-448d6d68607e")
 		)
 		(pin "11"
-			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b36")
+			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b39")
 		)
 		(pin "15"
-			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f5")
+			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f8")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -12556,64 +12556,64 @@
 			)
 		)
 		(pin "4"
-			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd5")
+			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd9")
 		)
 		(pin "9"
-			(uuid "5f322919-d457-4b0d-b950-56722ec49dde")
+			(uuid "5f322919-d457-4b0d-b950-56722ec49de2")
 		)
 		(pin "7"
-			(uuid "dfae9505-7559-4a00-9e09-448143a3df15")
+			(uuid "dfae9505-7559-4a00-9e09-448143a3df19")
 		)
 		(pin "13"
-			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b12")
+			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b16")
 		)
 		(pin "8"
-			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a90")
+			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a94")
 		)
 		(pin "5"
-			(uuid "1221a377-0ab5-48de-8642-d5ee17117209")
+			(uuid "1221a377-0ab5-48de-8642-d5ee1711720d")
 		)
 		(pin "6"
-			(uuid "141e9636-0892-42ec-9268-507adbc44e5a")
+			(uuid "141e9636-0892-42ec-9268-507adbc44e5e")
 		)
 		(pin "14"
-			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93b")
+			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93f")
 		)
 		(pin "3"
-			(uuid "9d9626c7-10ed-493e-8148-7edff6869e46")
+			(uuid "9d9626c7-10ed-493e-8148-7edff6869e4a")
 		)
 		(pin "12"
-			(uuid "97559d69-7205-4f41-878b-3b94b1ec615e")
+			(uuid "97559d69-7205-4f41-878b-3b94b1ec6162")
 		)
 		(pin "10"
-			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5a")
+			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5e")
 		)
 		(pin "1"
-			(uuid "40761ee0-7864-4c4b-90d4-9b5486f1354d")
+			(uuid "40761ee0-7864-4c4b-90d4-9b5486f13551")
 		)
 		(pin "19"
-			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da53")
+			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da57")
 		)
 		(pin "16"
-			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391df")
+			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391e3")
 		)
 		(pin "20"
-			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a3")
+			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a7")
 		)
 		(pin "2"
-			(uuid "9f57db78-c951-4bf8-8733-724037247dbb")
+			(uuid "9f57db78-c951-4bf8-8733-724037247dbf")
 		)
 		(pin "17"
-			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7dd")
+			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7e1")
 		)
 		(pin "18"
-			(uuid "ee094828-6b67-430d-b321-448d6d68607b")
+			(uuid "ee094828-6b67-430d-b321-448d6d68607f")
 		)
 		(pin "11"
-			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b36")
+			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b3a")
 		)
 		(pin "15"
-			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f5")
+			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f9")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -12875,64 +12875,64 @@
 			)
 		)
 		(pin "4"
-			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd5")
+			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cda")
 		)
 		(pin "9"
-			(uuid "5f322919-d457-4b0d-b950-56722ec49dde")
+			(uuid "5f322919-d457-4b0d-b950-56722ec49de3")
 		)
 		(pin "7"
-			(uuid "dfae9505-7559-4a00-9e09-448143a3df15")
+			(uuid "dfae9505-7559-4a00-9e09-448143a3df1a")
 		)
 		(pin "13"
-			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b12")
+			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b17")
 		)
 		(pin "8"
-			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a90")
+			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a95")
 		)
 		(pin "5"
-			(uuid "1221a377-0ab5-48de-8642-d5ee17117209")
+			(uuid "1221a377-0ab5-48de-8642-d5ee1711720e")
 		)
 		(pin "6"
-			(uuid "141e9636-0892-42ec-9268-507adbc44e5a")
+			(uuid "141e9636-0892-42ec-9268-507adbc44e5f")
 		)
 		(pin "14"
-			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93b")
+			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e940")
 		)
 		(pin "3"
-			(uuid "9d9626c7-10ed-493e-8148-7edff6869e46")
+			(uuid "9d9626c7-10ed-493e-8148-7edff6869e4b")
 		)
 		(pin "12"
-			(uuid "97559d69-7205-4f41-878b-3b94b1ec615e")
+			(uuid "97559d69-7205-4f41-878b-3b94b1ec6163")
 		)
 		(pin "10"
-			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5a")
+			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5f")
 		)
 		(pin "1"
-			(uuid "40761ee0-7864-4c4b-90d4-9b5486f1354d")
+			(uuid "40761ee0-7864-4c4b-90d4-9b5486f13552")
 		)
 		(pin "19"
-			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da53")
+			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da58")
 		)
 		(pin "16"
-			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391df")
+			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391e4")
 		)
 		(pin "20"
-			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a3")
+			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a8")
 		)
 		(pin "2"
-			(uuid "9f57db78-c951-4bf8-8733-724037247dbb")
+			(uuid "9f57db78-c951-4bf8-8733-724037247dc0")
 		)
 		(pin "17"
-			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7dd")
+			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7e2")
 		)
 		(pin "18"
-			(uuid "ee094828-6b67-430d-b321-448d6d68607b")
+			(uuid "ee094828-6b67-430d-b321-448d6d686080")
 		)
 		(pin "11"
-			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b36")
+			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b3b")
 		)
 		(pin "15"
-			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f5")
+			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77fa")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -12996,46 +12996,46 @@
 			)
 		)
 		(pin "6"
-			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63511")
+			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63516")
 		)
 		(pin "13"
-			(uuid "0ac05bf8-4856-4bad-860b-81878b13023b")
+			(uuid "0ac05bf8-4856-4bad-860b-81878b130240")
 		)
 		(pin "4"
-			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a2")
+			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a7")
 		)
 		(pin "11"
-			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad481")
+			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad486")
 		)
 		(pin "7"
-			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf504")
+			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf509")
 		)
 		(pin "12"
-			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07ac")
+			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07b1")
 		)
 		(pin "14"
-			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19ef7")
+			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19efc")
 		)
 		(pin "3"
-			(uuid "8f7fc934-42ef-4113-adde-fe3f22779964")
+			(uuid "8f7fc934-42ef-4113-adde-fe3f22779969")
 		)
 		(pin "1"
-			(uuid "66e68db8-80f4-4103-86c5-0e293c793b0e")
+			(uuid "66e68db8-80f4-4103-86c5-0e293c793b13")
 		)
 		(pin "2"
-			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a11")
+			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a16")
 		)
 		(pin "8"
-			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd3")
+			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd8")
 		)
 		(pin "10"
-			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e52")
+			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e57")
 		)
 		(pin "9"
-			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b710")
+			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b715")
 		)
 		(pin "5"
-			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3f6")
+			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3fb")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -13099,64 +13099,64 @@
 			)
 		)
 		(pin "4"
-			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd5")
+			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cdb")
 		)
 		(pin "9"
-			(uuid "5f322919-d457-4b0d-b950-56722ec49dde")
+			(uuid "5f322919-d457-4b0d-b950-56722ec49de4")
 		)
 		(pin "7"
-			(uuid "dfae9505-7559-4a00-9e09-448143a3df15")
+			(uuid "dfae9505-7559-4a00-9e09-448143a3df1b")
 		)
 		(pin "13"
-			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b12")
+			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b18")
 		)
 		(pin "8"
-			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a90")
+			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a96")
 		)
 		(pin "5"
-			(uuid "1221a377-0ab5-48de-8642-d5ee17117209")
+			(uuid "1221a377-0ab5-48de-8642-d5ee1711720f")
 		)
 		(pin "6"
-			(uuid "141e9636-0892-42ec-9268-507adbc44e5a")
+			(uuid "141e9636-0892-42ec-9268-507adbc44e60")
 		)
 		(pin "14"
-			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93b")
+			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e941")
 		)
 		(pin "3"
-			(uuid "9d9626c7-10ed-493e-8148-7edff6869e46")
+			(uuid "9d9626c7-10ed-493e-8148-7edff6869e4c")
 		)
 		(pin "12"
-			(uuid "97559d69-7205-4f41-878b-3b94b1ec615e")
+			(uuid "97559d69-7205-4f41-878b-3b94b1ec6164")
 		)
 		(pin "10"
-			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5a")
+			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca60")
 		)
 		(pin "1"
-			(uuid "40761ee0-7864-4c4b-90d4-9b5486f1354d")
+			(uuid "40761ee0-7864-4c4b-90d4-9b5486f13553")
 		)
 		(pin "19"
-			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da53")
+			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da59")
 		)
 		(pin "16"
-			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391df")
+			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391e5")
 		)
 		(pin "20"
-			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a3")
+			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a9")
 		)
 		(pin "2"
-			(uuid "9f57db78-c951-4bf8-8733-724037247dbb")
+			(uuid "9f57db78-c951-4bf8-8733-724037247dc1")
 		)
 		(pin "17"
-			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7dd")
+			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7e3")
 		)
 		(pin "18"
-			(uuid "ee094828-6b67-430d-b321-448d6d68607b")
+			(uuid "ee094828-6b67-430d-b321-448d6d686081")
 		)
 		(pin "11"
-			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b36")
+			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b3c")
 		)
 		(pin "15"
-			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f5")
+			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77fb")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -13220,46 +13220,46 @@
 			)
 		)
 		(pin "6"
-			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63511")
+			(uuid "8683152e-27f0-41d3-bf40-87f6f4a63517")
 		)
 		(pin "13"
-			(uuid "0ac05bf8-4856-4bad-860b-81878b13023b")
+			(uuid "0ac05bf8-4856-4bad-860b-81878b130241")
 		)
 		(pin "4"
-			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a2")
+			(uuid "4d41c6bd-7f1c-45a8-92d3-5355bc7bb9a8")
 		)
 		(pin "11"
-			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad481")
+			(uuid "d8f0741a-1a99-411c-ba3e-c7cd0f5ad487")
 		)
 		(pin "7"
-			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf504")
+			(uuid "23f4dcdf-c99e-4dc6-bcb8-19d4c2acf50a")
 		)
 		(pin "12"
-			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07ac")
+			(uuid "24621256-3fa0-4ad9-990f-bc0ad58c07b2")
 		)
 		(pin "14"
-			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19ef7")
+			(uuid "5a9fa72b-c4fb-470f-9d10-5466bca19efd")
 		)
 		(pin "3"
-			(uuid "8f7fc934-42ef-4113-adde-fe3f22779964")
+			(uuid "8f7fc934-42ef-4113-adde-fe3f2277996a")
 		)
 		(pin "1"
-			(uuid "66e68db8-80f4-4103-86c5-0e293c793b0e")
+			(uuid "66e68db8-80f4-4103-86c5-0e293c793b14")
 		)
 		(pin "2"
-			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a11")
+			(uuid "da8923c2-950c-4aa6-9a48-4e8561273a17")
 		)
 		(pin "8"
-			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd3")
+			(uuid "d900c998-43dd-4794-9a2b-ce5f5dc3cdd9")
 		)
 		(pin "10"
-			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e52")
+			(uuid "4b32609a-ed23-406e-abf3-5d2fb1988e58")
 		)
 		(pin "9"
-			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b710")
+			(uuid "0ed7d28b-a8b8-43d0-8f94-ae82a9e7b716")
 		)
 		(pin "5"
-			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3f6")
+			(uuid "83ed4f12-538d-44a4-b2ee-bd7a15e0c3fc")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -14245,64 +14245,64 @@
 			)
 		)
 		(pin "4"
-			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd5")
+			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cdc")
 		)
 		(pin "9"
-			(uuid "5f322919-d457-4b0d-b950-56722ec49dde")
+			(uuid "5f322919-d457-4b0d-b950-56722ec49de5")
 		)
 		(pin "7"
-			(uuid "dfae9505-7559-4a00-9e09-448143a3df15")
+			(uuid "dfae9505-7559-4a00-9e09-448143a3df1c")
 		)
 		(pin "13"
-			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b12")
+			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b19")
 		)
 		(pin "8"
-			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a90")
+			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a97")
 		)
 		(pin "5"
-			(uuid "1221a377-0ab5-48de-8642-d5ee17117209")
+			(uuid "1221a377-0ab5-48de-8642-d5ee17117210")
 		)
 		(pin "6"
-			(uuid "141e9636-0892-42ec-9268-507adbc44e5a")
+			(uuid "141e9636-0892-42ec-9268-507adbc44e61")
 		)
 		(pin "14"
-			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93b")
+			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e942")
 		)
 		(pin "3"
-			(uuid "9d9626c7-10ed-493e-8148-7edff6869e46")
+			(uuid "9d9626c7-10ed-493e-8148-7edff6869e4d")
 		)
 		(pin "12"
-			(uuid "97559d69-7205-4f41-878b-3b94b1ec615e")
+			(uuid "97559d69-7205-4f41-878b-3b94b1ec6165")
 		)
 		(pin "10"
-			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5a")
+			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca61")
 		)
 		(pin "1"
-			(uuid "40761ee0-7864-4c4b-90d4-9b5486f1354d")
+			(uuid "40761ee0-7864-4c4b-90d4-9b5486f13554")
 		)
 		(pin "19"
-			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da53")
+			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da5a")
 		)
 		(pin "16"
-			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391df")
+			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391e6")
 		)
 		(pin "20"
-			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a3")
+			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2aa")
 		)
 		(pin "2"
-			(uuid "9f57db78-c951-4bf8-8733-724037247dbb")
+			(uuid "9f57db78-c951-4bf8-8733-724037247dc2")
 		)
 		(pin "17"
-			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7dd")
+			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7e4")
 		)
 		(pin "18"
-			(uuid "ee094828-6b67-430d-b321-448d6d68607b")
+			(uuid "ee094828-6b67-430d-b321-448d6d686082")
 		)
 		(pin "11"
-			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b36")
+			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b3d")
 		)
 		(pin "15"
-			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f5")
+			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77fc")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
@@ -14434,64 +14434,64 @@
 			)
 		)
 		(pin "4"
-			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cd5")
+			(uuid "c626ae32-44c0-4a7e-a00b-f7ae5df42cdd")
 		)
 		(pin "9"
-			(uuid "5f322919-d457-4b0d-b950-56722ec49dde")
+			(uuid "5f322919-d457-4b0d-b950-56722ec49de6")
 		)
 		(pin "7"
-			(uuid "dfae9505-7559-4a00-9e09-448143a3df15")
+			(uuid "dfae9505-7559-4a00-9e09-448143a3df1d")
 		)
 		(pin "13"
-			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b12")
+			(uuid "32b658c0-3b95-4b32-9b03-d31dba300b1a")
 		)
 		(pin "8"
-			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a90")
+			(uuid "40281ced-70ed-4ef4-bdc3-ba2f18515a98")
 		)
 		(pin "5"
-			(uuid "1221a377-0ab5-48de-8642-d5ee17117209")
+			(uuid "1221a377-0ab5-48de-8642-d5ee17117211")
 		)
 		(pin "6"
-			(uuid "141e9636-0892-42ec-9268-507adbc44e5a")
+			(uuid "141e9636-0892-42ec-9268-507adbc44e62")
 		)
 		(pin "14"
-			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e93b")
+			(uuid "c1a34f95-393e-4c87-92ed-dbfeea85e943")
 		)
 		(pin "3"
-			(uuid "9d9626c7-10ed-493e-8148-7edff6869e46")
+			(uuid "9d9626c7-10ed-493e-8148-7edff6869e4e")
 		)
 		(pin "12"
-			(uuid "97559d69-7205-4f41-878b-3b94b1ec615e")
+			(uuid "97559d69-7205-4f41-878b-3b94b1ec6166")
 		)
 		(pin "10"
-			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca5a")
+			(uuid "25ac0b4e-4ff8-4c0e-b9be-be9f7364ca62")
 		)
 		(pin "1"
-			(uuid "40761ee0-7864-4c4b-90d4-9b5486f1354d")
+			(uuid "40761ee0-7864-4c4b-90d4-9b5486f13555")
 		)
 		(pin "19"
-			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da53")
+			(uuid "9de4f3dc-1c82-43b4-bcf8-3d518730da5b")
 		)
 		(pin "16"
-			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391df")
+			(uuid "7c89fe7f-3b6c-46ba-99ce-105b7f9391e7")
 		)
 		(pin "20"
-			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2a3")
+			(uuid "01d9d9df-5900-46a1-bdcc-1f93e019e2ab")
 		)
 		(pin "2"
-			(uuid "9f57db78-c951-4bf8-8733-724037247dbb")
+			(uuid "9f57db78-c951-4bf8-8733-724037247dc3")
 		)
 		(pin "17"
-			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7dd")
+			(uuid "6b8ece11-c2ec-48e3-aaf6-788a299bf7e5")
 		)
 		(pin "18"
-			(uuid "ee094828-6b67-430d-b321-448d6d68607b")
+			(uuid "ee094828-6b67-430d-b321-448d6d686083")
 		)
 		(pin "11"
-			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b36")
+			(uuid "1b5c87a9-f215-4a27-a156-6f8592421b3e")
 		)
 		(pin "15"
-			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77f5")
+			(uuid "eeefd606-0427-4b5d-a196-5cfd069b77fd")
 		)
 		(instances
 			(project "GIMIX BaudRateGenerator"
