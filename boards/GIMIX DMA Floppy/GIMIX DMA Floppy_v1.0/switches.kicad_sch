@@ -4167,7 +4167,7 @@
 	)
 	(text "DMA ext.\nAddr. decode"
 		(exclude_from_sim no)
-		(at 107.696 137.668 0)
+		(at 109.22 137.668 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -8188,7 +8188,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "10k"
 			(at 95.758 51.308 0)
 			(effects
 				(font
@@ -8280,7 +8280,7 @@
 				)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "0E"
 			(at 140.97 140.208 90)
 			(effects
 				(font
@@ -8349,7 +8349,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "680E"
 			(at 147.32 139.6999 0)
 			(effects
 				(font
@@ -8861,7 +8861,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C_Small"
+		(property "Value" "0"
 			(at 147.32 147.3262 0)
 			(effects
 				(font
@@ -11068,7 +11068,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "10k"
 			(at 97.028 25.908 0)
 			(effects
 				(font
@@ -11453,7 +11453,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "680E"
 			(at 104.14 137.1599 0)
 			(effects
 				(font

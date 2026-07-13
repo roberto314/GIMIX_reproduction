@@ -21520,7 +21520,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "680E"
 			(at 214.63 135.8899 0)
 			(effects
 				(font
