@@ -14633,7 +14633,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 259.08 39.116 90)
 			(effects
 				(font
@@ -16739,7 +16739,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm"
+		(property "Footprint" "my_own:C_Trim_3pin"
 			(at 246.38 80.01 0)
 			(effects
 				(font
