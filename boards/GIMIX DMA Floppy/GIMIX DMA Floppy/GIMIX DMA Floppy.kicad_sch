@@ -10828,16 +10828,6 @@
 		)
 		(uuid "2b417b30-c599-4a13-a10a-9036d636a45c")
 	)
-	(text "JA13: 1-2"
-		(exclude_from_sim no)
-		(at 161.544 266.954 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "32b8a55e-2640-4a74-a684-5592e3d39e2d")
-	)
 	(text "on GIMIX\nBE and BQ\nare inverted.\nCheck with CMS!"
 		(exclude_from_sim no)
 		(at 51.308 116.586 0)
@@ -10909,16 +10899,6 @@
 			)
 		)
 		(uuid "d95deb2c-76dd-4264-866b-b4391c382bb6")
-	)
-	(text "JA12: 1-2"
-		(exclude_from_sim no)
-		(at 25.908 273.812 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "e726bf80-6b20-4b2c-9030-d4abeb2de876")
 	)
 	(text "FDC Data"
 		(exclude_from_sim no)
@@ -19720,7 +19700,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "BA/BS Select"
+		(property "Value" "BS Select"
 			(at 26.67 260.3501 90)
 			(effects
 				(font
@@ -21815,7 +21795,7 @@
 		(dnp no)
 		(uuid "e9d9eb54-3fca-45e1-bd26-55d8a9f1939e")
 		(property "Reference" "JA13"
-			(at 162.56 254.254 90)
+			(at 162.56 256.5401 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21823,8 +21803,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DMA Option"
-			(at 162.56 256.794 90)
+		(property "Value" "HALT/BREQ Select"
+			(at 162.56 254.0001 90)
 			(effects
 				(font
 					(size 1.27 1.27)

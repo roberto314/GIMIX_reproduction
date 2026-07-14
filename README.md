@@ -10,7 +10,9 @@ This Repository is for primarily my GIMIX Ghost Reproduction and various SS-30 a
 
 - GIMIX Baud Rate Generator Board finished, no PALs, production possible
 
-- GIMIX Floppy DMA finished, no PALs, production possible
+- GIMIX Floppy DMA finished, no PALs, production possible but not recommended - use production version
+
+- GIMIX Floppy DMA ready for production, cleanup, different routing
 
 - GIMIX intelligent 3-port Serial IO Processor finished (RS232 Transceiver are missing), PAL Contents missing, Firmware found.
 
