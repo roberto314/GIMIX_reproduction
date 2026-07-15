@@ -4,6 +4,8 @@ This Repository is for primarily my GIMIX Ghost Reproduction and various SS-30 a
 
 - GIMIX DMA SASI board finished, no PALs, production ready, gerbers exported
 
+- GIMIX DMA SASI board production version, second Regulator added
+
 - GIMIX dumb two port serial board finished, no PALs, production possible
 
 - Tanner 64k SRAM board finished, no PALs, production possible

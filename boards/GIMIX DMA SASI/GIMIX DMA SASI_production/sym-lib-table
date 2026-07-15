@@ -1,0 +1,6 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "my_ics_new")(type "KiCad")(uri "/home/rob/Data/sync/Elektronik/kicad/Libraries/my_own/my_ics_new.kicad_sym")(options "")(descr ""))
+  (lib (name "my_conn")(type "KiCad")(uri "/home/rob/Data/sync/Elektronik/kicad/Libraries/my_own/my_conn.kicad_sym")(options "")(descr ""))
+  (lib (name "my_conn_old")(type "Legacy")(uri "/home/rob/Data/sync/Elektronik/kicad/Libraries/my_own/my_conn.lib")(options "")(descr ""))
+)
