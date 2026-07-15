@@ -26373,7 +26373,7 @@
 				)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "4M"
 			(at 33.02 35.56 0)
 			(effects
 				(font

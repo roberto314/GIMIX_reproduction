@@ -79911,7 +79911,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "6,35"
+		(gr_text "250"
 			(at 32.385 278.25 0)
 			(layer "Cmts.User")
 			(uuid "15130e71-2bf8-49a3-9c68-dccfc8a6929d")
@@ -79949,7 +79949,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "228,6"
+		(gr_text "9000"
 			(at 515.486 162.56 90)
 			(layer "Cmts.User")
 			(uuid "1f4db7cd-7c79-458c-9abc-c91472982fa0")
@@ -79987,7 +79987,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "19,05"
+		(gr_text "750"
 			(at 497.96 92.71 90)
 			(layer "Cmts.User")
 			(uuid "26e7a649-7201-4f87-a911-e1363d2a011f")
@@ -80025,7 +80025,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "19,05"
+		(gr_text "750"
 			(at 497.96 130.81 90)
 			(layer "Cmts.User")
 			(uuid "27f0a6cd-68c0-41c3-b456-819003f06ee6")
@@ -80063,7 +80063,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 167.005 264.915 0)
 			(layer "Cmts.User")
 			(uuid "30b8f1fb-4c89-4762-8a76-2a18f9c999e2")
@@ -80101,7 +80101,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 123.825 264.915 0)
 			(layer "Cmts.User")
 			(uuid "31a384e7-7214-4156-b022-31ff1e5a54e1")
@@ -80139,7 +80139,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "165,1"
+		(gr_text "6500"
 			(at 118.11 278.25 0)
 			(layer "Cmts.User")
 			(uuid "3f2047f2-f151-4ce3-b1b1-fd29b7978740")
@@ -80177,7 +80177,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "152,4"
+		(gr_text "6000"
 			(at 429.26 278.25 0)
 			(layer "Cmts.User")
 			(uuid "4591c48a-e5e4-4fec-a9ea-4ee420e216e2")
@@ -80215,7 +80215,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "19,05"
+		(gr_text "750"
 			(at 497.96 149.86 90)
 			(layer "Cmts.User")
 			(uuid "49caa70d-2032-48ed-9bad-c0a140c8c524")
@@ -80253,7 +80253,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "19,05"
+		(gr_text "750"
 			(at 497.96 168.91 90)
 			(layer "Cmts.User")
 			(uuid "553fe13c-2ed4-42ba-b9f2-5aa2419e19ae")
@@ -80291,7 +80291,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "19,05"
+		(gr_text "750"
 			(at 497.96 111.76 90)
 			(layer "Cmts.User")
 			(uuid "55e0e206-313d-4b94-982d-5ba273ce2d1e")
@@ -80329,7 +80329,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 188.595 264.915 0)
 			(layer "Cmts.User")
 			(uuid "58c21505-4d0d-41f5-813c-0343b56e6acc")
@@ -80367,7 +80367,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 339.725 264.915 0)
 			(layer "Cmts.User")
 			(uuid "5d7ffb33-b10a-4429-91bc-f9d01385a966")
@@ -80405,7 +80405,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 145.415 264.915 0)
 			(layer "Cmts.User")
 			(uuid "6100bfda-aa81-45b3-ad6e-3005b58295fc")
@@ -80443,7 +80443,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 253.365 264.915 0)
 			(layer "Cmts.User")
 			(uuid "65101918-b004-43a0-897b-065c64213d86")
@@ -80481,7 +80481,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 80.645 264.915 0)
 			(layer "Cmts.User")
 			(uuid "72fa7e15-53a1-408f-a556-0651c93a9caa")
@@ -80519,7 +80519,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 274.955 264.915 0)
 			(layer "Cmts.User")
 			(uuid "7999a5f5-9ed8-4001-adb1-ce252a00bcc8")
@@ -80557,7 +80557,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "152,4"
+		(gr_text "6000"
 			(at 276.86 278.25 0)
 			(layer "Cmts.User")
 			(uuid "7bed9dae-729e-4bba-9a43-0674114d9b0e")
@@ -80595,7 +80595,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "19,05"
+		(gr_text "750"
 			(at 497.96 73.66 90)
 			(layer "Cmts.User")
 			(uuid "7f03e0f8-8bbd-430a-afa2-b40fe52b9ca2")
@@ -80633,7 +80633,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 210.185 264.915 0)
 			(layer "Cmts.User")
 			(uuid "85f2a696-b445-4d55-b46d-01b9ce33b561")
@@ -80671,7 +80671,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 59.055 264.915 0)
 			(layer "Cmts.User")
 			(uuid "89029900-3103-403c-ba9c-eefeb49dec4a")
@@ -80709,7 +80709,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 231.775 264.915 0)
 			(layer "Cmts.User")
 			(uuid "98053d1d-784d-425f-81bc-c32f3f4fce05")
@@ -80747,7 +80747,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 318.135 264.915 0)
 			(layer "Cmts.User")
 			(uuid "9b05a1f8-78b1-4938-bb01-b7d9a6c9a56a")
@@ -80785,7 +80785,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 296.545 264.915 0)
 			(layer "Cmts.User")
 			(uuid "9dd3af23-7ed9-4694-9b95-bab23bf90581")
@@ -80823,7 +80823,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "215,9"
+		(gr_text "8500"
 			(at 23.234 162.56 90)
 			(layer "Cmts.User")
 			(uuid "ae0d8756-bf4d-4ac9-a852-98753482b756")
@@ -80861,7 +80861,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "482,6"
+		(gr_text "19000"
 			(at 270.51 43.808 0)
 			(layer "Cmts.User")
 			(uuid "deba41f6-28df-423d-8ab5-0edcbec0f269")
@@ -80899,7 +80899,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "6,35"
+		(gr_text "250"
 			(at 23.234 273.685 90)
 			(layer "Cmts.User")
 			(uuid "f2878b52-c614-4c34-9667-998acde122e8")
@@ -80937,7 +80937,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "21,59"
+		(gr_text "850"
 			(at 102.235 264.915 0)
 			(layer "Cmts.User")
 			(uuid "f4ed4b5b-92fb-499f-96a4-1b46865b1cbd")
