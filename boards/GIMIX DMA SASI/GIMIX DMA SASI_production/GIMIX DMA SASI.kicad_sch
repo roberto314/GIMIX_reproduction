@@ -7,11 +7,12 @@
 	(title_block
 		(title "GIMIX DMA SASI Controller")
 		(date "2026-06-15")
-		(rev "0.3")
+		(rev "0.4")
 		(company "100% Offner")
 		(comment 1 "v0.1: Initial")
 		(comment 2 "v0.2: cleanup for production, gerbers exported")
 		(comment 3 "v0.3: third regulator added.")
+		(comment 4 "v0.4: add BlueSCSI v2 Mounting Holes, rotate 50p conn., add Logic Anlyzer Pins")
 	)
 	(lib_symbols
 		(symbol "74xx:74LS08"
