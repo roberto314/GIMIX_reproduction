@@ -110168,8 +110168,8 @@
 		)
 		(uuid "58a2c322-2a67-47a8-82bf-52530989121a")
 	)
-	(gr_text "Adjustment:\nset TP5 to GND AFTER Reset.\nadj. C31 for 500kHz on Pin 16 (TP3),\nRPW for 250ns on Pin 29 (TP2) and\nWPW for 125ns on Pin 31 (T4P)."
-		(at 183.896 71.12 0)
+	(gr_text "Adjustment:\ncheck 4MHz on TP1,\nset TP5 to GND AFTER Reset,\nadjust R61 for 150ns on TP4 (5{dblquote} Precomp),\nadjust R62 for 500ns on TP2 (5{dblquote} Read Pulse),\nwrite $40 to $E3B0 (select 8{dblquote}),\nadjust R60 for 250ns on TP4 (8{dblquote} Precomp),\nadjust R63 for 250ns on TP2 (8{dblquote} Read Pulse),\nadj. C31 for 500kHz on TP3,\nopen Jumper to TP5."
+		(at 174.498 78.105 0)
 		(layer "F.SilkS")
 		(uuid "c5df672c-4b6d-49a9-85b0-c12c8ea749ea")
 		(effects
@@ -110252,7 +110252,7 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "Reproduction \n100% Offner 2026\nv1.0"
+	(gr_text "Reproduction \n100% Offner 2026\nv1.1"
 		(at 20.828 128.524 0)
 		(layer "F.SilkS")
 		(uuid "346c3d80-fa79-4e67-9047-3edaa2f96128")
