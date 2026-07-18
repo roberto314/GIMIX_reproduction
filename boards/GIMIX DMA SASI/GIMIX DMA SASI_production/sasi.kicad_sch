@@ -7,10 +7,10 @@
 	(title_block
 		(title "GIMIX DMA SASI Controller")
 		(date "2026-06-15")
-		(rev "0.4")
+		(rev "0.5")
 		(company "100% Offner")
-		(comment 1 "v0.1: Initial")
-		(comment 2 "v0.2: cleanup for production, gerbers exported")
+		(comment 1 "v0.4: add BlueSCSI v2 Mounting Holes, rotate 50p conn., add Logic Anlyzer Pins")
+		(comment 2 "v0.5: Resistor Values and more Testpoints added")
 	)
 	(lib_symbols
 		(symbol "74xx:74LS08"
@@ -6312,6 +6312,113 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Connector:TestPoint"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.762)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TP"
+				(at 0 6.858 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TestPoint"
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "test point"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "test point tp"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Pin* Test*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "TestPoint_0_1"
+				(circle
+					(center 0 3.302)
+					(radius 0.762)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "TestPoint_1_1"
+				(pin passive line
+					(at 0 0 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Connector_Generic:Conn_01x20"
 			(pin_names
 				(offset 1.016)
@@ -10995,6 +11102,12 @@
 		(uuid "264660c9-8b46-4721-9420-37f0d3261410")
 	)
 	(junction
+		(at 24.13 166.37)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "28df19b9-87b0-4584-a688-f571dad8049c")
+	)
+	(junction
 		(at 243.84 46.99)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11091,6 +11204,12 @@
 		(uuid "5ee0f613-ba90-4018-92e2-de67a8ae3895")
 	)
 	(junction
+		(at 22.86 106.68)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "611a8bee-37a5-48d4-b75e-7a907c85fdd4")
+	)
+	(junction
 		(at 372.11 29.21)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11175,10 +11294,22 @@
 		(uuid "a69b5b92-806a-4ee6-a927-aa9e9cec0dbc")
 	)
 	(junction
+		(at 167.64 171.45)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a7ab971b-c013-46a8-9408-036db82dbf15")
+	)
+	(junction
 		(at 292.1 134.62)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a7b65591-62e3-4f68-a70c-edc66f15876a")
+	)
+	(junction
+		(at 210.82 147.32)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a7c947f9-0bd7-4bcc-95e7-1cc3e563a3bd")
 	)
 	(junction
 		(at 243.84 64.77)
@@ -11660,6 +11791,16 @@
 	)
 	(wire
 		(pts
+			(xy 220.98 38.1) (xy 220.98 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0367d37c-edef-426b-8a80-676046f9bb14")
+	)
+	(wire
+		(pts
 			(xy 243.84 38.1) (xy 243.84 46.99)
 		)
 		(stroke
@@ -11847,6 +11988,16 @@
 			(type default)
 		)
 		(uuid "0e28e4c2-f79a-4587-a07d-0e63f816f683")
+	)
+	(wire
+		(pts
+			(xy 223.52 118.11) (xy 246.38 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0ffd47d2-e3fc-4826-ad8a-e05781cc871f")
 	)
 	(wire
 		(pts
@@ -12160,6 +12311,16 @@
 	)
 	(wire
 		(pts
+			(xy 223.52 111.76) (xy 223.52 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a8e8b18-affe-4492-8aac-953ef2277e61")
+	)
+	(wire
+		(pts
 			(xy 203.2 72.39) (xy 203.2 77.47)
 		)
 		(stroke
@@ -12340,6 +12501,16 @@
 	)
 	(wire
 		(pts
+			(xy 22.86 106.68) (xy 35.56 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36197628-5983-437c-ad18-a56a91dbda6f")
+	)
+	(wire
+		(pts
 			(xy 388.62 29.21) (xy 396.24 29.21)
 		)
 		(stroke
@@ -12427,6 +12598,16 @@
 			(type default)
 		)
 		(uuid "3955dbc8-ad03-4da9-860a-cf84da1e6f94")
+	)
+	(wire
+		(pts
+			(xy 16.51 162.56) (xy 24.13 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39862b6f-05bd-45b4-a238-1ed6005b2c72")
 	)
 	(wire
 		(pts
@@ -12607,6 +12788,16 @@
 			(type default)
 		)
 		(uuid "41d1f52d-bff2-4834-977e-b628607c7c76")
+	)
+	(wire
+		(pts
+			(xy 24.13 166.37) (xy 34.29 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4236c5d9-931a-4684-b2f2-77ecb8e26b66")
 	)
 	(wire
 		(pts
@@ -12840,6 +13031,16 @@
 	)
 	(wire
 		(pts
+			(xy 210.82 132.08) (xy 210.82 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50ca2413-f55f-4f32-b8d4-420942b259e4")
+	)
+	(wire
+		(pts
 			(xy 35.56 217.17) (xy 34.29 217.17)
 		)
 		(stroke
@@ -12917,6 +13118,16 @@
 			(type default)
 		)
 		(uuid "5805b814-12e5-45ef-815e-39edb57c8ac7")
+	)
+	(wire
+		(pts
+			(xy 220.98 46.99) (xy 243.84 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "583ba721-3923-4eec-b02e-c80d7558cd67")
 	)
 	(wire
 		(pts
@@ -13190,6 +13401,16 @@
 	)
 	(wire
 		(pts
+			(xy 15.24 81.28) (xy 15.24 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6917faf4-3638-4e6f-b4fd-c0026bcb3f6a")
+	)
+	(wire
+		(pts
 			(xy 35.56 163.83) (xy 34.29 163.83)
 		)
 		(stroke
@@ -13247,6 +13468,16 @@
 			(type default)
 		)
 		(uuid "6d8e7d81-1b44-48c6-aea9-4c8f29be15a8")
+	)
+	(wire
+		(pts
+			(xy 22.86 102.87) (xy 22.86 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6df345c7-7fef-4d74-ac20-982755be82e5")
 	)
 	(wire
 		(pts
@@ -13310,7 +13541,7 @@
 	)
 	(wire
 		(pts
-			(xy 25.4 166.37) (xy 34.29 166.37)
+			(xy 20.32 166.37) (xy 24.13 166.37)
 		)
 		(stroke
 			(width 0)
@@ -13320,7 +13551,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 106.68) (xy 35.56 106.68)
+			(xy 20.32 106.68) (xy 22.86 106.68)
 		)
 		(stroke
 			(width 0)
@@ -13337,6 +13568,16 @@
 			(type default)
 		)
 		(uuid "727bd434-f41c-40d2-a53c-a5977499db48")
+	)
+	(wire
+		(pts
+			(xy 24.13 162.56) (xy 24.13 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "72f613a4-53c4-48e7-9c37-cdca7c6a2333")
 	)
 	(wire
 		(pts
@@ -13580,6 +13821,16 @@
 	)
 	(wire
 		(pts
+			(xy 16.51 134.62) (xy 16.51 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "859cb7d5-30d8-4bba-a680-d14342fe9bed")
+	)
+	(wire
+		(pts
 			(xy 234.95 59.69) (xy 245.11 59.69)
 		)
 		(stroke
@@ -13697,6 +13948,16 @@
 			(type default)
 		)
 		(uuid "8e4b7220-a252-443f-83ee-ee00d56dc8f5")
+	)
+	(wire
+		(pts
+			(xy 210.82 147.32) (xy 220.98 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ef62fdb-ff71-4ae8-be18-eb505e512380")
 	)
 	(wire
 		(pts
@@ -13900,6 +14161,16 @@
 	)
 	(wire
 		(pts
+			(xy 167.64 171.45) (xy 168.91 171.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9dd4b212-27e3-4bf4-8db6-5a4fa7d1f0a8")
+	)
+	(wire
+		(pts
 			(xy 292.1 121.92) (xy 292.1 124.46)
 		)
 		(stroke
@@ -13917,6 +14188,16 @@
 			(type default)
 		)
 		(uuid "9ead3735-4474-4132-ba95-150d7f3a1209")
+	)
+	(wire
+		(pts
+			(xy 167.64 165.1) (xy 167.64 171.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9eb8b098-0dc7-4b87-beca-1673bd6005d0")
 	)
 	(wire
 		(pts
@@ -14270,6 +14551,16 @@
 	)
 	(wire
 		(pts
+			(xy 15.24 102.87) (xy 22.86 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b73ebac1-49c3-4fa2-bf04-deb214aa3e70")
+	)
+	(wire
+		(pts
 			(xy 209.55 243.84) (xy 209.55 241.3)
 		)
 		(stroke
@@ -14550,7 +14841,7 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 147.32) (xy 220.98 147.32)
+			(xy 203.2 147.32) (xy 210.82 147.32)
 		)
 		(stroke
 			(width 0)
@@ -14910,7 +15201,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 171.45) (xy 168.91 171.45)
+			(xy 162.56 171.45) (xy 167.64 171.45)
 		)
 		(stroke
 			(width 0)
@@ -15659,7 +15950,7 @@
 		(uuid "35fbc91a-7890-4365-9bb5-6fe0f7b00bd2")
 	)
 	(label "~{WE}"
-		(at 214.63 147.32 0)
+		(at 203.2 147.32 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -17303,7 +17594,7 @@
 	)
 	(hierarchical_label "~{SASIW}"
 		(shape input)
-		(at 30.48 106.68 180)
+		(at 20.32 106.68 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -17325,7 +17616,7 @@
 	)
 	(hierarchical_label "~{SASIR}"
 		(shape input)
-		(at 25.4 166.37 180)
+		(at 20.32 166.37 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -18436,6 +18727,73 @@
 				(path "/8b2942c5-1e37-4412-8230-24b0b4446f19/810fca9e-cac6-4958-aa2d-2b165c1f0a65"
 					(reference "U8")
 					(unit 4)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 167.64 165.1 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1a992089-572f-4a82-a0f3-0019bc31b4e1")
+		(property "Reference" "TP4"
+			(at 170.18 160.5279 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "RE"
+			(at 170.18 163.0679 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
+			(at 172.72 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 172.72 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 167.64 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0d3c669e-44ba-48c2-b588-01fa569f1f9e")
+		)
+		(instances
+			(project "GIMIX DMA SASI"
+				(path "/8b2942c5-1e37-4412-8230-24b0b4446f19/810fca9e-cac6-4958-aa2d-2b165c1f0a65"
+					(reference "TP4")
+					(unit 1)
 				)
 			)
 		)
@@ -19569,10 +19927,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "49a3f7d8-abd9-42c0-877e-3de9b666cada")
 		(property "Reference" "J3"
-			(at 344.17 134.6199 0)
+			(at 339.09 105.664 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19580,8 +19937,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Conn_01x20"
-			(at 344.17 137.1599 0)
+		(property "Value" "Debug"
+			(at 339.09 108.204 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20733,6 +21090,73 @@
 			(project "GIMIX DMA SASI"
 				(path "/8b2942c5-1e37-4412-8230-24b0b4446f19/810fca9e-cac6-4958-aa2d-2b165c1f0a65"
 					(reference "#PWR0123")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 210.82 132.08 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "622fa398-ba4a-46cc-aa3b-07e4a2b7059d")
+		(property "Reference" "TP3"
+			(at 213.36 127.5079 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "WE"
+			(at 213.36 130.0479 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
+			(at 215.9 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 215.9 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 210.82 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fc267447-16aa-447d-b15a-6ec4770a3741")
+		)
+		(instances
+			(project "GIMIX DMA SASI"
+				(path "/8b2942c5-1e37-4412-8230-24b0b4446f19/810fca9e-cac6-4958-aa2d-2b165c1f0a65"
+					(reference "TP3")
 					(unit 1)
 				)
 			)
@@ -21972,6 +22396,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 15.24 81.28 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "966c554d-204d-4b4a-9364-4929b7812c70")
+		(property "Reference" "TP2"
+			(at 17.78 76.7079 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "SASIW"
+			(at 17.78 79.2479 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
+			(at 20.32 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 20.32 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 15.24 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ac789aab-2eb7-4cdb-bd89-849a9c96629a")
+		)
+		(instances
+			(project "GIMIX DMA SASI"
+				(path "/8b2942c5-1e37-4412-8230-24b0b4446f19/810fca9e-cac6-4958-aa2d-2b165c1f0a65"
+					(reference "TP2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Mechanical:MountingHole")
 		(at 359.41 213.36 0)
 		(unit 1)
@@ -22206,6 +22697,140 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 16.51 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a44f1ccb-ab8f-4972-9871-2ff772c9148b")
+		(property "Reference" "TP1"
+			(at 19.05 130.0479 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "SASIR"
+			(at 19.05 132.5879 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
+			(at 21.59 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 21.59 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 16.51 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9848e6e8-8715-45ab-b722-4d2576b3eaaa")
+		)
+		(instances
+			(project "GIMIX DMA SASI"
+				(path "/8b2942c5-1e37-4412-8230-24b0b4446f19/810fca9e-cac6-4958-aa2d-2b165c1f0a65"
+					(reference "TP1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 223.52 111.76 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a5019adf-471a-482b-a74e-628960e07c3e")
+		(property "Reference" "TP5"
+			(at 226.06 107.1879 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "OutputBuffer On"
+			(at 226.06 109.7279 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
+			(at 228.6 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 228.6 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 223.52 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9101b064-663c-489d-82fd-265934aac360")
+		)
+		(instances
+			(project "GIMIX DMA SASI"
+				(path "/8b2942c5-1e37-4412-8230-24b0b4446f19/810fca9e-cac6-4958-aa2d-2b165c1f0a65"
+					(reference "TP5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_Small")
 		(at 228.6 254 0)
 		(unit 1)
@@ -22224,7 +22849,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "1k"
 			(at 231.14 255.2699 0)
 			(effects
 				(font
@@ -24051,6 +24676,73 @@
 			(project "GIMIX DMA SASI"
 				(path "/8b2942c5-1e37-4412-8230-24b0b4446f19/810fca9e-cac6-4958-aa2d-2b165c1f0a65"
 					(reference "#PWR079")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 220.98 38.1 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f7d8a8d3-989d-4b7d-b692-5a8035fcb032")
+		(property "Reference" "TP6"
+			(at 223.52 33.5279 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "StatusBuffer On"
+			(at 223.52 36.0679 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
+			(at 226.06 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 226.06 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 220.98 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "44395aa9-5d23-435e-8b12-61318395fffe")
+		)
+		(instances
+			(project "GIMIX DMA SASI"
+				(path "/8b2942c5-1e37-4412-8230-24b0b4446f19/810fca9e-cac6-4958-aa2d-2b165c1f0a65"
+					(reference "TP6")
 					(unit 1)
 				)
 			)

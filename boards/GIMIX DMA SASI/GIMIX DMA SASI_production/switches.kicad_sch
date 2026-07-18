@@ -7,10 +7,10 @@
 	(title_block
 		(title "GIMIX DMA SASI Controller")
 		(date "2026-06-15")
-		(rev "0.4")
+		(rev "0.5")
 		(company "100% Offner")
-		(comment 1 "v0.1: Initial")
-		(comment 2 "v0.2: cleanup for production, gerbers exported")
+		(comment 1 "v0.4: add BlueSCSI v2 Mounting Holes, rotate 50p conn., add Logic Anlyzer Pins")
+		(comment 2 "v0.5: Resistor Values and more Testpoints added")
 	)
 	(lib_symbols
 		(symbol "74xx:74LS136"
@@ -8392,7 +8392,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "10k"
 			(at 95.758 103.378 0)
 			(effects
 				(font
@@ -8502,7 +8502,7 @@
 				)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "10E"
 			(at 148.59 136.398 90)
 			(effects
 				(font
@@ -8711,7 +8711,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "680E"
 			(at 154.94 135.8899 0)
 			(effects
 				(font
@@ -11396,7 +11396,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "10k"
 			(at 97.028 77.978 0)
 			(effects
 				(font
@@ -12023,7 +12023,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "680E"
 			(at 118.11 138.4299 0)
 			(effects
 				(font

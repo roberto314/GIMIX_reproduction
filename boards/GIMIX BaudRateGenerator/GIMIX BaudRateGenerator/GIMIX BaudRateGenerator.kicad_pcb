@@ -4885,7 +4885,7 @@
 				)
 			)
 		)
-		(property "Value" "?"
+		(property "Value" "10M"
 			(at 5.08 2.37 0)
 			(layer "F.Fab")
 			(uuid "0765e19a-506b-4214-ab04-6de5a2f28579")
@@ -5048,7 +5048,7 @@
 		(at 140.335 117.475)
 		(descr "Through hole straight pin header, 1x05, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x05 2.54mm single row")
-		(property "Reference" "J2"
+		(property "Reference" "CA1"
 			(at 0 -2.38 0)
 			(layer "F.SilkS")
 			(uuid "4c23ce90-f8e8-4b91-96af-6d572601dcbe")
