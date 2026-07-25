@@ -1,0 +1,1407 @@
+                      00001         * GMXBG32
+                      00002         
+                      00003         * GMXBUG interrupt handlers and DAT initialization for
+                      00004         * CPU-III board with vector for UAM and WPR trapping
+                      00005         
+                      00006         * version to set up DAT for switching system
+                      00007         * also includes patch for new monitor switching circuit
+                      00008         * and new header string
+                      00009         
+     DFC2             00010         SW3VEC  EQU    $DFC2
+     DFC4             00011         SW2VEC  EQU    $DFC4            soft interrupt vectors   
+     DFC6             00012         FIRVEC  EQU    $DFC6
+     DFC8             00013         IRQVEC  EQU    $DFC8
+     DFCA             00014         SWIVEC  EQU    $DFCA
+     E40A             00015         NMIVEC  EQU    $E40A            
+     E460             00016         TRPVEC  EQU    $E460            vector for UAM/WPR/WDT/SST trap 
+     E280             00017         TSR     EQU    $E280            task select/control register
+     F800             00018         DATRAM  EQU    $F800            start of DAT memory
+                      00019         *COLD    EQU    $F82E            GMXBUG cold start
+     F5ED             00020         OS9ADD  EQU    $F5ED
+                      00021         
+                      00022         *GMXBUG-09 V2.2F
+                      00023         
+                      00024         *6809 ROM debugger"monitor
+                      00025         *Copyright (C) 1983 by Gimix, Inc. Chicago, Illinois
+                      00026         *All rights reserved
+                      00027         
+                      00028         *Section origins
+                      00029         
+     DFC0             00030         SBUGS   EQU     $DFC0     SBUG scratchpad
+     E400             00031         SCRATC  EQU     $E400     GMXBUG scratchpad
+     F400             00032         VIDPRM  EQU     $F400     Video ROM
+     F800             00033         GMXBUG  EQU     $F800     Start of GMXBUG
+     FFF0             00034         VECTOR  EQU     $FFF0     Interrupt vectors
+                      00035         
+                      00036         *DP value for direct addressing of scratchpad
+                      00037         
+     00E4             00038         DPR     EQU     $E4
+     E4               00039                 SETDP   $E4
+                      00040         
+                      00041         *I/O addresses
+                      00042         
+     E004             00043         TERM    EQU     $E004     control terminal port
+     E000             00044         SPRINT  EQU     $E000     serial printer port
+     E042             00045         PPRINT  EQU     $E042     parallel printer port
+                      00046         *UPCASE  EQU     $E421
+                      00047         
+                      00048         *SBUG compatible scratchpad
+                      00049         
+                      00050                 ORG     SBUGS
+DFC0                  00051                 RMB     2
+                      00052         
+                      00053         *pointers to interrupt handlers (SWTPc compatible)
+                      00054         *SW3VEC  RMB    2                SWI3
+                      00055         *SW2VEC  RMB    2                SWI2
+                      00056         *FIRVEC  RMB    2                FIRQ
+                      00057         *IRQVEC  RMB    2                IRQ
+                      00058         *SWIVEC  RMB    2                SWI
+                      00059         
+                      00060         *Supervisor call table start & end
+                      00061         
+DFC2                  00062         SVCORG  RMB    2
+DFC4                  00063         SVCLIM  RMB    12
+DFD0                  00064         CTLADR  RMB    2                address of control port
+                      00065         
+                      00066         *GMXBUG scratchpad usage
+                      00067         
+                      00068                 ORG     SCRATC
+                      00069         
+                      00070         *I/O vectors
+                      00071         
+E400                  00072         INVEC   RMB    2         char input
+E402                  00073         KEYVEC  RMB    2         quick char input
+E404                  00074         TSTVEC  RMB    2         char input test
+E406                  00075         OUTVEC  RMB    2         char output
+E408                  00076         PRTVEC  RMB    2         printer vector
+E40A                  00077                 RMB    2         NMI vector
+E40C                  00078         LINBUF  RMB    2
+E40E                  00079         ENDLIN  RMB    2         end of line in buffer
+E410                  00080         BRKTBL  RMB    16        breakpoint table
+E420                  00081         MMODE   RMB    1         memory mode flag
+E421                  00082         UPCASE  RMB    1         force uppercase flag
+E422                  00083         BEGIN1  RMB    2         general purpose pointers
+E424                  00084         END1    RMB    2
+E426                  00085         BEGIN2  RMB    2
+E428                  00086                 RMB    2
+E42A                  00087         SUBTOT  RMB    1         extra work byte
+E42B                  00088                 RMB    4
+E42F                  00089         WAIT    RMB    1         output suspended flag
+E430                  00090         MEMPTR  RMB    2         memory mode pointer
+E432                  00091         POINTR  RMB    2         extra pointer
+E434                  00092         NULLS   RMB    1         # of nulls after CR for printer
+E435                  00093         PRTFLG  RMB    1         printer type flag
+E436                  00094         DEST    RMB    1         console output flag
+E437                  00095         MATCH1  RMB    1         match bytes for hex locate
+E438                  00096         MATCH2  RMB    1
+E439                  00097         MATCH3  RMB    1
+                      00098         
+                      00099         *ASCII equates
+                      00100         
+     0008             00101         BS      EQU    $08       backspace
+     000A             00102         LF      EQU    $0A       line feed
+     000D             00103         CR      EQU    $0D       carriage return
+     0013             00104         CTLS    EQU    $13       control-S
+     001B             00105         ESC     EQU    $1B       escape
+     0020             00106         SPC     EQU    $20       space
+                      00107         
+                      00108         ********************************
+                      00109         *                             *
+                      00110         *                             *
+                      00111         *     START OF MONITOR        *
+                      00112         *                             *
+                      00113         *                             *
+                      00114         ********************************
+                      00115         
+                      00116                 ORG     GMXBUG
+                      00117         
+                      00118         *vectors for indirect JMPs and JSRs
+                      00119         
+                      00120         *SBUG-E compatible vectors
+                      00121         
+F800 F82E             00122         MONITR  FDB    COLD             cold start
+F802 F894             00123         NXTCMD  FDB    WARMS            warm start
+F804 F8D9             00124         INCH    FDB    INCHAR           char input
+F806 F8DD             00125         INCHE   FDB    INECHO           char input with echo
+F808 F8F0             00126         INCHEK  FDB    INTEST           test for char input
+F80A F8E3             00127         OUTCH   FDB    OUTCHR           char output
+F80C F8FA             00128         PDATA   FDB    PRTDAT           output string
+F80E F906             00129         PCRLF   FDB    CARRTN           output CR"LF
+F810 F8F8             00130         PSTRNG  FDB    PRTST            output string with CR"LF
+F812 F912             00131         LRA     FDB    LREAL            Load Real Address
+                      00132         
+F814 207E             00133                 BRA    WARMS           for FLEX compatibility
+                      00134         
+                      00135         *GMXBUG-09 V2.0 additional system calls
+                      00136         
+F816 F91B             00137         PSPACE  FDB    PRTSPC           output a space
+F818 F923             00138         PREGS   FDB    PRTREG           output register values
+F81A F95A             00139         PBYTE   FDB    PRTBYT           output byte in hex
+F81C F8F4             00140         INKEY   FDB    GETKEY           quick char input
+F81E F8E7             00141         INCAPS  FDB    GETUPS           input uppercase char
+F820 F967             00142         HEXIN   FDB    GETHEX           input value in hexadecimal
+F822 F9A7             00143         BINHEX  FDB    BINCVT           convert binary to hex ASCII
+F824 F980             00144         HEXBIN  FDB    HEXCVT           convert hex ASCII to binary
+F826 F9BD             00145         LINEIN  FDB    GETLIN           input a line
+F828 F9EC             00146         TBSRCH  FDB    LOOKUP           table search
+F82A FE25             00147         MOVBLK  FDB    MOVER0           move block of memory
+F82C F9F9             00148         PRINT   FDB    PRTOUT           hardcopy output
+                      00149         
+                      00150         *Start of executable code
+                      00151         
+                      00152         *Cold start initialization
+                      00153         
+F82E 10CEE7FF         00154         COLD    LDS    #SCRATC+$3FF     set stack at top of scratch
+F832 B6F400           00155                 LDA    VIDPRM           test for video ROM
+F835 8112             00156                 CMPA   #$12             1st byte would be NOP
+F837 1027FBC5         00157                 LBEQ   VIDPRM
+                      00158         
+                      00159         *default - initialize serial terminal
+                      00160         
+F83B CEE400           00161                 LDU    #SCRATC          set up vectors to serial I/O
+F83E 8EFEEB           00162                 LDX    #SERIN           routines in the scratch pad
+F841 AFC1             00163                 STX    ,U++
+F843 8EFEF0           00164                 LDX    #SERKEY
+F846 AFC1             00165                 STX    ,U++
+F848 8EFF0B           00166                 LDX    #SERTST
+F84B AFC1             00167                 STX    ,U++
+F84D 8EFF14           00168                 LDX    #SEROUT
+F850 AFC1             00169                 STX    ,U++
+F852 8EE004           00170                 LDX    #SPRINT+4        set SBUG control port pointer
+F855 BFDFE0           00171                 STX    SBUGS+$20
+F858 8613             00172                 LDA    #$13             reset printer & terminal ACIAs
+F85A A784             00173                 STA    ,X
+F85C A71C             00174                 STA    -4,X
+                      00175         
+                      00176         *initial setting for ACIAs:
+                      00177         *8 data bits, 1 stop bit, no parity, interrupt disabled
+                      00178         
+F85E 8615             00179                 LDA    #$15
+F860 A784             00180                 STA    ,X
+F862 A71C             00181                 STA    -4,X
+                      00182         
+                      00183         *Video initialization jumps here when done
+                      00184         
+F864 8EFF27           00185         SETUP   LDX    #HARDC           set printer output vector
+F867 AFC1             00186                 STX    ,U++
+F869 8EFF88           00187                 LDX    #NMITRP          set NMI vector to point
+F86C AFC1             00188                 STX    ,U++            to GMXBUG abort handler
+F86E CCE700           00189                 LDD    #SCRATC+$300
+F871 EDC1             00190                 STD    ,U++            set line buffer pointer
+F873 33C812           00191                 LEAU   18,U             skip over breakpoint table
+F876 C61A             00192                 LDB    #26
+F878 6FC0             00193         COLD1   CLR    ,U+             zero the next 26 bytes
+F87A 5A               00194                 DECB
+F87B 26FB             00195                 BNE    COLD1
+F87D 8EFF9E           00196                 LDX    #DUMRTI
+F880 CEDFC2           00197                 LDU    #SW3VEC          set SBUG SWI2,SWI3,IRQ & FIRQ
+F883 C604             00198                 LDB    #4               vectors to point to RTI
+F885 AFC1             00199         COLD2   STX    ,U++
+F887 5A               00200                 DECB
+F888 26FB             00201                 BNE    COLD2
+F88A 8EFEBC           00202                 LDX    #BRKPT           set SBUG SWI vector to point
+F88D AFC1             00203                 STX    ,U++            to GMXBUG breakpoint routine
+F88F 8EFFFF           00204                 LDX    #$FFFF           set SBUG SVC table pointers
+F892 AFC1             00205                 STX    ,U++            to SBUG default
+                      00206         
+                      00207         *Warm start - also mainline loop re-entry
+                      00208         
+F894 8EF9FD           00209         WARMS   LDX    #GMXHED          output header message
+F897 8D5F             00210                 BSR    PRTST
+F899 8EF894           00211                 LDX    #WARMS           put warmstart addr on stack
+F89C 327E             00212                 LEAS   -2,S
+F89E AFE4             00213                 STX    ,S
+F8A0 1A80             00214                 ORCC   #$80             set Entire flag in CCR
+F8A2 347F             00215                 PSHS   #$7F             save all the registers but PC
+                      00216         
+                      00217         *Entrance from NMI trap
+                      00218         
+F8A4 7FE420           00219         WARMS0  CLR    >MMODE
+F8A7 8D5D             00220         WARMS1  BSR    CARRTN
+F8A9 86E4             00221                 LDA    #DPR
+F8AB 1F8B             00222                 TFR    A,DP              set DP to scratchpad
+F8AD 0D20             00223                 TST    <MMODE
+F8AF 270E             00224                 BEQ    WARMS2            if in memory mode
+F8B1 DC30             00225                 LDD    <MEMPTR           output pointer & byte contents
+F8B3 170226           00226                 LBSR   OUT4HS            instead of prompt
+F8B6 DE30             00227                 LDU    <MEMPTR
+F8B8 A6C4             00228                 LDA    ,U
+F8BA 170224           00229                 LBSR   OUT2HS
+F8BD 2005             00230                 BRA    WARM25
+F8BF 8EFA23           00231         WARMS2  LDX    #PROMPT          prompt the user for a command
+F8C2 8D36             00232                 BSR    PRTDAT
+F8C4 8D21             00233         WARM25  BSR    GETUPS          input command letter
+F8C6 8EFA6E           00234                 LDX    #CODTBL
+F8C9 0D20             00235                 TST    <MMODE
+F8CB 2703             00236                 BEQ    WARMS3
+F8CD 8EFA56           00237                 LDX    #MEMTBL
+F8D0 170119           00238         WARMS3  LBSR   LOOKUP        look up command in table
+F8D3 26D2             00239                 BNE    WARMS1
+F8D5 AD94             00240                 JSR    [,X]            do the command
+F8D7 20CE             00241                 BRA    WARMS1           do another command
+F8D9 6E9FE400         00242         INCHAR  JMP    [INVEC]
+F8DD 8DFA             00243         INECHO  BSR    INCHAR
+F8DF 811B             00244                 CMPA   #$1B
+F8E1 270C             00245                 BEQ    INECX
+F8E3 6E9FE406         00246         OUTCHR  JMP    [OUTVEC]
+F8E7 7CE421           00247         GETUPS  INC    >UPCASE
+F8EA 8DF1             00248                 BSR    INECHO
+F8EC 7FE421           00249                 CLR    >UPCASE
+F8EF 39               00250         INECX   RTS
+F8F0 6E9FE404         00251         INTEST  JMP    [TSTVEC]
+F8F4 6E9FE402         00252         GETKEY  JMP    [KEYVEC]
+F8F8 8D0C             00253         PRTST   BSR    CARRTN
+F8FA 3402             00254         PRTDAT  PSHS   A
+F8FC A680             00255         ZF8FC   LDA    ,X+
+F8FE 8104             00256                 CMPA   #$04
+F900 270E             00257                 BEQ    PRTDT2
+F902 8DDF             00258                 BSR    OUTCHR
+F904 20F6             00259                 BRA    ZF8FC
+F906 3402             00260         CARRTN  PSHS   A
+F908 860D             00261                 LDA    #$0D
+F90A 8DD7             00262                 BSR    OUTCHR
+F90C 860A             00263                 LDA    #$0A
+F90E 8DD3             00264                 BSR    OUTCHR
+F910 3582             00265         PRTDT2  PULS   PC,A
+F912 4F               00266         LREAL   CLRA
+F913 8CDFFF           00267                 CMPX   #$DFFF
+F916 2302             00268                 BLS    LRAOUT
+F918 8A0F             00269                 ORA    #$0F
+F91A 39               00270         LRAOUT  RTS
+                      00271         
+                      00272         *GMXBUG 09 extended utility subroutines
+                      00273         
+                      00274         *Output a space
+                      00275         
+F91B 3402             00276         PRTSPC  PSHS   A
+F91D 8620             00277                 LDA    #SPC
+F91F 8DC2             00278                 BSR    OUTCHR
+F921 3582             00279                 PULS   A,PC
+                      00280         
+                      00281         *Output registers
+                      00282         *This routine outputs the current contents
+                      00283         *of the machine registers. The PC value is the
+                      00284         *return address left by the call to this routine.
+                      00285         
+F923 347F             00286         PRTREG  PSHS   #$7F              push all but PC
+F925 1F43             00287                 TFR    S,U               copy stack pointer
+F927 8D04             00288                 BSR    PRTR1             call output routine
+F929 35FF             00289                 PULS   #$FF              exit by pulling all regs
+                      00290         
+                      00291         *Callable subroutine for use by debugger - outputs
+                      00292         *registers previously stacked by breakpoint or interrupt
+                      00293         
+F92B 3364             00294         REGPRT  LEAU   4,S               point to stack
+F92D 3440             00295         PRTR1   PSHS   U                 save SP value
+F92F 8EFA28           00296                 LDX    #REGID            output label string
+F932 8DC4             00297                 BSR    PRTST
+F934 E6C0             00298                 LDB    ,U+              output CCR as binary
+F936 1703C9           00299                 LBSR   BINRY1
+F939 8DE0             00300                 BSR    PRTSPC
+F93B C603             00301                 LDB    #3                output ACCA, ACCB, DPR
+F93D A6C0             00302         PRTRG1  LDA    ,U+
+F93F 17019F           00303                 LBSR   OUT2HS
+F942 5A               00304                 DECB
+F943 26F8             00305                 BNE    PRTRG1
+F945 C604             00306                 LDB    #4                output IX, IX, US, PC
+F947 3404             00307                 PSHS   B                 keep count on stack
+F949 ECC1             00308         PRTRG2  LDD    ,U++
+F94B 17018E           00309                 LBSR   OUT4HS
+F94E 6AE4             00310                 DEC    ,S
+F950 26F7             00311                 BNE    PRTRG2
+F952 3261             00312                 LEAS   1,S               pop count off stack
+F954 3506             00313                 PULS   D                 output SP value
+F956 8D02             00314                 BSR    PRTBYT
+F958 1F98             00315                 TFR    B,A
+                      00316         *Fall thru to output LS byte of SP & exit
+                      00317         
+                      00318         *Output ACCA contents as 2 hex digits
+                      00319         
+F95A 3406             00320         PRTBYT  PSHS   D                 save regs
+F95C 8D49             00321         PRTB1  BSR    BINCVT          convert ACCA
+F95E 8D83             00322                 BSR    OUTCHR            output 1st digit
+F960 1F98             00323                 TFR    B,A
+F962 17FF7E           00324                 LBSR   OUTCHR            output 2nd digit
+F965 3586             00325                 PULS   D,PC              restore regs & exit
+                      00326         
+                      00327         *Hexadecimal input from console
+                      00328         
+F967 7CE421           00329         GETHEX  INC    >UPCASE          force upper case input
+F96A 3430             00330                 PSHS   X,Y
+F96C 8D4C             00331                 BSR    GETLNL           input a line
+F96E 7FE421           00332                 CLR    >UPCASE           reset case flag
+F971 811B             00333                 CMPA   #ESC              abort if terminated with ESC
+F973 2705             00334                 BEQ    GETHX3
+F975 BEE40C           00335                 LDX    >LINBUF           get buffer pointer & convert
+F978 2008             00336                 BRA    HXCVT0
+F97A 1A02             00337         GETHX3  ORCC   #2                abort & set V=1
+F97C 1F20             00338         HXCVT9  TFR    Y,D               return with value in D
+F97E 35B0             00339                 PULS   X,Y,PC
+                      00340         
+                      00341         *Convert string pointed to by IX to binary value in D
+                      00342         
+F980 3430             00343         HEXCVT  PSHS   X,Y
+F982 108E0000         00344         HXCVT0  LDY    #0                clear IY as accumulator
+F986 E680             00345         HXCVT1  LDB    ,X+              get a char
+F988 C030             00346                 SUBB   #$30              remove ASCII offset
+F98A C109             00347         HXCVT2  CMPB   #9
+F98C 230A             00348                 BLS    HXCVT3            if 0-9 OK
+F98E C110             00349                 CMPB   #$10
+F990 23EA             00350                 BLS    HXCVT9            if :-? exit
+F992 C007             00351                 SUBB   #$7               adjust for A-F
+F994 C5F0             00352                 BITB   #$F0
+F996 26E4             00353                 BNE    HXCVT9            terminate if not 0-$F
+F998 4F               00354         HXCVT3  CLRA                     clear MS byte of D
+F999 1E02             00355                 EXG    D,Y               swap new nybble and total
+F99B 58               00356                 ASLB
+F99C 49               00357                 ROLA                    shift total 4 bits to the left
+F99D 58               00358                 ASLB
+F99E 49               00359                 ROLA
+F99F 58               00360                 ASLB
+F9A0 49               00361                 ROLA
+F9A1 58               00362                 ASLB
+F9A2 49               00363                 ROLA
+F9A3 31AB             00364                 LEAY   D,Y               add back to next 4 bits
+F9A5 20DF             00365                 BRA    HXCVT1
+                      00366         
+                      00367         *Convert binary value in ACCA to hex digits in A:B
+                      00368         
+F9A7 1F89             00369         BINCVT  TFR    A,B               copy number
+F9A9 8D06             00370                 BSR    CONVRT           convert low digit
+F9AB 1E89             00371                 EXG    A,B               swap with orig value
+F9AD 44               00372                 LSRA
+F9AE 44               00373                 LSRA
+F9AF 44               00374                 LSRA                    convert high digit
+F9B0 44               00375                 LSRA
+F9B1 840F             00376         CONVRT  ANDA   #$F
+F9B3 8B90             00377                 ADDA   #$90              trick convert 1 digit in ACCA
+F9B5 19               00378                 DAA
+F9B6 8940             00379                 ADCA   #$40
+F9B8 19               00380                 DAA
+F9B9 39               00381                 RTS
+                      00382         
+                      00383         *Input line into line buffer
+                      00384         
+F9BA 17FF5E           00385         GETLNL  LBSR   PRTSPC       leading space if needed
+F9BD 3414             00386         GETLIN  PSHS   B,X
+F9BF 5F               00387                 CLRB                     init char pointer
+F9C0 BEE40C           00388                 LDX    >LINBUF
+F9C3 17FF13           00389         GETLN1  LBSR   INCHAR       input char no echo
+F9C6 811B             00390                 CMPA   #ESC
+F9C8 271A             00391                 BEQ    GETLN6       abort on ESC
+F9CA 810D             00392                 CMPA   #CR
+F9CC 2716             00393                 BEQ    GETLN6       terminate on CR
+F9CE 8108             00394                 CMPA   #BS
+F9D0 2606             00395                 BNE    GETLN3       move pointer back on BS
+F9D2 5D               00396                 TSTB
+F9D3 27EE             00397                 BEQ    GETLN1       except at beginning
+F9D5 5A               00398                 DECB
+F9D6 2007             00399                 BRA    GETLN5
+F9D8 C14F             00400         GETLN3  CMPB   #79               buffer full?
+F9DA 27E7             00401                 BEQ    GETLN1           ignore printing chars
+F9DC A785             00402                 STA    B,X               store char
+F9DE 5C               00403                 INCB                     bump pointer
+F9DF 17FF01           00404         GETLN5  LBSR   OUTCHR       echo char
+F9E2 20DF             00405                 BRA    GETLN1
+F9E4 A785             00406         GETLN6  STA    B,X               store terminator
+F9E6 3A               00407                 ABX
+F9E7 BFE40E           00408                 STX    >ENDLIN           store term position
+F9EA 3594             00409                 PULS   B,X,PC            exit
+                      00410         
+                      00411         *Search table at [IX] for byte in ACCA
+                      00412         
+F9EC A180             00413         LOOKUP  CMPA   ,X+              match?
+F9EE 2708             00414                 BEQ    LOKOUT           yes - return Z=1
+F9F0 3002             00415                 LEAX   2,X              skip 2 data bytes
+F9F2 6D84             00416                 TST    ,X              end of table?
+F9F4 26F6             00417                 BNE    LOOKUP
+F9F6 1CFB             00418                 ANDCC  #$FB
+F9F8 39               00419         LOKOUT  RTS                      not found: return Z=0
+                      00420         
+                      00421         *Output to hard copy device
+                      00422         
+F9F9 6E9FE408         00423         PRTOUT  JMP    [PRTVEC]
+                      00424         
+                      00425         *Header message
+                      00426         
+F9FD 474D584255472D30 00427         GMXHED  FCC    "GMXBUG-09  V3.2"
+     39202056332E32
+FA0C 0D               00428                 FCB    13
+FA0D 0A               00429                 FCB    10
+FA0E 2843292031393833 00430                 FCC    "(C) 1983 Gimix Inc"
+     2047696D69782049
+     6E63
+FA20 0D               00431                 FCB    13
+FA21 0A               00432                 FCB    10
+FA22 04               00433                 FCB     4
+                      00434         
+                      00435         *Prompt string
+                      00436         
+FA23 474D583A         00437         PROMPT  FCC    "GMX:"
+FA27 04               00438                 FCB    4
+                      00439         
+                      00440         *Label string for register dump
+                      00441         
+FA28 2045464849204E5A 00442         REGID   FCC    " EFHI NZVC A  B  DP  X    Y    U    PC   SP"
+     5643204120204220
+     2044502020582020
+     2020592020202055
+     2020202050432020
+     205350
+FA53 0D               00443                 FCB    13
+FA54 0A               00444                 FCB    10
+FA55 04               00445                 FCB     4
+                      00446         
+                      00447         *GMXBUG-09 commands
+                      00448         
+                      00449         *Memory mode commands
+                      00450         
+FA56 20               00451         MEMTBL  FCC    " "                    change & next
+FA57 FCF2             00452                 FDB    CHGBMP
+FA59 2B               00453                 FCC    "+"                    next
+FA5A FCF4             00454                 FDB    BUMP
+FA5C 2D               00455                 FCC    "-"                    previous
+FA5D FCF6             00456                 FDB    DROP
+FA5F 3D               00457                 FCC    "="                    change
+FA60 FCFB             00458                 FDB    CHANGE
+FA62 32               00459                 FCC    "2"                    binary
+FA63 FD00             00460                 FDB    BINARY
+FA65 22               00461                 FCC    ;";                    ASCII entry
+FA66 FD18             00462                 FDB    ASCII
+FA68 24               00463                 FCC    "$"                    hex entry
+FA69 FD23             00464                 FDB    HEX
+FA6B 0D               00465                 FCB    CR                     exit memory mode
+FA6C FCEF             00466                 FDB    MEMOFF
+FA6E 41               00467         CODTBL  FCC    "A"                    hex arithmetic
+FA6F FAA8             00468                 FDB    ARITHM
+FA71 42               00469                 FCC    "B"                    set breakpoint
+FA72 FE51             00470                 FDB    BRKSET
+FA74 43               00471                 FCC    "C"                    checksum
+FA75 FAB9             00472                 FDB    CHKSUM
+FA77 46               00473                 FCC    "F"                    disassembly dump
+FA78 FB71             00474                 FDB    FDUMP
+FA7A 44               00475                 FCC    "D"                    formatted memory dump
+FA7B FAE7             00476                 FDB    DDUMP
+FA7D 47               00477                 FCC    "G"                    exit from breakpoint
+FA7E FEAF             00478                 FDB    GOTO
+FA80 48               00479                 FCC    "H"                    hex locate
+FA81 FBFE             00480                 FDB    HEXLOC
+FA83 49               00481                 FCC    "I"                    initialize system values
+FA84 FC3E             00482                 FDB    INIT
+FA86 4A               00483                 FCC    "J"                    jump to address
+FA87 FCC3             00484                 FDB    JUMP
+FA89 4B               00485                 FCC    "K"                    kill breakpoints
+FA8A FE6D             00486                 FDB    KILBRK
+FA8C 4D               00487                 FCC    "M"                    memory mode
+FA8D FCE8             00488                 FDB    MEMODE
+FA8F 4F               00489                 FCC    "O"                    OS-9
+FA90 FC99             00490                 FDB    OS9CMD
+FA92 50               00491                 FCC    "P"                    print breakpoints
+FA93 FE2F             00492                 FDB    PRTBRK
+FA95 52               00493                 FCC    "R"                    register dump & change
+FA96 FD2B             00494                 FDB    REGDMP
+FA98 54               00495                 FCC    "T"                    test memory
+FA99 FD9B             00496                 FDB    TSTMEM
+FA9B 55               00497                 FCC    "U"                    jump to $F000
+FA9C FCCC             00498                 FDB    USER
+FA9E 58               00499                 FCC    "X"                    block move
+FA9F FDE8             00500                 FDB    BLKMOV
+FAA1 5A               00501                 FCC    "Z"                    fill memory
+FAA2 FCDA             00502                 FDB    ZAPMEM
+FAA4 57               00503                 FCC    "W"                    FLEX warm start
+FAA5 FCD3             00504                 FDB    FLXWRM
+FAA7 00               00505                 FCB    0
+                      00506         
+                      00507         *'A' - hex arithmetic
+                      00508         
+FAA8 170088           00509         ARITHM  LBSR   GETADS       get 2 values
+FAAB 8D37             00510                 BSR    OUTSPC
+FAAD DC22             00511                 LDD    <BEGIN1
+FAAF D324             00512                 ADDD   <END1             add them together
+FAB1 8D29             00513                 BSR    OUT4HS           output result
+FAB3 DC22             00514                 LDD    <BEGIN1
+FAB5 9324             00515                 SUBD   <END1             subtract 2nd from 1st
+FAB7 2023             00516                 BRA    OUT4HS           print result & exit
+                      00517         
+                      00518         *'C' - checksum a block of memory
+                      00519         
+FAB9 8D78             00520         CHKSUM  BSR    GETADS         get limits
+FABB 9E22             00521                 LDX    <BEGIN1          get start address
+FABD 4F               00522                 CLRA                    zero accumulator
+FABE 5F               00523                 CLRB
+FABF 0F2A             00524                 CLR    <SUBTOT           zero 3rd byte
+FAC1 EB80             00525         CHKSM1  ADDB   ,X+
+FAC3 8900             00526                 ADCA   #0                add carry if any
+FAC5 2402             00527                 BCC    CHKSM2
+FAC7 0C2A             00528                 INC    <SUBTOT           carry to 3rd byte if any
+FAC9 3084             00529         CHKSM2  LEAX   ,X
+FACB 2704             00530                 BEQ    CHKSM3           terminate at 0000
+FACD 9C24             00531                 CMPX   <END1
+FACF 23F0             00532                 BLS    CHKSM1           end at END1 address
+FAD1 3406             00533         CHKSM3  PSHS   D                save low bytes of total
+FAD3 8D0F             00534                 BSR    OUTSPC
+FAD5 962A             00535                 LDA    <SUBTOT          output highest byte
+FAD7 17FE80           00536                 LBSR   PRTBYT
+                      00537         
+                      00538         *Recover & output the lower 2 bytes
+                      00539         
+FADA 3506             00540         FADA    PULS   D
+                      00541         
+                      00542         *Output 16-bit value in hex followed by a space
+                      00543         
+FADC 17FE7B           00544         OUT4HS  LBSR   PRTBYT
+FADF 1F98             00545                 TFR    B,A
+                      00546         
+                      00547         *Output 8-bit value followed by a space
+                      00548         
+FAE1 17FE76           00549         OUT2HS  LBSR   PRTBYT
+FAE4 16FE34           00550         OUTSPC  LBRA   PRTSPC
+                      00551         
+                      00552         *'D' - dump memory as hexadecimal and ASCII
+                      00553         
+FAE7 8D4A             00554         DDUMP   BSR    GETADS         input start and end addresses
+FAE9 8EFB2D           00555                 LDX    #SPCMSG
+FAEC 17FE09           00556                 LBSR   PRTST           new line + 5 spaces
+FAEF C610             00557                 LDB    #16
+FAF1 9623             00558                 LDA    <BEGIN1+1         at the top of each column
+FAF3 840F             00559         DDUMP1  ANDA   #$F               output the 4th digit of
+FAF5 8DEA             00560                 BSR    OUT2HS           the addresses
+FAF7 4C               00561                 INCA
+FAF8 5A               00562                 DECB
+FAF9 26F8             00563                 BNE    DDUMP1
+FAFB 9E22             00564                 LDX    <BEGIN1          get start address
+                      00565         
+                      00566         *beginning of line loop
+                      00567         
+FAFD 17FE06           00568         DDUMP2  LBSR   CARRTN       new line
+FB00 1F10             00569                 TFR    X,D
+FB02 8DD8             00570                 BSR    OUT4HS       output current address
+FB04 C610             00571                 LDB    #16
+FB06 A680             00572         DDUMP3  LDA    ,X+              output 16 bytes in hex
+FB08 8DD7             00573                 BSR    OUT2HS
+FB0A 5A               00574                 DECB
+FB0B 26F9             00575                 BNE    DDUMP3
+FB0D 8DD5             00576                 BSR    OUTSPC           output 2 spaces
+FB0F 8DD3             00577                 BSR    OUTSPC
+FB11 3010             00578                 LEAX   -16,X             move pointer back
+FB13 C610             00579                 LDB    #16
+FB15 A680             00580         DDUMP4  LDA    ,X+              print 16 bytes as ASCII
+FB17 847F             00581                 ANDA   #$7F
+FB19 8120             00582                 CMPA   #$20
+FB1B 2202             00583                 BHI    DDUMP7
+FB1D 862E             00584         DDUMP6  LDA    #'.'              replace 0-1F & 7F with "."
+FB1F 817F             00585         DDUMP7  CMPA   #$7F
+FB21 27FA             00586                 BEQ    DDUMP6
+FB23 17FDBD           00587                 LBSR   OUTCHR
+FB26 5A               00588                 DECB
+FB27 26EC             00589                 BNE    DDUMP4
+FB29 8D1D             00590                 BSR    EOLCHK          end check or pause at end of line
+FB2B 20D0             00591                 BRA    DDUMP2
+                      00592         
+FB2D 2020202020       00593         SPCMSG  FCC    "     "           string of 5 spaces for dump
+FB32 04               00594                 FCB    4
+                      00595         *Input 2 16-bit values & store in scratchpad with abort of
+                      00596         *calling routine if either input is terminated with ESC
+                      00597         
+FB33 17FE31           00598         GETADS  LBSR   GETHEX
+FB36 2922             00599                 BVS    ESCOUT
+FB38 DD22             00600                 STD    <BEGIN1
+FB3A 17FE2A           00601                 LBSR   GETHEX
+FB3D 291B             00602                 BVS    ESCOUT
+FB3F DD24             00603                 STD    <END1
+FB41 39               00604                 RTS
+                      00605         
+                      00606         *Input hex value with caller abort on ESC
+                      00607         
+FB42 17FE22           00608         GETHX1  LBSR   GETHEX       input the value
+FB45 2913             00609                 BVS    ESCOUT       if term was ESC return 2 levels
+FB47 39               00610                 RTS                  else return normally
+                      00611         
+                      00612         *End of line end check or pause for dump & disassembly
+                      00613         
+FB48 9C24             00614         EOLCHK  CMPX   <END1              compare current addr to bounds
+FB4A 220A             00615                 BHI    EOLCH1
+FB4C 9C22             00616                 CMPX   <BEGIN1
+FB4E 2306             00617                 BLS    EOLCH1          if outside bounds check for done
+FB50 17FD9D           00618                 LBSR   INTEST           if in bounds, check for pause
+FB53 260A             00619                 BNE    EOLCH2
+FB55 39               00620                 RTS                  continue if no input waiting
+                      00621         
+FB56 DC24             00622         EOLCH1  LDD    <END1             check end value
+FB58 2705             00623                 BEQ    EOLCH2          if end>0 exit command
+FB5A 3262             00624         ESCOUT  LEAS   2,S              exit calling routine (command)
+FB5C 0F2F             00625                 CLR    <WAIT             leave WAIT off
+FB5E 39               00626                 RTS
+                      00627         
+FB5F 17FD77           00628         EOLCH2  LBSR   INCHAR       if end=0 then pause
+FB62 811B             00629                 CMPA   #ESC
+FB64 27F4             00630                 BEQ    ESCOUT       if ESC is typed exit command
+FB66 8113             00631                 CMPA   #CTLS
+FB68 2602             00632                 BNE    EOLCH3       if ctl-S is typed toggle WAIT
+FB6A 032F             00633                 COM    <WAIT
+FB6C 0D2F             00634         EOLCH3  TST    <WAIT             continue after 2nd ctl-S
+FB6E 26EF             00635                 BNE    EOLCH2
+FB70 39               00636                 RTS
+                      00637         
+                      00638         *'F' - disassembly dump
+                      00639         
+FB71 8DC0             00640         FDUMP   BSR    GETADS
+FB73 9E22             00641                 LDX    <BEGIN1
+FB75 9F32             00642                 STX    <POINTR
+                      00643         
+FB77 17FD8C           00644         FDUMP1  LBSR   CARRTN
+FB7A DC32             00645                 LDD    <POINTR      output current address
+FB7C 17FF5D           00646                 LBSR   OUT4HS
+FB7F C601             00647                 LDB    #1           initialize byte count
+FB81 A680             00648                 LDA    ,X+         get instruction byte
+FB83 815F             00649         FDUMP2  CMPA   #$5F        changed from $60 in GMXBUG 2.2f
+FB85 2233             00650                 BHI    FDUM50
+FB87 813C             00651                 CMPA   #$3C
+FB89 2760             00652                 BEQ    FDUMP4          CWAI
+FB8B 8138             00653                 CMPA   #$38         misc 1-bytes
+FB8D 2C5D             00654                 BGE    FDUM90
+FB8F 8510             00655                 BITA   #$10
+FB91 2758             00656                 BEQ    FDUMP4          branches, direct one-ops
+FB93 811E             00657                 CMPA   #$1E
+FB95 2D06             00658                 BLT    FDUMP3
+FB97 8504             00659                 BITA   #4
+FB99 273C             00660                 BEQ    FDUM58          LEA
+FB9B 204E             00661                 BRA    FDUMP4          EXG, TFR, PSH, PUL
+                      00662         
+FB9D 43               00663         FDUMP3  COMA
+FB9E 8509             00664                 BITA   #9
+FBA0 274A             00665                 BEQ    FDUM90          DAA, SEX
+FBA2 43               00666                 COMA
+FBA3 840E             00667                 ANDA   #$0E
+FBA5 260A             00668                 BNE    FDUMP6
+FBA7 5C               00669                 INCB                extended page instructions
+FBA8 A680             00670                 LDA    ,X+        bump count & decode 2nd byte
+FBAA 812F             00671                 CMPA   #$2F
+FBAC 22D5             00672                 BHI    FDUMP2
+FBAE 5C               00673                 INCB                add 1 for long branches
+FBAF 20D2             00674                 BRA    FDUMP2
+                      00675         
+FBB1 8106             00676         FDUMP6  CMPA   #6
+FBB3 2D37             00677                 BLT    FDUM90          SYNC, NOP
+FBB5 2E34             00678                 BGT    FDUMP4          ORCC, ANDCC
+FBB7 5C               00679                 INCB                LBRA, LBSR
+FBB8 2031             00680                 BRA    FDUMP4
+                      00681         
+                      00682         *2-operand, & 1-operand indexed & extended
+                      00683         
+FBBA 5C               00684         FDUM50  INCB
+FBBB 843F             00685                 ANDA   #$3F
+FBBD 8130             00686                 CMPA   #$30         extended
+FBBF 2C2A             00687                 BGE    FDUMP4
+FBC1 8510             00688         FDUM55  BITA   #$10             direct
+                      00689         
+FBC3 2627             00690                 BNE    FDUM90
+FBC5 8520             00691                 BITA   #$20
+FBC7 260F             00692                 BNE    FDUM60
+FBC9 8103             00693                 CMPA   #3           test for 3-byte immediates
+FBCB 271E             00694                 BEQ    FDUMP4
+FBCD 810C             00695                 CMPA   #$0C
+FBCF 271A             00696                 BEQ    FDUMP4
+FBD1 810E             00697                 CMPA   #$0E
+FBD3 2716             00698                 BEQ    FDUMP4
+FBD5 2015             00699                 BRA    FDUM90
+                      00700         
+                      00701         *indexed
+                      00702         
+FBD7 5C               00703         FDUM58  INCB
+FBD8 A684             00704         FDUM60  LDA    ,X               decode postbyte
+FBDA 2A10             00705                 BPL    FDUM90           5-bit offset
+FBDC 840F             00706                 ANDA   #$0F
+FBDE 8108             00707                 CMPA   #8
+FBE0 2D0A             00708                 BLT    FDUM90           auto(+ & -), reg & no offset
+FBE2 810B             00709                 CMPA   #$0B
+FBE4 2706             00710                 BEQ    FDUM90           D offset
+FBE6 5C               00711                 INCB
+FBE7 8501             00712                 BITA   #1
+FBE9 2701             00713                 BEQ    FDUM90           8-bit & 8-bit PC offset
+FBEB 5C               00714         FDUMP4  INCB
+                      00715         
+                      00716         *output the instruction bytes in hex
+                      00717         
+FBEC 9E32             00718         FDUM90  LDX    <POINTR
+FBEE A680             00719         FDUM91  LDA    ,X+
+FBF0 17FEEE           00720                 LBSR   OUT2HS
+FBF3 5A               00721                 DECB
+FBF4 26F8             00722                 BNE    FDUM91
+FBF6 9F32             00723                 STX    <POINTR
+FBF8 17FF4D           00724                  LBSR   EOLCHK           check for completion
+FBFB 16FF79           00725                  LBRA   FDUMP1
+                      00726         
+                      00727         *'H' - hexadecimal locate for 1, 2, or 3 bytes
+                      00728         
+FBFE 17FF32           00729         HEXLOC  LBSR   GETADS       get bounds for search
+FC01 8EE437           00730                 LDX    #MATCH1
+FC04 0F2A             00731                 CLR    <SUBTOT          get 1, 2, or 3 match byte values
+FC06 C603             00732                 LDB    #3
+FC08 D726             00733                 STB    <BEGIN2
+                      00734         
+FC0A 17FF35           00735         HXLOC1  LBSR   GETHX1       input a hex value
+FC0D DE0E             00736                 LDU    <ENDLIN          check line length
+FC0F 11930C           00737                 CMPU   <LINBUF
+FC12 2708             00738                 BEQ    HXLOC2          if null string, go search
+FC14 E780             00739                 STB    ,X+
+FC16 0C2A             00740                 INC    <SUBTOT          store match byte
+FC18 0A26             00741                 DEC    <BEGIN2
+FC1A 26EE             00742                 BNE    HXLOC1
+                      00743         
+                      00744         *beginning of search loop
+                      00745         
+FC1C 9E22             00746         HXLOC2  LDX    <BEGIN1
+FC1E CEE437           00747                 LDU    #MATCH1
+FC21 5F               00748         HXLOC3  CLRB
+FC22 A685             00749         HXLOC4  LDA    B,X               compare a byte
+FC24 A1C5             00750                 CMPA   B,U
+FC26 260D             00751                 BNE    HXLOC5          if no match move pointer
+FC28 5C               00752                 INCB                try the next byte
+FC29 D12A             00753                 CMPB   <SUBTOT
+FC2B 26F5             00754                 BNE    HXLOC4          if match complete output address
+FC2D 17FCD6           00755         HXLOC6  LBSR   CARRTN
+FC30 1F10             00756                 TFR    X,D
+FC32 17FEA7           00757                 LBSR   OUT4HS
+FC35 3001             00758         HXLOC5  LEAX   1,X               bump pointer and check bounds
+FC37 2704             00759                 BEQ    HXLOC7          terminate at 0000
+FC39 9C24             00760                 CMPX   <END1
+FC3B 23E4             00761                 BLS    HXLOC3
+FC3D 39               00762         HXLOC7  RTS
+                      00763         
+                      00764         *'I' - initialize system values
+                      00765         
+FC3E 8D7A             00766         INIT    BSR    SPCIL1
+FC40 17FCA4           00767                 LBSR   GETUPS        get subcommand
+FC43 8EFC4F           00768                 LDX    #INITAB        scan table
+FC46 17FDA3           00769                 LBSR   LOOKUP
+FC49 2620             00770                 BNE    REPORT          do report if no command
+FC4B 8D6D             00771                 BSR    SPCIL1
+FC4D 6E94             00772                 JMP    [,X]             if found execute
+                      00773         
+                      00774         *Initialization subcommand table
+                      00775         
+FC4F 44               00776         INITAB  FCC    "D"                    output device
+FC50 FC5C             00777                 FDB    SETDST
+FC52 4E               00778                 FCC    "N"                    null count
+FC53 FC66             00779                 FDB    SETNUL
+FC55 50               00780                 FCC    "P"                    printer type - in  part III
+FC56 FF66             00781                 FDB    SETPRT
+FC58 55               00782                 FCC    "U"                    soft reset
+FC59 FFB4             00783                 FDB    RESETI
+FC5B 00               00784                 FCB    0
+                      00785         
+                      00786         *set console output device
+                      00787         *B=Both (screen & printer) otherwise screen only
+                      00788         
+FC5C 8D5F             00789         SETDST  BSR    UPSIL1
+FC5E 8142             00790                 CMPA   #'B'
+FC60 2701             00791                 BEQ    STDST1
+FC62 4F               00792                 CLRA
+FC63 9736             00793         STDST1  STA    <DEST
+FC65 39               00794                 RTS
+                      00795         
+                      00796         *set null count - number of nulls after CR in printer output
+                      00797         
+FC66 8D58             00798         SETNUL  BSR    GETHXX
+FC68 D734             00799                 STB    <NULLS
+FC6A 39               00800                 RTS
+                      00801         
+                      00802         *report system status
+                      00803         
+FC6B 8EFC90           00804         REPORT  LDX    #SYSTAT          output status header
+FC6E 17FC87           00805                 LBSR   PRTST
+FC71 8EE434           00806                 LDX    #NULLS
+FC74 A680             00807                 LDA    ,X+
+FC76 17FE68           00808                 LBSR   OUT2HS           output null count
+FC79 8650             00809                 LDA    #'P'
+FC7B E680             00810                 LDB    ,X+             output printer type
+FC7D 2602             00811                 BNE    REPRT1
+FC7F 8653             00812                 LDA    #'S'
+FC81 8D0A             00813         REPRT1  BSR    REPRT2
+FC83 8D35             00814                 BSR    SPCIL1
+FC85 8642             00815                 LDA    #'B'
+FC87 E680             00816                 LDB    ,X+             output console device
+FC89 2602             00817                 BNE    REPRT2
+FC8B 8653             00818                 LDA    #'S'
+FC8D 16FC53           00819         REPRT2  LBRA   OUTCHR
+                      00820         
+                      00821         *status header
+                      00822         
+FC90 4E4C20502044     00823         SYSTAT  FCC    "NL P D"
+FC96 0D               00824                 FCB    13
+FC97 0A               00825                 FCB    10
+FC98 04               00826                 FCB     4
+                      00827         
+                      00828         *'O' - switch to OS-9 or other alternate monitor
+                      00829         
+FC99 8D25             00830         OS9CMD  BSR    GETHXX
+FC9B 8EFCAE           00831                 LDX    #SWITCH
+FC9E BDF5ED           00832         OS9     JSR    OS9ADD           call to extension
+FCA1 12               00833                 NOP                     replaced instruction was 4 bytes
+FCA2 C60C             00834                 LDB    #12
+FCA4 A680             00835         OS91    LDA    ,X+             copy switch code to RAM
+FCA6 A7A0             00836                 STA    ,Y+
+FCA8 5A               00837                 DECB
+FCA9 26F9             00838                 BNE    OS91
+FCAB 7EE500           00839                 JMP    $E500             execute it
+                      00840         
+                      00841         *this code is actually executed at $E500
+                      00842         
+FCAE 4F               00843         SWITCH  CLRA
+FCAF 1F8B             00844                 TFR    A,DP              clear the DP register
+FCB1 8620             00845                 LDA    #$20
+FCB3 B7E281           00846                 STA    TSR+1             select OS9 task (was TSR in 2.2f)
+FCB6 6E9FFFFE         00847                 JMP    [RESET]           jump on reset vector
+                      00848         
+FCBA 16FC5E           00849         SPCIL1  LBRA   PRTSPC
+FCBD 16FC27           00850         UPSIL1  LBRA   GETUPS
+FCC0 16FE7F           00851         GETHXX  LBRA   GETHX1
+                      00852         
+                      00853         *'J' - JSR to user program
+                      00854         *RTS goes back to debugger mainline
+                      00855         
+FCC3 8DFB             00856         JUMP    BSR    GETHXX           input jump address
+FCC5 1F01             00857                 TFR    D,X
+FCC7 4F               00858         JUMP1   CLRA
+FCC8 1F8B             00859                 TFR    A,DP             set DP to 0
+FCCA 6E84             00860                 JMP    ,X              go to user routine
+                      00861         
+                      00862         *'U' - jump to PROM at $F000
+                      00863         
+FCCC 8DF2             00864         USER    BSR    GETHXX
+FCCE 8EF000           00865                 LDX    #$F000
+FCD1 20F4             00866                 BRA    JUMP1
+                      00867         
+                      00868         *'W' - jump to FLEX warm start
+                      00869         
+FCD3 8DEB             00870         FLXWRM  BSR    GETHXX
+FCD5 8ECD03           00871                 LDX    #$CD03
+FCD8 20ED             00872                 BRA    JUMP1
+                      00873         
+                      00874         *'Z' - fill memory
+                      00875         
+FCDA 17FE56           00876         ZAPMEM  LBSR   GETADS         input bounds
+FCDD 8DE1             00877                 BSR    GETHXX         input fill byte
+FCDF 9E22             00878                 LDX    <BEGIN1
+FCE1 E780             00879         ZPMEM1  STB    ,X+              fill with specified value
+FCE3 9C24             00880                 CMPX   <END1
+FCE5 23FA             00881                 BLS    ZPMEM1
+FCE7 39               00882                 RTS
+                      00883         
+                      00884         *Memory mode commands
+                      00885         
+                      00886         *'M' - turn on memory mode
+                      00887         
+FCE8 8DD6             00888         MEMODE  BSR    GETHXX          input pointer value
+FCEA DD30             00889                 STD    <MEMPTR
+FCEC 0C20             00890                 INC    <MMODE          set flag
+FCEE 39               00891                 RTS
+                      00892         
+                      00893         *CR - turn off memory mode
+                      00894         
+FCEF 0F20             00895         MEMOFF  CLR    <MMODE            exit memory mode on CR
+FCF1 39               00896                 RTS
+                      00897         
+                      00898         *' ' - change byte & bump pointer
+                      00899         
+FCF2 8D07             00900         CHGBMP  BSR    CHANGE
+                      00901         
+                      00902         *'+' - bump pointer
+                      00903         
+FCF4 3342             00904         BUMP    LEAU   2,U
+                      00905         
+                      00906         *'-' - decrement address
+                      00907         
+FCF6 335F             00908         DROP    LEAU   -1,U
+FCF8 DF30             00909         DRPRTS  STU    <MEMPTR          store changed pointer
+FCFA 39               00910                 RTS
+                      00911         
+                      00912         *'=' - change byte
+                      00913         
+FCFB 8DC3             00914         CHANGE  BSR    GETHXX          input a value
+FCFD E7C4             00915                 STB    ,U             store it in memory
+FCFF 39               00916                 RTS
+                      00917         
+                      00918         *'2' - binary display
+                      00919         
+FD00 E6C4             00920         BINARY  LDB    ,U              get byte contents
+FD02 8D00             00921         BINRY1  BSR    DSPLAY          display MS nybble
+                      00922         
+                      00923         *fall thru to display LS nybble
+                      00924         
+FD04 8DB4             00925         DSPLAY  BSR    SPCIL1          space between nybbles
+FD06 8604             00926                 LDA    #4              output 4 bits
+FD08 3402             00927                 PSHS   A
+FD0A 4F               00928         DSPLY1  CLRA
+                      00929         
+FD0B 58               00930                 ASLB                   shift a bit to ACCA
+FD0C 49               00931                 ROLA
+FD0D 8A30             00932                 ORA    #'0'            make ASCII
+FD0F 17FBD1           00933         DSPLY2  LBSR   OUTCHR         output it
+FD12 6AE4             00934                 DEC    ,S
+FD14 26F4             00935                 BNE    DSPLY1         decrement & loop
+FD16 3582             00936                 PULS   A,PC            exit
+                      00937         
+                      00938         *'"' - ASCII entry
+                      00939         *terminates on a CR, which is not stored
+                      00940         
+FD18 17FBC2           00941         ASCII   LBSR   INECHO         input & echo a byte
+FD1B 810D             00942                 CMPA   #CR
+FD1D 27D9             00943                 BEQ    DRPRTS         exit on CR
+FD1F A7C0             00944                 STA    ,U+            store the byte in memory
+FD21 20F5             00945                 BRA    ASCII
+                      00946         
+                      00947         *'$' - hexadecimal entry
+                      00948         
+FD23 8D9B             00949         HEX     BSR    GETHXX           input a value
+FD25 E7C0             00950                 STB    ,U+             store in memory
+FD27 DF30             00951                 STU    <MEMPTR
+FD29 20F8             00952                 BRA    HEX              exit on GETHX1 abort
+                      00953         
+                      00954         *End of memory mode commands
+                      00955         
+                      00956         *'R' - register display & change
+                      00957         
+FD2B 17FBFD           00958         REGDMP  LBSR   REGPRT         output the register values
+FD2E 8EFD73           00959                 LDX    #CHGMSG        output prompt
+FD31 17FBC4           00960                 LBSR   PRTST
+FD34 17FBB0           00961                 LBSR   GETUPS          input a char
+FD37 810D             00962                 CMPA   #CR
+FD39 2737             00963                 BEQ    RGD15          exit on CR
+FD3B 8EFD88           00964                 LDX    #REGTBL        find char in register table
+FD3E A181             00965         RGDMP1  CMPA   ,X++
+FD40 2709             00966                 BEQ    RGDMP2
+FD42 6D84             00967                 TST    ,X
+FD44 26F8             00968                 BNE    RGDMP1
+FD46 863F             00969         RGDABT  LDA    #'?'
+FD48 16FB98           00970                 LBRA   OUTCHR         invalid char - exit with ?
+                      00971         
+FD4B A61F             00972         RGDMP2  LDA    -1,X             get offset into stack from table
+FD4D 3402             00973                 PSHS   A
+FD4F 17FC15           00974                 LBSR   GETHEX         input new value
+FD52 1F02             00975                 TFR    D,Y
+FD54 3502             00976                 PULS   A
+FD56 29EE             00977                 BVS    RGDABT         abort if ESC is entered
+FD58 4D               00978                 TSTA                    changing stack value?
+FD59 2A09             00979                 BPL    RGDMP3
+FD5B 1F24             00980                 TFR    Y,S            yes - set new SP
+FD5D 8EF894           00981                 LDX    #WARMS         setup return to mainline
+FD60 AFE2             00982                 STX    ,-S
+FD62 6E84             00983                 JMP    ,X
+                      00984         
+FD64 3362             00985         RGDMP3  LEAU   2,S              adjust around return address
+FD66 33C6             00986                 LEAU   A,U             point to register
+FD68 8104             00987                 CMPA   #4               1 or 2 byte register?
+FD6A 2D04             00988                 BLT    RGDMP5
+FD6C 10AFC4           00989                 STY    ,U              store 2 bytes
+FD6F 39               00990                 RTS
+FD70 E7C4             00991         RGDMP5  STB    ,U              store 1 byte
+FD72 39               00992         RGD15   RTS
+                      00993         
+                      00994         *Prompt for register change
+                      00995         
+FD73 5265676973746572 00996         CHGMSG  FCC    "Register to change? "
+     20746F206368616E
+     67653F20
+FD87 04               00997                 FCB    4
+                      00998         
+                      00999         *Offsets for register change
+                      01000         
+FD88 43               01001         REGTBL  FCC    "C"             CCR
+FD89 00               01002                 FCB    0
+FD8A 41               01003                 FCC    "A"             ACCA
+FD8B 01               01004                 FCB    1
+FD8C 42               01005                 FCC    "B"             ACCB
+FD8D 02               01006                 FCB    2
+FD8E 44               01007                 FCC    "D"             DPR
+FD8F 03               01008                 FCB    3
+FD90 58               01009                 FCC    "X"             IX
+FD91 04               01010                 FCB    4
+FD92 59               01011                 FCC    "Y"             IY
+FD93 06               01012                 FCB    6
+FD94 55               01013                 FCC    "U"             US
+FD95 08               01014                 FCB    8
+FD96 50               01015                 FCC    "P"             PC
+FD97 0A               01016                 FCB    10
+FD98 53               01017                 FCC    "S"             SP
+FD99 FF               01018                 FCB    255
+FD9A 00               01019                 FCB    0
+                      01020         
+                      01021         *'T' - memory test - does a convergence test
+                      01022         *that will detect most memory failures
+                      01023         
+FD9B 17FD95           01024         TSTMEM  LBSR   GETADS          input bounds of test area
+FD9E 5F               01025                 CLRB                    init pass counter
+FD9F 17FB64           01026         TESTM1  LBSR   CARRTN
+                      01027         
+                      01028         *fill memory with pattern
+                      01029         
+FDA2 9E22             01030         TSTM1A  LDX    <BEGIN1
+FDA4 8D28             01031         TESTM2  BSR    MAKBYT           make byte & store
+FDA6 A780             01032                 STA    ,X+
+FDA8 9C24             01033                 CMPX   <END1
+FDAA 23F8             01034                 BLS    TESTM2
+                      01035         
+                      01036         *compare memory with pattern
+                      01037         
+FDAC 9E22             01038                 LDX    <BEGIN1
+FDAE 8D1E             01039         TESTM3  BSR    MAKBYT           make byte & compare
+FDB0 A880             01040                 EORA   ,X+
+FDB2 2623             01041                 BNE    ERROR            exit on error
+FDB4 9C24             01042                 CMPX   <END1
+FDB6 23F6             01043                 BLS    TESTM3
+FDB8 8623             01044                 LDA    #'#'             output '#' for each pass
+FDBA 17FB26           01045                 LBSR   OUTCHR
+FDBD 4F               01046                 CLRA
+FDBE 17FB33           01047                 LBSR   GETKEY
+FDC1 811B             01048                 CMPA   #ESC
+FDC3 2711             01049                 BEQ    MKBRTS           exit if ESC is typed on console
+FDC5 5C               01050                 INCB                    bump pass counter
+FDC6 270E             01051                 BEQ    MKBRTS           exit after 256 passes
+FDC8 C53F             01052                 BITB   #$3F
+FDCA 26D6             01053                 BNE    TSTM1A           output CRLF every 64th pass
+FDCC 20D1             01054                 BRA    TESTM1
+                      01055         
+                      01056         *make byte for test - MS byte of addr + LS byte + pass #
+                      01057         
+FDCE 9F26             01058         MAKBYT  STX    <BEGIN2
+FDD0 1F98             01059                 TFR    B,A
+FDD2 9B26             01060                 ADDA   <BEGIN2
+FDD4 9B27             01061                 ADDA   <BEGIN2+1
+FDD6 39               01062         MKBRTS  RTS
+                      01063         
+                      01064         *output error message, display wrong bits & exit
+                      01065         
+FDD7 17FB2C           01066         ERROR   LBSR   CARRTN
+FDDA 301F             01067                 LEAX   -1,X
+FDDC 3402             01068                 PSHS   A
+FDDE 1F10             01069                 TFR    X,D
+FDE0 17FCF9           01070                 LBSR   OUT4HS           output error address
+FDE3 3504             01071                 PULS   B
+FDE5 16FF1A           01072                 LBRA   BINRY1           output error mask in binary
+                      01073         
+                      01074         *'X' - block move
+                      01075         
+FDE8 17FD48           01076         BLKMOV  LBSR   GETADS           input bounds of area to move
+FDEB 17FD54           01077                 LBSR   GETHX1           input destination address
+FDEE DD26             01078                 STD    <BEGIN2
+FDF0 DC26             01079         MOVER1  LDD    <BEGIN2
+FDF2 109322           01080                 CMPD   <BEGIN1
+FDF5 2317             01081                 BLS    NORMAL           check for start<dest<=end
+FDF7 109324           01082                 CMPD   <END1
+FDFA 2212             01083                 BHI    NORMAL
+FDFC DC24             01084                 LDD    <END1
+FDFE 9322             01085                 SUBD   <BEGIN1
+FE00 D326             01086                 ADDD   <BEGIN2
+FE02 1F03             01087                 TFR    D,U
+FE04 9E24             01088                 LDX    <END1
+FE06 DC22             01089                 LDD    <BEGIN1
+FE08 DD24             01090                 STD    <END1            invert end pointer
+FE0A C6FF             01091                 LDB    #-1
+FE0C 2006             01092                 BRA    NORML1           go to move loop
+FE0E 9E22             01093         NORMAL  LDX    <BEGIN1              load pointers
+FE10 DE26             01094                 LDU    <BEGIN2
+FE12 C601             01095                 LDB    #1
+FE14 A684             01096         NORML1  LDA    ,X                  move a byte
+FE16 A7C4             01097                 STA    ,U
+FE18 3085             01098                 LEAX   B,X
+FE1A 33C5             01099                 LEAU   B,U
+FE1C 9C24             01100                 CMPX   <END1            continue till bound is reached
+FE1E 26F4             01101                 BNE    NORML1
+FE20 A684             01102                 LDA    ,X
+FE22 A7C4             01103                 STA    ,U              move last byte
+FE24 39               01104                 RTS
+                      01105         
+                      01106         *entry for MOVBLK utility subroutine
+                      01107         
+FE25 345E             01108         MOVER0  PSHS   A,B,DP,X,U       save working registers
+FE27 86E4             01109                 LDA    #DPR             set DP
+FE29 1F8B             01110                 TFR    A,DP
+FE2B 8DC3             01111                 BSR    MOVER1           do the move
+FE2D 35DE             01112                 PULS   A,B,DP,X,U,PC   restore registers & exit
+                      01113         
+                      01114         *'P' - output breakpoint table contents
+                      01115         
+FE2F 5F               01116         PRTBRK  CLRB
+FE30 8EE410           01117                 LDX    #BRKTBL          set pointer
+FE33 17FAD0           01118         PRTBK1  LBSR   CARRTN
+FE36 3404             01119                 PSHS   B
+FE38 1F98             01120                 TFR    B,A
+FE3A 17FCA4           01121                 LBSR   OUT2HS           output breakpoint #
+FE3D EC84             01122                 LDD    ,X
+FE3F 17FC9A           01123                 LBSR   OUT4HS           output address
+FE42 A608             01124                 LDA    8,X
+FE44 17FB13           01125                 LBSR   PRTBYT           output saved byte
+FE47 3002             01126                 LEAX   2,X
+FE49 3504             01127                 PULS   B
+FE4B 5C               01128                 INCB
+FE4C C104             01129                 CMPB   #4               loop for 4 breakpoints
+FE4E 2DE3             01130                 BLT    PRTBK1
+FE50 39               01131                 RTS
+                      01132         
+                      01133         *'B' - set a breakpoint
+                      01134         
+FE51 8D44             01135         BRKSET  BSR    PICKBR           input breakpoint number
+FE53 17FCEC           01136                 LBSR   GETHX1           input address
+FE56 10830000         01137                 CMPD   #$0000
+FE5A 2710             01138                 BEQ    BREAKX           exit if address is 0000
+FE5C 3406             01139                 PSHS   D                save address
+FE5E 8D17             01140                 BSR    KLBRK1           if break set already kill it
+FE60 3540             01141                 PULS   U                recover address
+FE62 A6C4             01142                 LDA    ,U
+FE64 EF84             01143                 STU    ,X              put break address and contents
+FE66 A708             01144                 STA    8,X              of byte in table
+FE68 863F             01145                 LDA    #$3F
+FE6A A7C4             01146                 STA    ,U              put SWI at address
+FE6C 39               01147         BREAKX  RTS
+                      01148         
+                      01149         *'K' - kill a breakpoint
+                      01150         *kill all 4 breakpoints if 'X' is entered
+                      01151         
+FE6D 8D28             01152         KILBRK  BSR    PICKBR           input brkpt number & set pointer
+FE6F DE0E             01153                 LDU    <ENDLIN
+FE71 A65F             01154                 LDA    -1,U
+FE73 8158             01155                 CMPA   #'X'             check for X
+FE75 2713             01156                 BEQ    KILALL
+FE77 EE84             01157         KLBRK1  LDU    ,X              get address from table
+FE79 A6C4             01158                 LDA    ,U
+FE7B 813F             01159                 CMPA   #$3F             check for SWI at addr
+FE7D 2604             01160                 BNE    KLBRK2           if no SWI, don't replace byte
+FE7F A608             01161                 LDA    8,X              get byte contents
+FE81 A7C4             01162                 STA    ,U              replace the byte
+FE83 6F84             01163         KLBRK2  CLR    ,X              zero the address & data entries
+FE85 6F01             01164                 CLR    1,X
+FE87 6F08             01165                 CLR    8,X
+FE89 39               01166                 RTS
+                      01167         
+                      01168         *kill all 4 breakpoints
+                      01169         
+FE8A 8EE410           01170         KILALL  LDX    #BRKTBL
+FE8D C604             01171                 LDB    #4               loop for 4 entries
+FE8F 8DE6             01172         KILAL1  BSR    KLBRK1           use part of main routine
+FE91 3002             01173                 LEAX   2,X
+FE93 5A               01174                 DECB
+FE94 26F9             01175                 BNE    KILAL1
+FE96 39               01176                 RTS
+                      01177         
+                      01178         *Input a breakpoint number & point into the table
+                      01179         
+FE97 17FACD           01180         PICKBR  LBSR   GETHEX           input a number
+FE9A 290C             01181                 BVS    PICKBX           abort with '?' if >3
+FE9C 10830003         01182                 CMPD   #3
+FEA0 2206             01183                 BHI    PICKBX
+FEA2 58               01184                 ASLB
+FEA3 8EE410           01185                 LDX    #BRKTBL          make pointer into brk table
+FEA6 3A               01186                 ABX
+FEA7 39               01187                 RTS
+FEA8 863F             01188         PICKBX  LDA    #'?'             print '?' & exit to mainline
+FEAA 3262             01189                 LEAS   2,S
+FEAC 16FA34           01190                 LBRA   OUTCHR
+                      01191         
+                      01192         *'G' - continue from breakpoint - executes an RTI
+                      01193         
+FEAF 17FA69           01194         GOTO    LBSR   PRTSPC
+FEB2 17FA28           01195                 LBSR   INECHO           get a char
+FEB5 810D             01196                 CMPA   #CR
+FEB7 26B3             01197                 BNE    BREAKX           abort if not CR
+FEB9 3262             01198         GOTO1   LEAS   2,S              pop return to GMXBUG mainline
+FEBB 3B               01199                 RTI
+                      01200         
+                      01201         *Breakpoint handler
+                      01202         
+FEBC AE6A             01203         BRKPT   LDX    10,S
+FEBE 331F             01204                 LEAU   -1,X             adjust return address
+FEC0 270E             01205                 BEQ    BRKSWI           if addr=0 can't be breakpoint
+FEC2 5F               01206                 CLRB
+FEC3 8EE410           01207                 LDX    #BRKTBL
+FEC6 11A381           01208         BRKP1   CMPU   ,X++           search breakpoint table for addr
+FEC9 2707             01209                 BEQ    FDBKPT
+FECB 5C               01210                 INCB
+FECC C104             01211                 CMPB   #4               check four entries
+FECE 26F6             01212                 BNE    BRKP1
+FED0 C6FF             01213         BRKSWI  LDB    #$FF             not in table - user SWI
+FED2 3404             01214         FDBKPT  PSHS   B
+FED4 17FA2F           01215                 LBSR   CARRTN           found - output "#"
+FED7 8623             01216                 LDA    #'#'
+FED9 17FA07           01217                 LBSR   OUTCHR
+FEDC 3502             01218                 PULS   A
+FEDE 17FA79           01219                 LBSR   PRTBYT           output breakpoint #
+FEE1 EF6A             01220                 STU    10,S             put adjusted PC back in stack
+FEE3 1F43             01221                 TFR    S,U
+FEE5 17FA45           01222                 LBSR   PRTR1            output register contents
+FEE8 16F9BC           01223                 LBRA   WARMS1           jump to debugger mainline
+                      01224         
+                      01225         *Console I/O routines for serial interface
+                      01226         
+                      01227         *Wait for input then return with char in ACCA
+                      01228         
+FEEB 8D03             01229         SERIN   BSR    SERKEY
+FEED 27FC             01230                 BEQ    SERIN            wait till SERKEY returns Z=0
+FEEF 39               01231                 RTS
+                      01232         
+                      01233         *Return any pending input in ACCA; Z=0 if input found
+                      01234         
+FEF0 8D19             01235         SERKEY  BSR    SERTST
+FEF2 2716             01236                 BEQ    SERKYX           exit if no input waiting
+FEF4 B6E005           01237                 LDA    TERM+1           get the char
+FEF7 847F             01238                 ANDA   #$7F             mask off parity bit
+FEF9 7DE421           01239                 TST    >UPCASE
+FEFC 270A             01240                 BEQ    SERKY8           force uppercase if flag is set
+FEFE 8161             01241                 CMPA   #'a'
+FF00 2D06             01242                 BLT    SERKY8
+FF02 817A             01243                 CMPA   #'z'
+FF04 2E02             01244                 BGT    SERKY8
+FF06 845F             01245                 ANDA   #$5F
+FF08 1CFB             01246         SERKY8  ANDCC  #$FB             set Z=0 to indicate data
+FF0A 39               01247         SERKYX  RTS
+                      01248         
+                      01249         *Test for pending input; Z=0 if so, else Z=1
+                      01250         
+FF0B 3402             01251         SERTST  PSHS   A
+FF0D B6E004           01252                 LDA    TERM
+FF10 8501             01253                 BITA   #$1              check RxDRF
+FF12 3582             01254                 PULS   A,PC
+                      01255         
+                      01256         *Serial terminal output - character in ACCA
+                      01257         
+FF14 3406             01258         SEROUT  PSHS   D
+FF16 F6E004           01259         SER1    LDB    TERM
+FF19 C502             01260                 BITB   #2
+FF1B 27F9             01261                 BEQ    SER1             wait for TxDRE
+FF1D B7E005           01262                 STA    TERM+1           put char in ACIA
+FF20 7DE436           01263                 TST    >DEST
+FF23 2604             01264                 BNE    HRDCPY           do hardcopy if flag is set
+FF25 3586             01265         SERX    PULS   D,PC             else exit
+                      01266         
+                      01267         *Printer output subroutines
+                      01268         
+                      01269         *Print the char in ACCA on the hard copy device
+                      01270         
+FF27 3406             01271         HARDC   PSHS   D
+FF29 8D11             01272         HRDCPY  BSR    HRDOUT           output the char
+FF2B 810D             01273                 CMPA   #CR
+FF2D 260B             01274                 BNE    HARDCX           if char was CR, output nulls
+FF2F F6E434           01275                 LDB    >NULLS
+FF32 2706             01276                 BEQ    HARDCX           if null count=, exit
+FF34 4F               01277                 CLRA
+FF35 8D05             01278         HRDCP1  BSR    HRDOUT           output # of nulls in NULLS
+FF37 5A               01279                 DECB
+FF38 26FB             01280                 BNE    HRDCP1
+FF3A 3586             01281         HARDCX  PULS   D,PC             exit
+                      01282         
+                      01283         *Actual printer output routine
+                      01284         
+FF3C 3404             01285         HRDOUT  PSHS   B
+FF3E 7DE435           01286                 TST    >PRTFLG          check printer type flag
+FF41 260C             01287                 BNE    PARLEL
+                      01288         
+                      01289         *Serial printer routine
+                      01290         
+FF43 F6E000           01291         SERIAL  LDB    SPRINT           wait for TxDRE
+FF46 C502             01292                 BITB   #2
+FF48 27F9             01293                 BEQ    SERIAL
+FF4A B7E001           01294                 STA    SPRINT+1         put char in ACIA
+FF4D 3584             01295                 PULS   B,PC             exit
+                      01296         
+                      01297         *Parallel printer routine
+                      01298         
+FF4F 7DE043           01299         PARLEL  TST    PPRINT+1         wait for printer ready
+FF52 2AFB             01300                 BPL    PARLEL
+FF54 7DE042           01301         PARLL1  TST    PPRINT           clear IRQ flag
+FF57 B7E042           01302                 STA    PPRINT           put data in PiA
+FF5A C636             01303                 LDB    #$36
+FF5C F7E043           01304                 STB    PPRINT+1         toggle handshake output
+FF5F C63E             01305                 LDB    #$3E
+FF61 F7E043           01306                 STB    PPRINT+1
+FF64 3584             01307                 PULS   B,PC             exit
+                      01308         
+                      01309         *Subcommand P of I command
+                      01310         *Set printer type - S=serial  P=parallel
+                      01311         
+FF66 17F97E           01312         SETPRT  LBSR   GETUPS           input a character
+FF69 8153             01313                 CMPA   #'S'
+FF6B 2718             01314                 BEQ    SETSRL           compare to S & P
+FF6D 8150             01315                 CMPA   #'P'
+FF6F 2616             01316                 BNE    STPTOT           exit if neither
+FF71 9735             01317                 STA    <PRTFLG          set flag
+FF73 8EE042           01318                 LDX    #PPRINT          initialize PIA
+FF76 6F01             01319                 CLR    1,X
+FF78 86FF             01320                 LDA    #$FF             set DDR for output
+FF7A A784             01321                 STA    ,X
+FF7C 863E             01322                 LDA    #$3E             set up strobe
+FF7E A701             01323                 STA    1,X
+FF80 4F               01324                 CLRA
+FF81 3402             01325                 PSHS   A               adjust stack for output routine
+FF83 20CF             01326                 BRA    PARLL1           exit thru output routine
+                      01327         
+                      01328         *initialize for serial printer
+                      01329         
+FF85 0F35             01330         SETSRL  CLR    <PRTFLG          set flag
+FF87 39               01331         STPTOT  RTS                      ACIA is set up by default
+                      01332         
+                      01333         *Handler for Non-Maskable Interrupt
+                      01334         
+FF88 1F43             01335         NMITRP  TFR    S,U              copy stack pointer
+FF8A 17F9A0           01336                 LBSR   PRTR1            print register contents
+FF8D 8EFF9F           01337                 LDX    #NMIMSG
+FF90 17F965           01338                 LBSR   PRTST            output NMI message
+FF93 17F947           01339                 LBSR   INECHO           get a char
+FF96 84DF             01340                 ANDA   #$DF             force upper case
+FF98 8159             01341                 CMPA   #'Y'
+FF9A 1026F906         01342                 LBNE   WARMS0           if Y, return to program
+FF9E 3B               01343         DUMRTI  RTI                       else go to GMXBUG
+                      01344         
+FF9F 4E4D493A20726573 01345         NMIMSG  FCC    ;NMI: restart (Y/N)? ;
+     746172742028592F
+     4E293F20
+FFB3 04               01346                 FCB    4
+                      01347         
+                      01348         * Note: DAT is automatically available at power-up at
+                      01349         * $F800.  However this goes away on the first write to
+                      01350         * an odd address in the DAT. Therefore the first write
+                      01351         * to the DAT must be to $F83E-$F83F to set up the monitor
+                      01352         * in task 0. Then the monitor reset routine can finish
+                      01353         * setting up the rest of task 0.
+                      01354         
+FFB4 8EF840           01355         RESETI  LDX    #DATRAM+64      reset DAT - map task 0 to
+FFB7 CC01FF           01356                 LDD    #$1FF           bank 15, segment to block
+FFBA ED83             01357         RES1    STD    ,--X           from the top down
+FFBC 5A               01358                 DECB                   for the top 8K
+FFBD 8CF838           01359                 CMPX   #DATRAM+56      ($E000-$FFFF)
+FFC0 26F8             01360                 BNE    RES1
+FFC2 8301E0           01361                 SUBD   #$1E0           map the rest of task 0
+FFC5 ED83             01362         RES2    STD    ,--X           ($E000-$FFFF) to bank 15
+FFC7 5A               01363                 DECB
+FFC8 2AFB             01364                 BPL    RES2
+FFCA 8EF82E           01365                 LDX    #COLD
+FFCD BFE460           01366                 STX    >TRPVEC          set default ERRTRP value
+FFD0 6E84             01367                 JMP    ,X             go to main GMXBUG coldstart
+                      01368         
+                      01369         *Jumps to soft interrupt vector addresses
+                      01370         
+FFD2 6E9FE460         01371         TRPHND  JMP    [TRPVEC]
+FFD6 6E9FDFC2         01372         SW3HND  JMP    [SW3VEC]
+FFDA 6E9FDFC4         01373         SW2HND  JMP    [SW2VEC]
+FFDE 6E9FDFC6         01374         FIRHND  JMP    [FIRVEC]        handlers to use soft vectors
+FFE2 6E9FDFC8         01375         IRQHND  JMP    [IRQVEC]
+FFE6 6E9FDFCA         01376         SWIHND  JMP    [SWIVEC]
+FFEA 6E9FE40A         01377         NMIHND  JMP    [NMIVEC]
+                      01378         
+     FFEE             01379         ENDCOD  EQU    *
+                      01380         
+                      01381         *        FILL $FF,7
+                      01382         *Absolute interrupt vectors
+                      01383         
+                      01384                 ORG    VECTOR
+                      01385         
+FFF0 FFD2             01386         RESERV  FDB    TRPHND          system trap vector (ex-reserved)
+FFF2 FFD6             01387         SWI3    FDB    SW3HND
+FFF4 FFDA             01388         SWI2    FDB    SW2HND
+FFF6 FFDE             01389         FIRQ    FDB    FIRHND          hard interrupt vectors
+FFF8 FFE2             01390         IRQ     FDB    IRQHND
+FFFA FFE6             01391         SWI     FDB    SWIHND
+FFFC FFEA             01392         NMI     FDB    NMIHND
+FFFE FFB4             01393         RESET   FDB    RESETI
+                      01394         
+                      01395                 END

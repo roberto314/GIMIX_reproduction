@@ -1,0 +1,186 @@
+                      00001                     * IOPDRV
+                      00002         
+                      00003                     * This program resides in RAM on the IOP.  It supports
+                      00004                     * a terminal as console on port 1 and a printer on port 2.
+                      00005         
+     0000             00006         RAM1    EQU    0                2K RAM
+     2000             00007         RAM2    EQU    $2000
+     C000             00008         RAMROM  EQU    $C000            2K RAM or 2K/4K/8K ROM
+     E000             00009         ROM1    EQU    $E000            2K/4K/8K ROM
+                      00010         
+                      00011                     * addresses of DIP switch registers
+     6000             00012         SWTCH1  EQU    $6000
+     4000             00013         SWTCH2  EQU    $4000
+                      00014         
+                      00015                     * addresses of 6551 serial ports
+     A004             00016         PORT1   EQU    $A004
+     A008             00017         PORT2   EQU    $A008
+     A010             00018         PORT3   EQU    $A010
+                      00019         
+                      00020                     * offsets for 6551s
+     0000             00021         DATA51  EQU    0
+     0001             00022         STAT51  EQU    1
+     0002             00023         CMND51  EQU    2
+     0003             00024         CTRL51  EQU    3
+                      00025         
+                      00026                     * address of FIO
+     8000             00027         FIODAT  EQU    $8000
+     8001             00028         FIOCTL  EQU    $8001
+                      00029         
+                      00030                     * offsets for indirect addressing of FIO registers
+     0000             00031         CTLRG0  EQU    0                reset/mode control
+     0001             00032         CTLRG1  EQU    1                mailbox/REQ control
+     0002             00033         ISTAT0  EQU    2                message IRQ ctl
+     0009             00034         CTLRG2  EQU    9                port 2 control
+     000B             00035         MSGOUT  EQU    11               outgoing message byte
+     000C             00036         MSGIN   EQU    12               incoming message byte
+                      00037         
+                      00038         
+                      00039                 ORG    $2000                place in same RAM as stack
+                      00040         
+2000 10CE27FF         00041         START   LDS    #$27FF           init stack pointer
+                      00042         
+2004 860B             00043                 LDA    #$0B             no parity or IRQs, RTS & DTR low
+2006 F66000           00044                 LDB    SWTCH1           get baud rate for port 1
+2009 C40F             00045                 ANDB   #$0F
+200B CA10             00046                 ORB    #$10             1 stop bit, 8 data bits, no echo
+200D FDA006           00047                 STD    PORT1+CMND51     set up port 1 (console)
+2010 F66000           00048                 LDB    SWTCH1           get baud rate for port 2
+2013 54               00049                 LSRB
+2014 54               00050                 LSRB
+2015 54               00051                 LSRB
+2016 54               00052                 LSRB
+2017 CA10             00053                 ORB    #$10             1 stop bit, 8 data bits, no echo
+2019 FDA00A           00054                 STD    PORT2+CMND51     set up port 2 (printer)
+                      00055         
+                      00056                     * main execution loop
+                      00057         
+201C 8D41             00058         DOFIFO  BSR    RECEIV           get a command byte from host
+201E C105             00059                 CMPB   #CMDLMT
+2020 22FA             00060                 BHI    DOFIFO           do not accept undefined commands
+2022 308D0005         00061                 LEAX   CMDTBL,PCR
+2026 58               00062                 ASLB
+2027 AD95             00063                 JSR    [B,X]            call selected routine
+2029 20F1             00064                 BRA    DOFIFO           return and do next command
+                      00065         
+202B 203C             00066         CMDTBL  FDB    NULL             null command
+202D 2037             00067                 FDB    CNSTAT           sample status of console ACIA
+202F 203D             00068                 FDB    PRSTAT           sample status printer ACIA
+2031 2043             00069                 FDB    CNSEND           send data to console
+2033 2049             00070                 FDB    PRSEND           send data to printer
+2035 204F             00071                 FDB    CNRECV           receive data from console
+                      00072         
+     000C             00073         TBLSIZ  EQU    *-CMDTBL
+     0005             00074         CMDLMT  EQU    TBLSIZ/2-1
+                      00075         
+                      00076                     * get status of console
+                      00077         
+2037 F6A005           00078         CNSTAT  LDB    PORT1+STAT51     get status byte from 6551
+203A 8D16             00079                 BSR    SEND             return it to host
+203C 39               00080         NULL    RTS
+                      00081         
+                      00082                     * get status of printer
+                      00083         
+203D F6A009           00084         PRSTAT  LDB    PORT2+STAT51     get status byte from 6551
+2040 8D10             00085                 BSR    SEND             return it to host
+2042 39               00086                 RTS
+                      00087         
+                      00088                     * output a character to console
+                      00089         
+2043 8D1A             00090         CNSEND  BSR    RECEIV           get data byte from host
+2045 F7A004           00091                 STB    PORT1+DATA51     put it in console 6551
+2048 39               00092                 RTS
+                      00093         
+                      00094                     * output a character to printer
+                      00095         
+2049 8D14             00096         PRSEND  BSR    RECEIV           get data byte from host
+204B F7A008           00097                 STB    PORT2+DATA51     put it in printer 6551
+204E 39               00098                 RTS
+                      00099         
+                      00100                     * receive character from console
+                      00101         
+204F F6A004           00102         CNRECV  LDB    PORT1+DATA51     get data byte from 6551
+                      00103         
+                      00104                     * send a byte (in ACCB) to the host
+                      00105         
+2052 860B             00106         SEND    LDA    #MSGOUT
+2054 8D1A             00107                 BSR    STUFF            send the byte
+2056 8601             00108         SEND1   LDA    #CTLRG1          wait till last byte is accepted
+2058 8D0F             00109                 BSR    GRAB
+205A C520             00110                 BITB   #$20
+205C 26F8             00111                 BNE    SEND1
+205E 39               00112                 RTS
+                      00113         
+                      00114                     * receive a byte through the 8038 mailbox from the host
+                      00115         
+205F 8602             00116         RECEIV  LDA    #ISTAT0          get Interrupt Status 0
+2061 8D06             00117         RECV1   BSR    GRAB
+2063 C520             00118                 BITB   #$20             check Message IP
+2065 27FA             00119                 BEQ    RECV1            wait till it's set
+2067 860C             00120                 LDA    #MSGIN           get Message byte
+                      00121         
+                      00122                     * read the 8038 register pointed to by ACCA
+                      00123         
+2069 B78001           00124         GRAB    STA    FIOCTL           point to the register
+206C F68001           00125                 LDB    FIOCTL           read it
+206F 39               00126                 RTS
+                      00127         
+                      00128                     * put the value in ACCB in the register pointed to by ACCA
+                      00129         
+2070 B78001           00130         STUFF   STA    FIOCTL           point to the register
+2073 F78001           00131                 STB    FIOCTL           write to it
+2076 39               00132                 RTS
+                      00133         
+     0077             00134         CODSIZ  EQU    *-START
+2077 FFFFFFFFFFFFFFFF 00135                 FILL   $FF,404
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFF
+                      00136                 END

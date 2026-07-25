@@ -1,0 +1,565 @@
+                      00001         
+                      00002         
+                      00003         ********************************************
+                      00004         *                                         *
+                      00005         *         Gimix AUTOBOOT                  *
+                      00006         * --------------------------------------  *
+                      00007         * For Gimix DMA and Gimix and SWTPc       *
+                      00008         * programmed I"O disk controllers:        *
+                      00009         * Gimix DMA 68, PIO 28, and 5"8 58,       *
+                      00010         * and SWTPc DC-1, DC-2, and DC-3.         *
+                      00011         * --------------------------------------  *
+                      00012         *                                         *
+                      00013         *         Version 1.5                     *
+                      00014         *                                         *
+                      00015         *     Copyright (C) 1983 by               *
+                      00016         *         GIMIX, Inc.                     *
+                      00017         *     1337 West 37th Place                *
+                      00018         * Chicago, Illinois  60626                *
+                      00019         *     (312) 927-5510                      *
+                      00020         *                                         *
+                      00021         *     All rights reserved                 *
+                      00022         *                                         *
+                      00023         ********************************************
+                      00024         *
+                      00025         *AUTOBOOT first looks for a Gimix DMA 68 controller
+                      00026         *at its standard Gimix FLEX address ($E3B0).
+                      00027         *If the controller is found, the boot for the
+                      00028         *DMA 68 is executed. If not, AUTOBOOT looks for
+                      00029         *a PIO 28 controller (or 5"8 58, or DC-1, -2, or -3)
+                      00030         *at its standard Gimix FLEX address ($E010).
+                      00031         *If it is found, the PIO 28 boot is executed.
+                      00032         *If neither controller is found, AUTOBOOT prints
+                      00033         *an error message and returns to the monitor.
+                      00034         
+                      00035         *Note: execution of AUTOBOOT disables the interrupt
+                      00036         *output of the 58167 or 146818 time-of-day clock on
+                      00037         *the Gimix CPU board.
+                      00038         
+                      00039         *AUTOBOOT also includes a short routine which switches
+                      00040         *to OS-9. This routine uses 12 bytes of memory at $E50,
+                      00041         *and can be reached by a JMP instruction or a "J" command.
+                      00042         
+                      00043         *DISK CONTROLLER EQUATES
+                      00044         
+                      00045         *PIO-TYPE CONTROLLERS
+                      00046         
+     E014             00047         PORT    EQU    $E014            BASE ADDRESS OF CONTROLLER
+     E014             00048         PDRVRG  EQU    PORT             CONTROLLER DRIVE SELECT REGISTER
+     E018             00049         PCOMRG  EQU    PORT+4           1771 COMMAND"STATUS REGISTER
+     E01A             00050         PSECRG  EQU    PORT+6           1771 SECTOR REGISTER
+     E01B             00051         PDATRG  EQU    PORT+7           1771 DATA REGISTER
+                      00052         
+                      00053         *GIMIX DMA 68 CONTROLLER
+                      00054         
+     E3B0             00055         PORT1   EQU    $E3B0            BASE ADDRESS OF DMA 68
+     E3B0             00056         DRVREG  EQU    PORT1            DRIVE SELECT REGISTER
+     E3B1             00057         DMAREG  EQU    PORT1+1          DMA CONTROL REGISTER
+     E3B2             00058         ADDREG  EQU    PORT1+2          DMA ADDRESS REGISTER
+     E3B4             00059         COMREG  EQU    PORT1+4          1797 COMMAND"STATUS REGISTER
+     E3B5             00060         TRKREG  EQU    PORT1+5          1797 TRACK REGISTER
+     E3B6             00061         SECREG  EQU    PORT1+6          1797 SECTOR REGISTER
+     E3B7             00062         DATREG  EQU    PORT1+7          1797 DATA REGISTER
+                      00063         
+                      00064         *GMXBUG VECTOR ADDRESSES
+                      00065         
+     F802             00066         NXTCMD  EQU    $F802            WARM START
+     F806             00067         INCHE   EQU    $F806            INPUT CHARACTER W"ECHO
+     F80A             00068         OUTCH   EQU    $F80A            OUTPUT CHARACTER
+     F810             00069         PSTRNG  EQU    $F810            PRINT STRING W"CR-LF
+     F812             00070         LRA     EQU    $F812            LOAD REAL ADDRESS
+     E230             00071         TIMCLK  EQU    $E230            Gimix 6809 clock address (CPU+)
+     E240             00072         CLKIII  EQU    $E240            clock address (CPU III)
+     E280             00073         TSRIII  EQU    $E280            controls CPU III clock access
+                      00074         
+                      00075         *START OF PROGRAM
+                      00076         
+     E3               00077                 SETDP  $E3
+                      00078         
+                      00079                 ORG    $F000
+                      00080         
+F000 7FE231           00081         AUTBOT  CLR    TIMCLK+1        DISABLE 58167 INTERRUPTS
+F003 7DE230           00082                 TST    TIMCLK          CLEAR ANY PENDING INTERRUPT
+F006 8608             00083                 LDA    #8
+F008 B7E280           00084                 STA    TSRIII
+F00B B6E24B           00085                 LDA    CLKIII+11       suppress 146818 interrupts
+F00E 8487             00086                 ANDA   #$87
+F010 B7E24B           00087                 STA    CLKIII+11
+F013 7FE280           00088                 CLR    TSRIII
+F016 7DE24C           00089                 TST    CLKIII+12       clear pending interrupts
+                      00090         
+                      00091         *LOOK FOR GIMIX DMA 68 CONTROLLER
+                      00092         
+F019 86E3             00093                 LDA    #$E3            SET DP TO DMA 68 CONTROLLER PAGE
+F01B 1F8B             00094                 TFR    A,DP
+F01D 0FB1             00095                 CLR    <DMAREG         CLEAR DMA ENABLE
+                      00096         
+F01F 0FB0             00097                 CLR    <DRVREG         CLEAR DRIVE SELECT REGISTER
+F021 96B0             00098                 LDA    <DRVREG         READ DRIVE SELECT REGISTER
+F023 8516             00099                 BITA   #$16            ARE FLAGS ALL CLEAR?
+F025 260F             00100                 BNE    PIO             NO: CHECK FOR PIO
+F027 CCC010           00101                 LDD    #$C010          SET DMA, 8" & 2MHZ FLAGS
+F02A DDB0             00102                 STD    <DRVREG
+F02C 96B0             00103                 LDA    <DRVREG         READ THEM BACK
+F02E 8416             00104                 ANDA   #$16            MASK UNWANTED BITS
+F030 8116             00105                 CMPA   #$16            CORRECT FOR DMA 68 CONTROLLER?
+F032 10270178         00106                 LBEQ   DMABOT          YES: DO DMA BOOT
+                      00107         *                              ELSE DROP THROUGH TO PIO CHECK
+                      00108         
+                      00109         *LOOK FOR PIO-TYPE CONTROLLER
+                      00110         
+F036 8EE018           00111         PIO     LDX    #PORT+4         POINT TO PIO PAGE
+F039 86D0             00112                 LDA    #$D0            GIVE IT FORCE INTERRUPT COMMAND
+F03B A780             00113                 STA    ,X+
+F03D 8603             00114                 LDA    #3              CLEAR $E019-$E01B
+F03F 6F80             00115         PIO1    CLR    ,X+
+F041 4A               00116                 DECA
+F042 26FB             00117                 BNE    PIO1
+F044 8603             00118                 LDA    #3              NOW CHECK THOSE BYTES
+F046 6D82             00119         PIO2    TST    ,-X
+F048 261D             00120                 BNE    NOTHIN          STILL ZERO? NO: NO CONTROLLER INSTALLED
+F04A 4A               00121                 DECA
+F04B 26F9             00122                 BNE    PIO2
+F04D 8603             00123                 LDA    #3
+F04F C65A             00124                 LDB    #$5A
+F051 E780             00125         PIO3    STB    ,X+            WRITE ROTATING PATTERN TO PIO
+F053 56               00126                 RORB
+F054 4A               00127                 DECA
+F055 26FA             00128                 BNE    PIO3
+F057 301D             00129                 LEAX   -3,X            RESET POINTER
+F059 8603             00130                 LDA    #3              CHECK THOSE THREE BYTES AGAIN
+F05B C65A             00131                 LDB    #$5A            SET UP STARTING MASK
+F05D E180             00132         PIO4    CMPB   ,X+
+F05F 2606             00133                 BNE    NOTHIN          DOESN'T MATCH - NOBODY THERE
+F061 56               00134                 RORB
+F062 4A               00135                 DECA
+F063 26F8             00136                 BNE    PIO4
+                      00137         *                              ALL BYTES MATCHED:
+F065 2024             00138                 BRA    BOOT            DO PROGRAMMED I"O BOOT
+                      00139         
+                      00140         *PRINT NOTHING MESSAGE
+                      00141         
+F067 308D0008         00142         NOTHIN  LEAX   NOTHMS,PCR      PRINT MESSAGE
+F06B AD9FF810         00143         MONOUT  JSR    [PSTRNG]
+F06F 6E9FF802         00144         MONOT1  JMP    [NXTCMD]        RETURN TO MONITOR WARM START
+F073 4E4F20434F4E5452 00145         NOTHMS  FCC    "NO CONTROLLER INSTALLED"
+     4F4C4C455220494E
+     5354414C4C4544
+F08A 04               00146                 FCB    4
+                      00147         
+                      00148         
+                      00149         *START OF PROGRAMMED I"O BOOT
+                      00150         
+     E0               00151                 SETDP  $E0
+                      00152         
+F08B 86E0             00153         BOOT   LDA    #$E0            POINT DP TO PIO PAGE
+F08D 1F8B             00154                TFR    A,DP
+F08F 308D00F2         00155                LEAX   PIOMSG,PCR      PRINT PIO MESSAGE
+F093 AD9FF810         00156                JSR    [PSTRNG]
+F097 10CEDFFF         00157                LDS    #$DFFF          SET STACK POINT
+F09B 3408             00158                PSHS   DP              SAVE DP
+F09D 0F14             00159                CLR    <PDRVRG         START MOTOR AND SELECT DRIVE ZERO
+F09F 86D0             00160                LDA    #$D0            CLEAR 1771 INTERRUPT
+F0A1 9718             00161                STA    <PCOMRG
+F0A3 8D48             00162                BSR    CHKRDY           WAIT FOR READY
+F0A5 8603             00163                LDA    #3              SET COUNT OF 3 TRACKS
+F0A7 3402             00164                PSHS   A               PUT ON STACK
+F0A9 865B             00165         BOOTA  LDA    #$5B            STEP IN
+F0AB 9718             00166                STA    <PCOMRG
+F0AD 8D3E             00167                BSR    CHKRDY           WAIT FOR READY
+F0AF 6AE4             00168                DEC    ,S
+F0B1 26F6             00169                BNE    BOOTA           LOOP TILL THREE STEPS DONE
+F0B3 3261             00170                LEAS   1,S             ADJUST STACK
+F0B5 860B             00171                LDA    #$0B            HOME AT 40ms"STEP W"HEAD LOAD
+F0B7 9718             00172                STA    <PCOMRG
+                      00173         
+                      00174         *DELAY 2,00,000 MACHINE CYCLES FOR MOTORS TO SPEED UP.
+                      00175         
+F0B9 8E4009           00176                LDX    #$4009          NUMBER OF TIMES THROUGH LOOP
+F0BC 8D37             00177         BOOT1  BSR    DELAY           DELAY FOR 114 CYCLES
+F0BE 301F             00178                LEAX   -1,X            DECREMENT COUNTER
+F0C0 26FA             00179                BNE    BOOT1           LOOP TILL COUNTER DONE
+F0C2 8D29             00180                BSR    CHKRDY           WAIT FOR NOT BUSY
+F0C4 58               00181                ASLB                    DRIVES READY?
+F0C5 2B34             00182                BMI    ERROR           IF NOT THEN ERROR
+F0C7 8601             00183                LDA    #1              SET FOR SECTOR ONE
+F0C9 971A             00184                STA    <PSECRG
+F0CB C68C             00185                LDB    #$8C            READ SINGLE RECORD, IBM FORMAT,
+F0CD D718             00186                STB    <PCOMRG         HLD, HLT AND 10 ms DELAY
+F0CF 8EC000           00187                LDX    #$C000          DESTINATION FOR DATA FROM DISK
+F0D2 8D21             00188                BSR    DELAY           GIVE DISK TIME TO SETTLE
+F0D4 D618             00189         READ   LDB    <PCOMRG         GET 1771 STATUS
+F0D6 C502             00190                BITB   #$02            DATA REQUEST?
+F0D8 2706             00191                BEQ    NODATA
+F0DA 961B             00192                LDA    <PDATRG         READ BYTE FROM 1771
+F0DC A780             00193                STA    ,X+            STORE IN MEMORY AND BUMP POINTER
+F0DE 20F4             00194                BRA    READ            AND RE-ENTER READ LOOP
+F0E0 C501             00195         NODATA BITB   #01             IS 1771 BUSY?
+F0E2 26F0             00196                BNE    READ            YES: GO READ STATUS AGAIN
+F0E4 3508             00197         ALLDON PULS   DP              RESTORE DP REGISTER
+F0E6 C59C             00198                BITB   #$9C            ANY ERRORS FOUND?
+F0E8 2611             00199                BNE    ERROR           YES: PRINT ERROR MESSAGE
+F0EA 7EC000           00200                JMP    $C000           NO: JUMP TO BOOT FROM DISK
+                      00201         
+                      00202         *THIS ROUTINE WAITS FOR THE
+                      00203         *1797 TO FINISH EXECUTING
+                      00204         *THE CURRENT COMMAND.
+                      00205         
+F0ED 8D06             00206         CHKRDY  BSR    DELAY           DELAY FOR 114 CYCLES
+F0EF D618             00207         CKRDY1  LDB    <PCOMRG         GET STATUS FROM 1771
+F0F1 57               00208                 ASRB                    BUSY?
+F0F2 25FB             00209                 BCS    CKRDY1          YES: WAIT TILL DONE
+F0F4 39               00210                 RTS
+                      00211         
+                      00212         *THIS SUBROUTINE DELAYS FOR EXACTLY 114 MACHINE CYCLES
+                      00213         *INCLUDING THE BSR AND RTS.  THE NUMBER OF CYCLES FOR
+                      00214         *EACH INSTRUCTION IS IN PARENTHESIS.
+                      00215         
+                      00216         *THE BSR TAKES 7 CYCLES
+                      00217         
+F0F5 C614             00218         DELAY   LDB    #20             SET INNER LOOP COUNT (2)
+F0F7 5A               00219         DELAY1  DECB                    DECREMENT COUNTER      (2) X 20
+F0F8 26FD             00220                 BNE    DELAY1          LOOP TILL DONE          (3) X 20
+F0FA 39               00221                 RTS                     RETURN                  (5)
+                      00222         
+                      00223         *ERROR REPORT ROUTINE
+                      00224         *CHECKS FOR DRIVES NOT READY
+                      00225         *AND TELLS THE USER IF THAT IS
+                      00226         *THE CASE.
+                      00227         
+F0FB 308D004B         00228         ERROR  LEAX   ERRMSG,PCR      PRINT ERROR MESSAGE
+F0FF AD9FF810         00229                JSR    [PSTRNG]
+F103 3404             00230                PSHS   B
+F105 8D2F             00231                BSR    PDIGIT           PRINT 1ST 1771"1797 STATUS DIGIT
+F107 3504             00232                PULS   B
+F109 8D2F             00233                BSR    PDIGT1           PRINT 2ND DIGIT
+F10B 5D               00234                TSTB                    CHECK DRIVES NOT READY
+F10C 2A08             00235                BPL    ERR1
+F10E 308D0067         00236                LEAX   NRDYMS,PCR      IF SO PRINT MESSAGE
+F112 AD9FF810         00237                JSR    [PSTRNG]
+F116 308D0051         00238         ERR1   LEAX   ERRM1,PCR      PRINT RETRY PROMPT
+F11A AD9FF810         00239                JSR    [PSTRNG]
+F11E AD9FF806         00240                JSR    [INCHE]          GET A CHARACTER FROM KEYBOARD
+F122 8160             00241                CMPA   #$60
+F124 2D02             00242                BLT    ERR2
+F126 8020             00243                SUBA   #$20            CONVERT LOWER CASE TO UPPER CASE
+F128 8159             00244         ERR2   CMPA   #'Y'            IS IT A 'Y'?
+F12A 1027FED2         00245                LBEQ   AUTBOT           YES: TRY AGAIN
+F12E 814E             00246                CMPA   #'N'            IS IT AN 'N'?
+F130 1027FF3B         00247                LBEQ   MONOT1           YES: GO BACK TO MONITOR THROUGH
+F134 20E0             00248                BRA    ERR1             RE-PROMPT IF NOT 'Y' OR 'N'
+                      00249         
+                      00250         *ENTRANCE FOR LEFT DIGIT
+                      00251         
+F136 54               00252         PDIGIT LSRB                    MOVE LEFT NYBBLE TO RIGHT NYBBLE
+F137 54               00253                LSRB
+F138 54               00254                LSRB
+F139 54               00255                LSRB
+                      00256         *ENTRANCE FOR RIGHT DIGIT
+F13A 1F98             00257         PDIGT1 TFR    B,A             COPY TO ACCA
+F13C 840F             00258                ANDA   #$0F            MASK TO 4 LS BITS
+F13E 8109             00259                CMPA   #9              CONVERT TO HEX ASCII
+F140 2F02             00260                BLE    PDG1
+F142 8B07             00261                ADDA   #7              OFFSET FOR A-F
+F144 8B30             00262         PDG1   ADDA   #$30            OFFSET FOR ASCII
+F146 6E9FF80A         00263                JMP    [OUTCH]          PRINT CHARACTER & RETURN
+                      00264         
+                      00265         *ERROR MESSAGES
+                      00266         
+F14A 4552524F5220494E 00267         ERRMSG  FCC    "ERROR IN BOOT - DEVICE STATUS = "
+     20424F4F54202D20
+     4445564943452053
+     5441545553203D20
+F16A 04               00268                 FCB    4
+F16B 52452D5452592028 00269         ERRM1   FCC    ;RE-TRY (Y/N)?;
+     592F4E293F
+F178 04               00270                 FCB    4
+F179 0D               00271         NRDYMS  FCB    13
+F17A 0A               00272                 FCB    10
+F17B 4E4F542052454144 00273                 FCC    "NOT READY"
+     59
+F184 04               00274                 FCB    4
+F185 455845435554494E 00275         PIOMSG  FCC    ;EXECUTING GIMIX PROGRAMMED I/O BOOTSTRAP;
+     472047494D495820
+     50524F4752414D4D
+     454420492F4F2042
+     4F4F545354524150
+F1AD 04               00276                 FCB    4
+                      00277         
+                      00278         *START OF DMA BOOT
+                      00279         
+     E3               00280                                     SETDP  $E3
+                      00281         
+F1AE 308D0078         00282         DMABOT LEAX   DMAMSG,PCR      PRINT DMA MESSAGE
+F1B2 AD9FF810         00283                JSR    [PSTRNG]
+F1B6 10CEDFFF         00284                LDS    #$DFFF          SET STACK POINTER
+F1BA 3408             00285                PSHS   DP              SAVE DP
+F1BC 86E3             00286                LDA    #$E3            POINT DP TO DMA 68 PAGE
+F1BE 1F8B             00287                TFR    A,DP
+F1C0 86D0             00288                LDA    #$D0            CLEAR ANY INTERRUPT IN 1797
+F1C2 97B4             00289                STA    <COMREG
+F1C4 8601             00290                LDA    #1              SELECT DRIVE ONE
+F1C6 97B6             00291                STA    <SECREG         AND SET FOR SECTOR ONE
+F1C8 D6B0             00292                LDB    <DRVREG         GET DMA 68 STATUS
+F1CA 54               00293                LSRB                    CHECK SENSE SWITCH
+F1CB 2402             00294                BCC    BOOT0           OFF - 5" BOOT DRIVE
+F1CD 8AC0             00295                ORA    #$C0            ON - MAKE EIGHT INCH
+F1CF 97B0             00296         BOOT0  STA    <DRVREG         GIVE TO DMA 68
+F1D1 D6B4             00297         BOOTL1 LDB    <COMREG
+F1D3 2A1B             00298                BPL    BOOT2           check drive ready
+F1D5 0FB0             00299                CLR    <DRVREG         if not, momentarily deselect
+F1D7 97B0             00300                STA    <DRVREG         and reselect drives
+F1D9 108E4E20         00301                LDY    #20000
+F1DD C614             00302         BLP1   LDB    #20
+F1DF 5A               00303         BLP2   DECB
+F1E0 26FD             00304                BNE    BLP2            wait 2 seconds
+F1E2 D6B4             00305                LDB    <COMREG
+F1E4 2A0A             00306                BPL    BOOT2           check drive ready every 100 usec
+F1E6 313F             00307                LEAY   -1,Y
+F1E8 26F3             00308                BNE    BLP1
+F1EA 308C8C           00309                LEAX   NRDYMS,PCR      if wait expires, abort boot
+F1ED 16FE7B           00310                LBRA   MONOUT           with message & return to GMXBUG
+                      00311         
+F1F0 8A20             00312         BOOT2  ORA    #$20            SET FOR SINGLE DENSITY
+F1F2 97B0             00313                STA    <DRVREG         SELECT DRIVE, DENSITY, & SIZE
+F1F4 0FB1             00314                CLR    <DMAREG         DISABLE DMA
+F1F6 8603             00315                LDA    #3
+F1F8 C65B             00316         BOOT3  LDB    #$5B            STEP IN WITH UPDATE 3 TIMES
+F1FA 8D22             00317                BSR    CHKRDA
+F1FC 4A               00318                DECA
+F1FD 26F9             00319                BNE    BOOT3
+F1FF C60B             00320                LDB    #$0B            HOME AT 40ms PER STEPPING PULSE,
+                      00321         *                             LOAD HEAD AND VERIFY POSITION
+F201 4F               00322                CLRA                    DISABLE DMA
+F202 8D18             00323                BSR    DCHKRD
+F204 C504             00324                BITB   #04             CHECK FOR TRACK ZERO
+F206 1027FEF1         00325                LBEQ   ERROR            IF NOT THEN ERROR
+F20A 8EC000           00326                LDX    #$C000          ADDRESS TO LOAD FROM DISK
+F20D AD9FF812         00327                JSR    [LRA]            GET REAL ADDRESS
+F211 9FB2             00328                STX    <ADDREG         GIVE ADDRESS TO DMA CONTROLLER
+F213 8A10             00329                ORA    #$10            ENABLE DMA
+F215 C68C             00330                LDB    #$8C            READ SINGLE RECORD, IBM FORMAT,
+F217 8D03             00331                BSR    DCHKRD           HLD, HLT AND 10 ms DELAY
+F219 16FEC8           00332                LBRA   ALLDON           GO DO FINAL STUFF
+                      00333         
+                      00334         *THIS SUBROUTINE OUTPUTS SETTINGS TO THE DMA 68 AND A
+                      00335         *COMMAND TO THE 1797, THEN WAITS FOR THE 1797 TO FINISH
+                      00336         *THE COMMAND, AS INDICATED BY THE DMA 68 IRQ FLAG.
+                      00337         
+F21C 97B1             00338         DCHKRD STA    <DMAREG         OUTPUT SETTINGS TO DMA 68
+                      00339         *                              ENTRANCE FOR LOOPED STEP COMMAND
+F21E D7B4             00340         CHKRDA STB    <COMREG         OUTPUT COMMAND TO 1797
+F220 D6B0             00341         CHKRD1 LDB    <DRVREG         WAIT TILL DMA 68 IRQ FLAG IS SET
+F222 0DB5             00342                TST    <TRKREG         keep drives running
+F224 58               00343                ASLB
+F225 2AF9             00344                BPL    CHKRD1
+F227 D6B4             00345                LDB    <COMREG         RETURN 1797 STATUS IN ACCB
+F229 39               00346                RTS
+F22A 455845435554494E 00347         DMAMSG FCC    "EXECUTING GIMIX DMA BOOTSTRAP"
+     472047494D495820
+     444D4120424F4F54
+     5354524150
+F247 04               00348                FCB    4
+F248 0A               00349                FCB    10
+F249 6E6F742072656164 00350         NRFLAG FCC    "not ready"
+     79
+F252 04               00351                FCB     4
+                      00352         
+                      00353         *Extra code to allow switching to OS-9 without FLEX
+                      00354                
+     FFFE             00355         RESET  EQU    $FFFE            reset vector address
+     FF7F             00356         TSR    EQU    $FF7F            Task select register
+F253 FFFFFFFFFFFFFFFF 00357                FILL $FF,173
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFF
+                      00358         
+                      00359                ORG    $F300
+F300 308D0010         00360         OS9    LEAX   SWITCH,PCR      point to switch code
+F304 108EE500         00361                LDY    #$E500          point to scratchpad
+F308 C60C             00362                LDB    #12             set byte count
+F30A A680             00363         OS91   LDA    ,X+            copy switch code to RAM
+F30C A7A0             00364                STA    ,Y+
+F30E 5A               00365                DECB
+F30F 26F9             00366                BNE    OS91
+F311 7EE500           00367                JMP    $E500           execute it
+F314 4F               00368         SWITCH CLRA
+F315 1F8B             00369                TFR    A,DP            clear the DP register
+F317 8620             00370                LDA    #$20
+F319 B7FF7F           00371                STA    TSR             select OS9 task
+F31C 6E9FFFFE         00372                JMP    [RESET]          jump on reset vector
+F320 FFFFFFFFFFFFFFFF 00373                FILL $FF,$4e0
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+     FFFFFFFFFFFFFFFF
+                      00374                END

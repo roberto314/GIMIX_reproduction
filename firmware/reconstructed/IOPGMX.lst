@@ -1,0 +1,336 @@
+                      00001         
+                      00002                     * IOPGMX
+                      00003         
+                      00004                     * This program resides at $F400 in the GMXBUG 3.2 ROM,
+                      00005                     * It supports a serial terminal as console on port 1,
+                      00006                     * and a serial device as printer on port 2. IOPGMX
+                      00007                     * includes subroutines to support the GMXBUG calls
+                      00008                     * INCH, INCHEK, OUTCH, and PRINT, and also handles
+                      00009                     * the "force upper case" and "output to both screen
+                      00010                     * and printer" features.  The special general IRQ
+                      00011                     * mask of the CPU III is used to avoid the conflicts
+                      00012                     * that would result if an NMI, IRQ, or FIRQ were to
+                      00013                     * occur during console or printer I/O.  However, this
+                      00014                     * can cause spurious NMIs.  To avoid this a modified
+                      00015                     * NMI handler is provided.
+                      00016         
+                      00017                     * IOPGMX also includes a patch to the "O" command for
+                      00018                     * switching to OS-9; this patch makes sure that the IOP
+                      00019                     * is in a state of reset when OS-9 comes up.
+                      00020         
+                      00021                     * Because of this patch code, the binary image of this
+                      00022                     * program MUST overlay GMXBUG 3.2, rather than vice versa.
+                      00023         
+     F806             00024         INCHE   EQU    $F806
+     F810             00025         PSTRNG  EQU    $F810
+     F86E             00026         RENTER  EQU    $F86E            reentry address for GMXBUG 3.2
+     F83B             00027         RENTR1  EQU    $F83B            reentry address for normal init
+     F8A4             00028         WARMS0  EQU    $F8A4            addresses for NMI handler
+     F92D             00029         PRTR1   EQU    $F92D
+     E280             00030         TSR     EQU    $E280            Task Status Register of CPU III
+     E400             00031         INVEC   EQU    $E400            console input vector
+     E421             00032         UPCASE  EQU    $E421            force uppercase input flag
+     E435             00033         PTRFLG  EQU    $E435            printer type flag
+     E436             00034         DEST    EQU    $E436            printer output flag
+     E462             00035         NMICTL  EQU    $E462            NMI inhibit control flag
+     2000             00036         DRVADR  EQU    $2000            load address for driver code
+     2000             00037         DRVTFR  EQU    $2000            transfer address for driver
+     0077             00038         DRVSIZ  EQU    $77              size of driver code
+     E000             00039         FIODAT  EQU    $E000            address of FIO
+     E001             00040         FIOCTL  EQU    $E001
+     E002             00041         FIOIRQ  EQU    $E002
+     E042             00042         PPRINT  EQU    $E042            address of printer PIA
+                      00043         
+                      00044                     * offsets for indirect addressing of FIO registers
+     0000             00045         CTLRG0  EQU    0                reset/mode control
+     0001             00046         CTLRG1  EQU    1                mailbox/REQ control
+     0002             00047         ISTAT0  EQU    2                message IRQ ctl
+     0009             00048         CTLRG2  EQU    9                port 2 control
+     000B             00049         MSGOUT  EQU    11               outgoing message byte
+     000C             00050         MSGIN   EQU    12               incoming message byte
+                      00051         
+                      00052                 ORG    $F400
+                      00053         
+F400 12               00054         START   NOP                     address for alternate I/O ROM
+F401 2006             00055                 BRA    BEGIN            NOP at $F400 is flag to GMXBUG
+                      00056         
+                      00057                     * These two vectors are set up for use by PRINT.SYS
+F403 160175           00058         PRTTST  LBRA   IOPCHP           vector to IOP printer check
+F406 16013E           00059         PRTOUT  LBRA   IOPPRT           vector to IOP printer output
+                      00060         
+F409 B6E280           00061         BEGIN   LDA    TSR              check CPU III sense bit (JA-9)
+F40C 8510             00062                 BITA   #$10             if sense bit is 1, (jumper open)
+F40E 10260429         00063                 LBNE   RENTR1           resume normal initialization
+                      00064         
+F412 B7E002           00065                 STA    FIOIRQ
+F415 B6E001           00066                 LDA    FIOCTL           reset sequence for FIO
+F418 B6E001           00067                 LDA    FIOCTL
+F41B 8600             00068                 LDA    #CTLRG0
+F41D C601             00069                 LDB    #1               toggle FIO reset bit
+F41F 1700A4           00070                 LBSR   STUFF
+F422 5F               00071                 CLRB
+F423 1700A0           00072                 LBSR   STUFF
+F426 B6E001           00073                 LDA    FIOCTL
+F429 8600             00074                 LDA    #CTLRG0
+F42B C614             00075                 LDB    #$14             set non-Z-bus, vector w/status
+F42D 170096           00076                 LBSR   STUFF
+F430 8609             00077                 LDA    #CTLRG2
+F432 C601             00078                 LDB    #1
+F434 17008F           00079                 LBSR   STUFF            enable IOP side
+                      00080         
+F437 8605             00081         WAIT    LDA    #5
+F439 8EF424           00082         WAIT1   LDX    #62500           delay 1.25 seconds for
+F43C 301F             00083         WAIT2   LEAX   -1,X              IOPROM to complete its setup
+F43E 26FC             00084                 BNE    WAIT2            and enter the wait loop
+F440 4A               00085                 DECA
+F441 26F6             00086                 BNE    WAIT1
+                      00087         
+F443 C6F0             00088                 LDB    #$F0             tell IOP to jump to GMX loader
+F445 8D61             00089                 BSR    SEND
+F447 8614             00090                 LDA    #20              delay 100 cycles for
+F449 4A               00091         WAIT3   DECA                     loader internal setup
+F44A 26FD             00092                 BNE    WAIT3
+                      00093         
+F44C C655             00094         HEADBT  LDB    #$55             send start-of-record byte
+F44E 8D58             00095                 BSR    SEND
+F450 8D63             00096                 BSR    RECEIV
+F452 C155             00097                 CMPB   #$55             get $55 back from IOP
+F454 26F6             00098                 BNE    HEADBT
+                      00099         
+F456 C620             00100                 LDB    #DRVADR/256      send load address
+F458 8D4E             00101                 BSR    SEND
+F45A CC2000           00102                 LDD    #DRVADR
+F45D 8D49             00103                 BSR    SEND
+F45F C600             00104                 LDB    #DRVSIZ/256      send byte count
+F461 8D45             00105                 BSR    SEND
+F463 CC0077           00106                 LDD    #DRVSIZ
+F466 8D40             00107                 BSR    SEND
+                      00108         
+F468 C620             00109                 LDB    #DRVTFR/256      send transfer address
+F46A 8D3C             00110                 BSR    SEND
+F46C CC2000           00111                 LDD    #DRVTFR
+F46F 8D37             00112                 BSR    SEND
+                      00113         
+F471 308D0180         00114                 LEAX   DRIVER,PCR       send the block of code
+F475 108E0077         00115                 LDY    #DRVSIZ
+F479 E680             00116         SNDBLK  LDB    ,X+             get a byte
+F47B 8D2B             00117                 BSR    SEND             send it
+F47D 313F             00118                 LEAY   -1,Y             end of block?
+F47F 26F8             00119                 BNE    SNDBLK           continue if not
+                      00120         
+                      00121                     * IOP will now be running in GMXBUG driver mode
+                      00122         
+F481 CEE400           00123                 LDU    #INVEC           point to GMXBUG vector area
+F484 CCF4CD           00124                 LDD    #IOPINP
+F487 EDC1             00125                 STD    ,U++
+F489 CCF4E9           00126                 LDD    #IOPKEY          set up console I/O vectors
+F48C EDC1             00127                 STD    ,U++
+F48E CCF4D7           00128                 LDD    #IOPTST
+F491 EDC1             00129                 STD    ,U++
+F493 CCF516           00130                 LDD    #IOPOUT
+F496 EDC1             00131                 STD    ,U++
+F498 CCF547           00132                 LDD    #IOPPRT          set up printer vector
+F49B EDC1             00133                 STD    ,U++
+F49D CCF5B2           00134                 LDD    #IOPNMI          set up NMI handler
+F4A0 EDC1             00135                 STD    ,U++
+F4A2 7FE462           00136                 CLR    NMICTL           enable NMI reenable
+F4A5 7EF86E           00137                 JMP    RENTER           reenter GMXBUG
+                      00138         
+                      00139                     * send a byte (in ACCB) to the slave
+                      00140         
+F4A8 860B             00141         SEND    LDA    #MSGOUT
+F4AA 8D1A             00142                 BSR    STUFF            send the byte
+F4AC 8601             00143         SEND1   LDA    #CTLRG1          wait till last byte is accepted
+F4AE 8D0F             00144                 BSR    GRAB
+F4B0 C520             00145                 BITB   #$20
+F4B2 26F8             00146                 BNE    SEND1
+F4B4 39               00147                 RTS
+                      00148         
+                      00149                     * receive a byte through the 8038 mailbox from the slave
+                      00150         
+F4B5 8602             00151         RECEIV  LDA    #ISTAT0          get Interrupt Status 0
+F4B7 8D06             00152         RECV1   BSR    GRAB
+F4B9 C520             00153                 BITB   #$20             check Message IP
+F4BB 27FA             00154                 BEQ    RECV1            wait till it's set
+F4BD 860C             00155                 LDA    #MSGIN           get Message byte
+                      00156         
+                      00157                     * read the 8038 register pointed to by ACCA
+                      00158         
+F4BF B7E001           00159         GRAB    STA    FIOCTL           point to the register
+F4C2 F6E001           00160                 LDB    FIOCTL           read it
+F4C5 39               00161                 RTS
+                      00162         
+                      00163                     * put the value in ACCB in the register pointed to by ACCA
+                      00164         
+F4C6 B7E001           00165         STUFF   STA    FIOCTL           point to the register
+F4C9 F7E001           00166                 STB    FIOCTL           write to it
+F4CC 39               00167                 RTS
+                      00168         
+                      00169                     * INCH equivalent - get input from console
+                      00170         
+F4CD 3404             00171         IOPINP  PSHS   B
+F4CF 8D06             00172         IOPIN1  BSR    IOPTST           check console 6551 status
+F4D1 27FC             00173                 BEQ    IOPIN1           if no data, continue to wait
+F4D3 8D20             00174                 BSR    IOPGET           else get character
+F4D5 3584             00175                 PULS   B,PC             and exit
+                      00176         
+                      00177                     * INCHEK equivalent - test for console input waiting
+                      00178         
+F4D7 3406             00179         IOPTST  PSHS   D
+F4D9 1700BD           00180                 LBSR   MASK             mask interrupts
+F4DC C601             00181                 LDB    #1               get status of console 6551
+F4DE 8DC8             00182                 BSR    SEND
+F4E0 8DD3             00183                 BSR    RECEIV
+F4E2 1700BF           00184                 LBSR   UNMASK           unmask interrupts
+F4E5 C508             00185                 BITB   #8               test RxDRF bit
+F4E7 3586             00186                 PULS   D,PC             return Z=1 or Z=0
+                      00187         
+                      00188                     * INKEY equivalent - get input from console without waiting
+                      00189         
+F4E9 3404             00190         IOPKEY  PSHS   B
+F4EB 8DEA             00191                 BSR    IOPTST           test for input waiting
+F4ED 2704             00192                 BEQ    IOPK1            if none, exit with Z=1
+F4EF 8D04             00193                 BSR    IOPGET           else get input and exit
+F4F1 1CFB             00194                 ANDCC  #$FB             with Z=0 (input found)
+F4F3 3584             00195         IOPK1   PULS   B,PC
+                      00196         
+                      00197                     * get a character from console through IOP
+                      00198         
+F4F5 3404             00199         IOPGET  PSHS   B
+F4F7 17009F           00200                 LBSR   MASK             mask interrupts
+F4FA C605             00201                 LDB    #5               get data
+F4FC 8DAA             00202                 BSR    SEND
+F4FE 8DB5             00203                 BSR    RECEIV
+F500 1700A1           00204                 LBSR   UNMASK           unmask interrupts
+F503 1F98             00205                 TFR    B,A              move data to ACCA
+F505 7DE421           00206                 TST    UPCASE           force upper case flag set?
+F508 270A             00207                 BEQ    IOPG1
+F50A 8161             00208                 CMPA   #'a'             if so, is input a-z?
+F50C 2D06             00209                 BLT    IOPG1
+F50E 817A             00210                 CMPA   #'z'
+F510 2E02             00211                 BGT    IOPG1
+F512 84DF             00212                 ANDA   #$DF             if so, convert to upper case
+F514 3584             00213         IOPG1   PULS   B,PC             restore ACCB and exit
+                      00214         
+                      00215                     * OUTCH equivalent - send character to console through IOP
+                      00216         
+F516 3406             00217         IOPOUT  PSHS   D
+F518 17007E           00218         IOP01   LBSR   MASK             mask interrupts
+F51B C601             00219                 LDB    #1               get console 6551 status
+F51D 8D89             00220                 BSR    SEND
+F51F 8D94             00221                 BSR    RECEIV
+F521 170080           00222                 LBSR   UNMASK           unmask interrupts
+F524 C510             00223                 BITB   #$10             test TxDRE
+F526 27F0             00224                 BEQ    IOP01            if 0 continue to wait
+F528 C560             00225                 BITB   #$60             test DCD and DSR bits also
+F52A 26EC             00226                 BNE    IOP01            if either not 0, wait
+F52C 17006A           00227                 LBSR   MASK             mask interrupts
+F52F C603             00228                 LDB    #3
+F531 17FF74           00229                 LBSR   SEND
+F534 E6E4             00230                 LDB    ,S              output byte to console
+F536 17FF6F           00231                 LBSR   SEND
+F539 170068           00232                 LBSR   UNMASK           unmask interrupts
+F53C 7DE436           00233                 TST    DEST
+F53F 2704             00234                 BEQ    IOP02
+F541 A6E4             00235                 LDA    ,S
+F543 8D02             00236                 BSR    IOPPRT           if so do it
+F545 3586             00237         IOP02   PULS   D,PC             restore ACCs and exit
+                      00238         
+                      00239                     * PRINT equivalent - send character to printer through IOP
+                      00240         
+F547 3406             00241         IOPPRT  PSHS   D
+F549 7DE435           00242                 TST    PTRFLG           check for parallel printer
+F54C 2616             00243                 BNE    PARLEL           if so branch to parallel driver
+F54E 8D2B             00244         IOPPR1  BSR    IOPCHP           check printer 6551 status
+F550 27FC             00245                 BEQ    IOPPR1           wait till printer is ready
+F552 170044           00246                 LBSR   MASK             mask interrupts
+F555 C604             00247                 LDB    #4
+F557 17FF4E           00248                 LBSR   SEND
+F55A E6E4             00249                 LDB    ,S              output data byte to printer
+F55C 17FF49           00250                 LBSR   SEND
+F55F 170042           00251                 LBSR   UNMASK           unmask interrupts
+F562 3586             00252                 PULS   D,PC             restore regs and exit
+                      00253         
+                      00254                     * Parallel printer routine
+                      00255         
+F564 7DE043           00256         PARLEL  TST    PPRINT+1         wait for printer ready
+F567 2AFB             00257                 BPL    PARLEL
+F569 7DE042           00258         PARLL1  TST    PPRINT           clear IRQ flag
+F56C B7E042           00259                 STA    PPRINT           put data in PiA
+F56F C636             00260                 LDB    #$36
+F571 F7E043           00261                 STB    PPRINT+1         toggle handshake output
+F574 C63E             00262                 LDB    #$3E
+F576 F7E043           00263                 STB    PPRINT+1
+F579 3586             00264                 PULS   D,PC             exit
+                      00265         
+                      00266                     * subroutine for FLEX: sample printer status
+                      00267                     * and return Z=0 if printer is ready
+                      00268         
+F57B 3406             00269         IOPCHP  PSHS   D
+F57D 170019           00270                 LBSR   MASK             mask interrupts
+F580 C602             00271                 LDB    #2
+F582 17FF23           00272                 LBSR   SEND             get status of printer 6551
+F585 17FF2D           00273                 LBSR   RECEIV
+F588 170019           00274                 LBSR   UNMASK           unmask interrupts
+F58B C510             00275                 BITB   #$10             test for TxDRE=1
+F58D 2708             00276                 BEQ    IOPCH1           if 0 exit immediately with Z=1
+F58F C560             00277                 BITB   #$60             else test for DCD=1 or DSR=1
+F591 1FA8             00278                 TFR    CC,A             and invert resulting Z-bit;
+F593 8804             00279                 EORA   #4               thus at exit
+F595 1F8A             00280                 TFR    A,CC             Z=0 IFF TxDRE=1 & DCD=0 & DSR=0
+F597 3586             00281         IOPCH1  PULS   D,PC             restore ACCs and exit
+                      00282         
+                      00283                     * Mask all interrupts during FIO handshake operations
+                      00284         
+F599 B6E280           00285         MASK    LDA    TSR              get TSR value
+F59C 8408             00286                 ANDA   #8               preserve clock write enable bit
+F59E 8A01             00287                 ORA    #1               set TSR task bits to non-zero
+F5A0 B7E280           00288                 STA    TSR              value, masking all interrupts
+F5A3 39               00289                 RTS
+                      00290         
+                      00291                     * Restore interrupts
+                      00292         
+F5A4 7DE462           00293         UNMASK  TST    NMICTL           is NMI active?
+F5A7 2608             00294                 BNE    UNMSK2           if so leave it masked
+F5A9 B6E280           00295                 LDA    TSR              get TSR value
+F5AC 8408             00296                 ANDA   #8               preserve clock write enable bit
+F5AE B7E280           00297                 STA    TSR              clear task bits
+F5B1 39               00298         UNMSK2  RTS
+                      00299         
+                      00300                     * revised handler for Non-Maskable Interrupt
+                      00301         
+F5B2 7CE462           00302         IOPNMI  INC    NMICTL           "inhibit" bogus extra NMIs
+F5B5 1F43             00303                 TFR    S,U              copy stack pointer
+F5B7 BDF92D           00304                 JSR    PRTR1            print register contents
+F5BA 308D001A         00305                 LEAX   NMIMSG,PCR       output NMI message
+F5BE AD9FF810         00306                 JSR    [PSTRNG]
+F5C2 AD9FF806         00307                 JSR    [INCHE]           get a char
+F5C6 3402             00308                 PSHS   A
+F5C8 7FE462           00309                 CLR    NMICTL           release NMI unmask control
+F5CB 8DD7             00310                 BSR    UNMASK           unmask NMI
+F5CD 3502             00311                 PULS   A
+F5CF 84DF             00312                 ANDA   #$DF             force upper case
+F5D1 8159             00313                 CMPA   #'Y'             Y??
+F5D3 102602CD         00314                 LBNE   WARMS0           if not, go to GMXBUG
+F5D7 3B               00315                 RTI                  else return to program
+F5D8 4E4D493A20726573 00316         NMIMSG  FCC    ;NMI: restart (Y/N)? ;
+     746172742028592F
+     4E293F20
+F5EC 04               00317                 FCB    4
+                      00318                     * Extension to "O" command in GMXBUG
+                      00319         
+F5ED B7E002           00320         OS9ADD  STA    FIOIRQ           reset the IOP if any
+                      00321                     * 1 line of code was replaced by JSR to here
+                      00322                     * must be performed before returning
+F5F0 108EE500         00323                 LDY    #$E500           point to RAM for switch code
+F5F4 39               00324                 RTS
+                      00325         
+F5F5                  00326         DRIVER  RMB    DRVSIZ           driver code storage area
+                      00327         
+     026C             00328         CODSIZ  EQU    *-START          total size of IOP support code
+                      00329         
+                      00330         * "O" command patch (is already included)
+                      00331         *        ORG    $FC9E
+                      00332         *        JSR    OS9ADD           call to extension
+                      00333         *        NOP                     replaced instruction was 4 bytes
+                      00334                 END
